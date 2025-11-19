@@ -5,37 +5,37 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Faiz — Portfolio | Web Dev & Design Student</title>
-        <!-- Primary Meta -->
-        <meta name="description" content="Faiz membina laman web yang laju, bersih dan kreatif untuk perniagaan serta personal brand. Fokus kepada performance, UI kemas dan pengalaman pengguna yang mantap." />
-        <meta name="robots" content="index,follow" />
-        <link rel="canonical" href="https://faizhadif.me/" />
-        <meta name="author" content="Faiz Hadif" />
-        <meta name="keywords" content="Web Developer Malaysia, Web Design Perlis, PHP MySQL, Portfolio Web Developer, Laman Web Profesional" />
+    <!-- Primary Meta -->
+    <meta name="description" content="Faiz membina laman web yang laju, bersih dan kreatif untuk perniagaan serta personal brand. Fokus kepada performance, UI kemas dan pengalaman pengguna yang mantap." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://faizhadif.me/" />
+    <meta name="author" content="Faiz Hadif" />
+    <meta name="keywords" content="Web Developer Malaysia, Web Design Perlis, PHP MySQL, Portfolio Web Developer, Laman Web Profesional" />
 
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="ms_MY" />
-        <meta property="og:site_name" content="Faiz Web Developer" />
-        <meta property="og:title" content="Faiz — Web Developer & Design Student" />
-        <meta property="og:description" content="Faiz membina laman web yang pantas, bersih & kreatif untuk bisnes dan personal brand. Performance • UI kemas • UX padu." />
-        <meta property="og:url" content="https://faizhadif.me/" />
-        <!-- Gantikan og:image di bawah dengan file imej sebenar (1200x630) yang anda host contohnya /og-cover.jpg -->
-        <meta property="og:image" content="https://faizhadif.me/og-cover.webp" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Paparan projek web moden oleh Faiz" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ms_MY" />
+    <meta property="og:site_name" content="Faiz Web Developer" />
+    <meta property="og:title" content="Faiz — Web Developer & Design Student" />
+    <meta property="og:description" content="Faiz membina laman web yang pantas, bersih & kreatif untuk bisnes dan personal brand. Performance • UI kemas • UX padu." />
+    <meta property="og:url" content="https://faizhadif.me/" />
+    <!-- Gantikan og:image di bawah dengan file imej sebenar (1200x630) yang anda host contohnya /og-cover.jpg -->
+    <meta property="og:image" content="https://faizhadif.me/images/og-cover.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Paparan projek web moden oleh Faiz" />
 
-        <!-- Twitter Card -->
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Faiz — Web Developer & Design" />
-        <meta name="twitter:description" content="Laman web laju, bersih & kreatif untuk perniagaan dan personal brand." />
-        <meta name="twitter:image" content="https://faizhadif.me/og-cover.webp" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Faiz — Web Developer & Design" />
+    <meta name="twitter:description" content="Laman web laju, bersih & kreatif untuk perniagaan dan personal brand." />
+    <meta name="twitter:image" content="https://faizhadif.me/images/og-cover.webp" />
 
-        <!-- Preconnect (performance hint) -->
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Preconnect (performance hint) -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        <!-- Structured Data JSON-LD -->
-        <script type="application/ld+json">
+    <!-- Structured Data JSON-LD -->
+    <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "WebSite",
@@ -50,7 +50,7 @@
                 "url": "https://faizhadif.me/"
             }
         }
-        </script>
+    </script>
 
     <!-- Fonts -->
     <link
@@ -409,13 +409,19 @@
         .swal2-popup {
             border-radius: 18px;
             box-sizing: border-box;
-            width: min(92vw, 480px) !important; /* smaller, steadier width */
+            width: min(92vw, 480px) !important;
+            /* smaller, steadier width */
             padding: 1.1rem 1.25rem;
-            overflow: visible; /* avoid inner clipping */
+            overflow: visible;
+            /* avoid inner clipping */
             line-height: 1.4;
-            font-size: .95rem; /* slightly smaller base font */
+            font-size: .95rem;
+            /* slightly smaller base font */
         }
-        .swal2-popup * { box-sizing: border-box; }
+
+        .swal2-popup * {
+            box-sizing: border-box;
+        }
 
         .swal2-title {
             font-size: 1.1rem;
@@ -435,23 +441,37 @@
             margin: 0 0 .75rem 0;
             border-radius: 10px;
         }
-        .swal2-textarea { min-height: 120px; resize: vertical; }
+
+        .swal2-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
 
         .swal2-actions {
             gap: .5rem;
         }
 
-        .swal2-container { padding: 14px; }
+        .swal2-container {
+            padding: 14px;
+        }
 
         .swal2-html-container {
             margin: 0 !important;
             padding: 0 !important;
-            overflow: visible !important; /* prevent hidden cut-off of labels */
+            overflow: visible !important;
+            /* prevent hidden cut-off of labels */
             text-align: left;
         }
-        .swal2-html-container .form-label { display: block; margin: .35rem 0 .25rem; }
+
+        .swal2-html-container .form-label {
+            display: block;
+            margin: .35rem 0 .25rem;
+        }
+
         .swal2-html-container input,
-        .swal2-html-container textarea { width: 100%; }
+        .swal2-html-container textarea {
+            width: 100%;
+        }
 
         @media (min-width: 992px) {
             .swal2-popup {
@@ -466,10 +486,12 @@
                 padding: .95rem 1rem;
                 font-size: .93rem;
             }
+
             .swal2-actions {
                 width: 100%;
                 display: flex;
             }
+
             .swal2-actions .swal2-styled {
                 flex: 1;
                 min-width: 0;
@@ -672,6 +694,183 @@
                 animation-iteration-count: 1 !important;
                 transition-duration: .01ms !important;
                 scroll-behavior: auto !important;
+            }
+        }
+
+        /* ======================
+        EDUCATION & CERTS
+        ====================== */
+
+        .edu-wrapper {
+            gap: 1.75rem;
+        }
+
+        .edu-card {
+            padding: 20px 20px 18px;
+        }
+
+        .edu-timeline {
+            position: relative;
+            padding-left: 1.4rem;
+            margin: 0;
+        }
+
+        .edu-timeline::before {
+            content: "";
+            position: absolute;
+            left: 6px;
+            top: 4px;
+            bottom: 4px;
+            width: 2px;
+            background: linear-gradient(to bottom, rgba(126, 247, 198, .6), rgba(255, 255, 255, .06));
+            opacity: .9;
+        }
+
+        .edu-item {
+            position: relative;
+            padding-bottom: 1.4rem;
+        }
+
+        .edu-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .edu-dot {
+            position: absolute;
+            left: -1.4rem;
+            top: 2px;
+            width: 12px;
+            height: 12px;
+            border-radius: 999px;
+            background: #7ef7c6;
+            box-shadow: 0 0 0 4px rgba(126, 247, 198, .18);
+        }
+
+        .edu-meta {
+            font-size: .8rem;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: rgba(226, 251, 247, .7);
+        }
+
+        .edu-title {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .edu-place {
+            font-size: .9rem;
+            color: rgba(226, 251, 247, .8);
+        }
+
+        /* Certificates */
+        .cert-card {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--stroke);
+            background: rgba(6, 21, 22, .75);
+            transition: transform .18s ease, box-shadow .2s ease, border-color .2s ease;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, .45);
+            border-color: rgba(126, 247, 198, .5);
+        }
+
+        .cert-thumb-wrap {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-thumb {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            display: block;
+        }
+
+        .cert-tag {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            padding: .18rem .55rem;
+            border-radius: 999px;
+            font-size: .7rem;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            background: rgba(11, 52, 53, .9);
+            border: 1px solid rgba(255, 255, 255, .22);
+            color: #eafffb;
+        }
+
+        .cert-body {
+            padding: 12px 14px 14px;
+        }
+
+        .cert-title {
+            font-size: .98rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .cert-issuer {
+            font-size: .8rem;
+            color: rgba(226, 251, 247, .8);
+        }
+
+        .cert-meta {
+            font-size: .78rem;
+            color: rgba(226, 251, 247, .7);
+        }
+
+        /* Mobile tweaks */
+        @media (max-width: 575.98px) {
+            .edu-card {
+                padding: 16px 14px;
+            }
+
+            .edu-timeline {
+                padding-left: 1.25rem;
+            }
+
+            .cert-body {
+                padding: 10px 12px 12px;
+            }
+        }
+
+        /* Education logos */
+        .edu-head {
+            display: flex;
+            align-items: flex-start;
+            gap: .75rem;
+            margin-bottom: .15rem;
+        }
+
+        .edu-logo-wrap {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--stroke);
+            background: rgba(5, 20, 22, .9);
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+        }
+
+        .edu-logo-wrap img {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
+        }
+
+        /* Mobile kecil */
+        @media (max-width: 575.98px) {
+            .edu-logo-wrap {
+                width: 38px;
+                height: 38px;
+                border-radius: 12px;
             }
         }
     </style>
@@ -1016,6 +1215,236 @@
                         <p class="text-white-50">PHP + MySQL setup yang
                             secure & scalable.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title fw-bold mb-3" data-aos="fade-up">
+                Education
+            </h2>
+            <p class="text-white-50 mb-4" data-aos="fade-up" data-aos-delay="50">
+                Perjalanan belajar yang bantu bentuk mindset & skill saya dalam web development.
+            </p>
+
+            <div class="row edu-wrapper">
+                <!-- Kiri: summary card -->
+                <div class="col-lg-4" data-aos="fade-right" data-aos-delay="80">
+                    <div class="glass edu-card h-100">
+                        <h5 class="mb-2">
+                            <i class="fa-solid fa-graduation-cap me-2"></i>
+                            Ringkasan
+                        </h5>
+                        <p class="text-white-50 mb-3">
+                            Fokus pada asas programming, database, dan project sebenar yang boleh apply untuk bisnes.
+                        </p>
+                        <ul class="mb-0 text-white-50" style="font-size:.9rem;">
+                            <li>Asas HTML, CSS, JavaScript, PHP</li>
+                            <li>Database design (ERD, MySQL, PHPMyAdmin)</li>
+                            <li>Pengalaman membina laman web jual beli online.</li>
+                            <li>Deployment & hosting (cPanel, domain setup)</li>
+                            <li>Pelajaran Diploma dan Degree</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Kanan: timeline -->
+                <div class="col-lg-8" data-aos="fade-left" data-aos-delay="120">
+                    <div class="glass edu-card h-100">
+                        <div class="edu-timeline">
+                            <!-- Item 1 -->
+                            <div class="edu-item">
+                                <div class="edu-dot"></div>
+                                <div class="edu-meta mb-1">Oct 2022 – Sept 2025</div>
+
+                                <div class="edu-head">
+                                    <div class="edu-logo-wrap">
+                                        <img src="images/politeknik.webp" alt="Logo Universiti Utama">
+                                    </div>
+                                    <div>
+                                        <div class="edu-title">Diploma Teknologi Maklumat</div>
+                                        <div class="edu-place">Politeknik Tuanku Syed Sirajuddin</div>
+                                    </div>
+                                </div>
+
+                                <div class="text-white-50" style="font-size:.9rem;">
+                                    Pembelajaran diploma dengan subjek berkaitan C++, Object-Oriented Programming,
+                                    Software Requirement & System Analysis, Web Development dan Database Administration.
+                                </div>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div class="edu-item">
+                                <div class="edu-dot"></div>
+                                <div class="edu-meta mb-1">Oct 2025 – Sept 2028</div>
+
+                                <div class="edu-head">
+                                    <div class="edu-logo-wrap">
+                                        <img src="images/utem.webp" alt="Logo Kolej">
+                                    </div>
+                                    <div>
+                                        <div class="edu-title">Ijazah Sarjana Muda Sains Komputer (Perisian Komputer) dengan Kepujian</div>
+                                        <div class="edu-place">Universiti Teknikal Malaysia Melaka</div>
+                                    </div>
+                                </div>
+
+                                <div class="text-white-50" style="font-size:.9rem;">
+                                    Lebih mendalami konsep pengaturcaraan, pembangunan perisian, dan pengurusan projek IT
+                                    dengan pembelajaran berkaitan Perisian dan aturcara, Software Development, Database Design
+                                    dan Methodologies Agile, Spiral & SDLC.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates -->
+    <section id="certificates">
+        <div class="container">
+            <div class="d-flex align-items-end justify-content-between mb-3">
+                <div>
+                    <h2 class="section-title fw-bold mb-1" data-aos="fade-up">
+                        Certificates
+                    </h2>
+                    <p class="text-white-50 mb-0" data-aos="fade-up" data-aos-delay="50">
+                        Sijil & pengiktirafan yang telah saya kumpul sepanjang belajar & terlibat dalam projek.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <!-- Cert 1: Microsoft SC-900 -->
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="310">
+                    <article class="cert-card h-100">
+                        <div class="cert-thumb-wrap">
+                            <span class="cert-tag">2024</span>
+                            <img
+                                src="images/sijil1.jpg"
+                                alt="Microsoft Certified: Security, Compliance, and Identity Fundamentals"
+                                class="cert-thumb">
+                        </div>
+                        <div class="cert-body">
+                            <div class="cert-title">Microsoft Certified: SCI Fundamentals</div>
+                            <div class="cert-issuer mb-1">Microsoft</div>
+                            <div class="cert-meta">
+                                Sijil profesional “Microsoft Certified: Security, Compliance, and Identity Fundamentals”
+                                yang mengesahkan kefahaman asas dalam keselamatan, pematuhan dan pengurusan identiti
+                                dalam ekosistem Microsoft.
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Cert 2: AWS Responsible AI -->
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="110">
+                    <article class="cert-card h-100">
+                        <div class="cert-thumb-wrap">
+                            <span class="cert-tag">2024</span>
+                            <img
+                                src="images/sijil5.jpg"
+                                alt="AWS Flash – Introduction to Responsible AI"
+                                class="cert-thumb">
+                        </div>
+                        <div class="cert-body">
+                            <div class="cert-title">AWS Flash – Introduction to Responsible AI</div>
+                            <div class="cert-issuer mb-1">AWS Training and Certification</div>
+                            <div class="cert-meta">
+                                Sijil pengiktirafan bagi tamatnya kursus “AWS Flash – Introduction to Responsible AI”
+                                yang memfokuskan kepada pembangunan dan penggunaan kecerdasan buatan secara bertanggungjawab.
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Cert 3: POLYCC LLM League -->
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="60">
+                    <article class="cert-card h-100">
+                        <div class="cert-thumb-wrap">
+                            <span class="cert-tag">2024</span>
+                            <img
+                                src="images/sijil6.jpg"
+                                alt="POLYCC Large Language Model League 2024"
+                                class="cert-thumb">
+                        </div>
+                        <div class="cert-body">
+                            <div class="cert-title">POLYCC Large Language Model League 2024</div>
+                            <div class="cert-issuer mb-1">AWS Malaysia &amp; POLYCC</div>
+                            <div class="cert-meta">
+                                Sijil penyertaan yang mengesahkan penglibatan dalam POLYCC Large Language Model League 2024
+                                anjuran AWS Malaysia Sdn. Bhd., yang berlangsung dari 13 Ogos 2024 hingga 3 September 2024.
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Cert 4: IRISE Gold Medal -->
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="160">
+                    <article class="cert-card h-100">
+                        <div class="cert-thumb-wrap">
+                            <span class="cert-tag">2023</span>
+                            <img
+                                src="images/sijil4.jpg"
+                                alt="IRISE 2023 Gold Medal"
+                                class="cert-thumb">
+                        </div>
+                        <div class="cert-body">
+                            <div class="cert-title">Gold Medal – IRISE 2023</div>
+                            <div class="cert-issuer mb-1">UiTM Cawangan Kelantan &amp; DIGIT360</div>
+                            <div class="cert-meta">
+                                Sijil anugerah Pingat Emas (Tertiary – Science &amp; Technology, Online) di
+                                International Research and Information Science Expo (IRISE) 2023 bagi projek
+                                “Daily Use Sign Language Application with AR and AI (BIM)”.
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Cert 5: PTSS Mobile + MySQL -->
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="210">
+                    <article class="cert-card h-100">
+                        <div class="cert-thumb-wrap">
+                            <span class="cert-tag">2024</span>
+                            <img
+                                src="images/sijil3.jpg"
+                                alt="Bengkel Mobile Application Development with MySQL"
+                                class="cert-thumb">
+                        </div>
+                        <div class="cert-body">
+                            <div class="cert-title">Mobile Application Development with MySQL</div>
+                            <div class="cert-issuer mb-1">Politeknik Tuanku Syed Sirajuddin (PTSS)</div>
+                            <div class="cert-meta">
+                                Sijil penyertaan bengkel “Mobile Application Development with MySQL”
+                                anjuran Jabatan Teknologi Maklumat dan Komunikasi, PTSS pada 21 Februari 2024.
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Cert 6: PTSS Laravel -->
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="260">
+                    <article class="cert-card h-100">
+                        <div class="cert-thumb-wrap">
+                            <span class="cert-tag">2024</span>
+                            <img
+                                src="images/sijil2.jpg"
+                                alt="Bengkel Web Development Using Laravel Framework"
+                                class="cert-thumb">
+                        </div>
+                        <div class="cert-body">
+                            <div class="cert-title">Web Development Using Laravel Framework</div>
+                            <div class="cert-issuer mb-1">Politeknik Tuanku Syed Sirajuddin (PTSS)</div>
+                            <div class="cert-meta">
+                                Sijil penyertaan bengkel “Web Development Using Laravel Framework”
+                                yang diadakan pada 14–15 Mac 2024 di Makmal MTM, PTSS.
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
         </div>
