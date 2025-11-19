@@ -848,29 +848,30 @@
         }
 
         .edu-logo-wrap {
-            width: 42px;
-            height: 42px;
-            border-radius: 14px;
+            width: clamp(56px, 6.5vw, 68px);
+            height: clamp(56px, 6.5vw, 68px);
+            border-radius: 18px;
             overflow: hidden;
             border: 1px solid var(--stroke);
-            background: rgba(5, 20, 22, .9);
+            background: linear-gradient(145deg, rgba(5,20,22,.92), rgba(10,40,42,.85));
             flex-shrink: 0;
             display: grid;
             place-items: center;
+            box-shadow: 0 6px 18px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05);
         }
 
         .edu-logo-wrap img {
-            width: 85%;
-            height: 85%;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
         }
 
         /* Mobile kecil */
         @media (max-width: 575.98px) {
             .edu-logo-wrap {
-                width: 38px;
-                height: 38px;
-                border-radius: 12px;
+                width: 56px;
+                height: 56px;
+                border-radius: 16px;
             }
         }
     </style>
@@ -910,6 +911,10 @@
                             href="#portfolio">Portfolio</a></li>
                     <li class="nav-item"><a class="nav-link"
                             href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link"
+                            href="#education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link"
+                            href="#certificates">Certificates</a></li>
                     <li class="nav-item"><a class="nav-link"
                             href="#contact">Contact</a></li>
                     <li class="nav-item ms-lg-2"><a
@@ -1165,7 +1170,7 @@
                 data-aos="fade-up">Services</h2>
             <p class="text-white-50 mb-4" data-aos="fade-up"
                 data-aos-delay="50">Nak boost brand anda? Pilih pakej yang
-                ngam.</p>
+                sesuai.</p>
 
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3" data-aos="zoom-in"
@@ -1176,7 +1181,7 @@
                             <h5
                                 class="mb-0">Web Design 💻</h5>
                         </div>
-                        <p class="text-white-50">Landing page laju & cun,
+                        <p class="text-white-50">Landing page laju & bagus,
                             convert visitor jadi customer.</p>
                     </div>
                 </div>
@@ -1189,7 +1194,7 @@
                                 class="mb-0">UI/UX Revamp 🎨</h5>
                         </div>
                         <p class="text-white-50">Polish interface, simplify
-                            flow, naikkan engagement.</p>
+                            flow, naikkan engagement dan SEO.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3" data-aos="zoom-in"
