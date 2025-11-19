@@ -907,6 +907,38 @@
             object-fit: contain;
         }
 
+        /* Desktop: center the education cards & timeline visually */
+        @media (min-width: 992px) {
+            #education .edu-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            #education .edu-wrapper > [class*="col-"] {
+                max-width: 950px;
+            }
+            /* Centered card, left-aligned timeline line */
+            .edu-timeline {
+                padding-left: 1.4rem; /* restore left gutter for line */
+                margin: 0 auto;
+                max-width: 880px;
+            }
+            .edu-timeline::before {
+                left: 6px;           /* line on the left */
+                transform: none;
+            }
+            .edu-item {
+                padding-left: 0; /* remove left indent since line centered */
+            }
+            .edu-dot {
+                left: -1.4rem;       /* dot aligns to left line */
+                transform: none;
+            }
+            .edu-head {
+                justify-content: flex-start; /* align content left for normal reading */
+            }
+        }
+
         /* Mobile kecil */
         @media (max-width: 575.98px) {
             .edu-logo-wrap {
@@ -1164,7 +1196,7 @@
                     data-aos-delay="50">
                     <article class="project-card position-relative h-100">
                         <img class="thumb"
-                            src="images/bannerkangaq-ecommerce.png"
+                            src="images/bannerkangaq-ecommerce.webp"
                             alt="Printing System">
                         <div class="body">
                             <h5 class="mb-1">Banner Kangaq Printing Order - eCommerce</h5>
@@ -1185,7 +1217,7 @@
                     data-aos-delay="100">
                     <article class="project-card position-relative h-100">
                         <img class="thumb"
-                            src="images/medigreen-ecommerce.png"
+                            src="images/medigreen-ecommerce.webp"
                             alt="MEDIgreen e-commerce">
                         <div class="body">
                             <h5 class="mb-1">MEDIgreen eCommerce - Products
@@ -1290,8 +1322,8 @@
             </p>
 
             <div class="row edu-wrapper">
-                <!-- Kiri: summary card -->
-                <div class="col-lg-4" data-aos="fade-right" data-aos-delay="80">
+                <!-- Summary card (centered) -->
+                <div class="col-lg-10 mx-auto mb-4" data-aos="fade-up" data-aos-delay="80">
                     <div class="glass edu-card h-100">
                         <h5 class="mb-2">
                             <i class="fa-solid fa-graduation-cap me-2"></i>
@@ -1309,9 +1341,8 @@
                         </ul>
                     </div>
                 </div>
-
-                <!-- Kanan: timeline -->
-                <div class="col-lg-8" data-aos="fade-left" data-aos-delay="120">
+                <!-- Timeline (centered) -->
+                <div class="col-lg-10 mx-auto" data-aos="fade-up" data-aos-delay="140">
                     <div class="glass edu-card h-100">
                         <div class="edu-timeline">
                             <!-- Item 1 -->
