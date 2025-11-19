@@ -367,6 +367,47 @@
             opacity: 1;
         }
 
+        /* Coming soon placeholder card */
+        .project-card.coming-soon {
+            background: linear-gradient(140deg, rgba(6,21,22,.65), rgba(20,87,87,.35));
+            position: relative;
+            overflow: hidden;
+        }
+        .project-card.coming-soon::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(110deg, rgba(255,255,255,.05) 25%, rgba(255,255,255,.02) 50%, rgba(255,255,255,.05) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 6s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes shimmer { to { background-position: -200% 0; } }
+        .coming-inner { position: relative; z-index: 2; }
+        .coming-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            margin-bottom: .75rem;
+            background: radial-gradient(circle at 35% 35%, rgba(126,247,198,.25), rgba(11,52,53,.55));
+            border: 1px solid var(--stroke);
+        }
+        .coming-icon i { font-size: 1.7rem; color: #7ef7c6; }
+        .placeholder-badge {
+            display: inline-block;
+            padding: .35rem .7rem;
+            font-size: .65rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            border-radius: 999px;
+            background: rgba(126,247,198,.12);
+            border: 1px solid rgba(126,247,198,.35);
+            color: #7ef7c6;
+            backdrop-filter: blur(6px);
+        }
+
         /* Services */
         .service-card {
             padding: 24px;
@@ -1123,7 +1164,7 @@
                     data-aos-delay="50">
                     <article class="project-card position-relative h-100">
                         <img class="thumb"
-                            src="https://i.ibb.co/8nz6y9mb/bannerkangaq-ecommerce.png"
+                            src="images/bannerkangaq-ecommerce.png"
                             alt="Printing System">
                         <div class="body">
                             <h5 class="mb-1">Banner Kangaq Printing Order - eCommerce</h5>
@@ -1138,12 +1179,13 @@
                         </div>
                     </article>
                 </div>
+
                 <!-- Project 2 -->
                 <div class="col-md-6 col-lg-4" data-aos="fade-up"
                     data-aos-delay="100">
                     <article class="project-card position-relative h-100">
                         <img class="thumb"
-                            src="https://i.ibb.co/Kzc06Ykj/medigreen-ecommerce.png"
+                            src="images/medigreen-ecommerce.png"
                             alt="MEDIgreen e-commerce">
                         <div class="body">
                             <h5 class="mb-1">MEDIgreen eCommerce - Products
@@ -1156,6 +1198,18 @@
                                 data-bs-toggle="modal"
                                 data-bs-target="#proj2">View
                                 Details</button>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Project 3 (Coming Soon Placeholder) -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
+                    <article class="project-card coming-soon position-relative h-100" aria-label="Project coming soon">
+                        <div class="coming-inner d-flex flex-column justify-content-center align-items-center text-center p-4 h-100">
+                            <div class="coming-icon"><i class="fa-solid fa-rocket"></i></div>
+                            <h5 class="mb-1">Project Baru Akan Datang</h5>
+                            <p class="text-white-50 small mb-2">Sedang dalam pembangunan — stay tuned!</p>
+                            <span class="placeholder-badge">Coming Soon</span>
                         </div>
                     </article>
                 </div>
