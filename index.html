@@ -408,9 +408,14 @@
         /* SweetAlert2: comfy responsive sizing */
         .swal2-popup {
             border-radius: 18px;
-            width: min(92vw, 520px) !important; /* fit small screens, cap on desktop */
+            box-sizing: border-box;
+            width: min(92vw, 480px) !important; /* smaller, steadier width */
             padding: 1.1rem 1.25rem;
+            overflow: visible; /* avoid inner clipping */
+            line-height: 1.4;
+            font-size: .95rem; /* slightly smaller base font */
         }
+        .swal2-popup * { box-sizing: border-box; }
 
         .swal2-title {
             font-size: 1.1rem;
@@ -423,23 +428,43 @@
             border: 1px solid var(--stroke);
             color: #eafffb;
             box-shadow: none !important;
+            width: 100% !important;
+            max-width: 100%;
+            font-size: .95rem;
+            padding: .6rem .75rem;
+            margin: 0 0 .75rem 0;
+            border-radius: 10px;
         }
+        .swal2-textarea { min-height: 120px; resize: vertical; }
 
         .swal2-actions {
             gap: .5rem;
         }
 
+        .swal2-container { padding: 14px; }
+
+        .swal2-html-container {
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: visible !important; /* prevent hidden cut-off of labels */
+            text-align: left;
+        }
+        .swal2-html-container .form-label { display: block; margin: .35rem 0 .25rem; }
+        .swal2-html-container input,
+        .swal2-html-container textarea { width: 100%; }
+
         @media (min-width: 992px) {
             .swal2-popup {
-                width: 520px !important;
+                width: 480px !important;
                 padding: 1.25rem 1.5rem;
             }
         }
 
         @media (max-width: 575.98px) {
             .swal2-popup {
-                width: min(94vw, 520px) !important;
+                width: min(94vw, 480px) !important;
                 padding: .95rem 1rem;
+                font-size: .93rem;
             }
             .swal2-actions {
                 width: 100%;
