@@ -89,6 +89,73 @@
             background: var(--grad);
             color: #fff;
             font-family: "Google Sans", Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+            position: relative;
+            z-index: 0;
+        }
+
+        /* Moving light sweep (visible left ↔ right loop) */
+        #ambientLights {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        #ambientLights::before,
+        #ambientLights::after {
+            content: "";
+            position: absolute;
+            inset: -30vmax;
+            filter: blur(60px);
+            opacity: .92;
+            transform: translate3d(-25%, 0, 0);
+            will-change: transform;
+        }
+
+        #ambientLights::before {
+            background:
+                radial-gradient(38vmax 26vmax at 20% 35%, rgba(126, 247, 198, .38), transparent 62%),
+                radial-gradient(44vmax 30vmax at 30% 70%, rgba(34, 211, 238, .22), transparent 64%);
+            mix-blend-mode: screen;
+            animation: lightSweepA 7.5s ease-in-out infinite;
+        }
+
+        #ambientLights::after {
+            background:
+                radial-gradient(44vmax 30vmax at 70% 30%, rgba(34, 197, 94, .26), transparent 62%),
+                radial-gradient(40vmax 28vmax at 85% 65%, rgba(126, 247, 198, .20), transparent 64%);
+            opacity: .78;
+            mix-blend-mode: screen;
+            animation: lightSweepB 10s ease-in-out infinite;
+        }
+
+        @keyframes lightSweepA {
+            0% {
+                transform: translate3d(-26%, -2%, 0) scale(1);
+            }
+
+            50% {
+                transform: translate3d(26%, 2%, 0) scale(1.02);
+            }
+
+            100% {
+                transform: translate3d(-26%, -2%, 0) scale(1);
+            }
+        }
+
+        @keyframes lightSweepB {
+            0% {
+                transform: translate3d(22%, 2%, 0) scale(1);
+            }
+
+            50% {
+                transform: translate3d(-22%, -1.5%, 0) scale(1.03);
+            }
+
+            100% {
+                transform: translate3d(22%, 2%, 0) scale(1);
+            }
         }
 
         .glass {
@@ -162,6 +229,13 @@
                 transition-duration: .01ms !important;
                 scroll-behavior: auto !important;
             }
+
+            #ambientLights::before,
+            #ambientLights::after {
+                animation: none !important;
+                opacity: .25;
+                filter: blur(42px);
+            }
         }
 
         /* Modal animations */
@@ -206,6 +280,27 @@
             pointer-events: auto;
         }
 
+        /* Music toggle docking (moves down when back-to-top is hidden) */
+        :root {
+            --music-shift: 4.5rem;
+        }
+
+        @media (min-width: 640px) {
+            :root {
+                --music-shift: 4.75rem;
+            }
+        }
+
+        #musicToggle {
+            transform: translateY(0);
+            transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+
+        #musicToggle.is-lowered {
+            transform: translateY(var(--music-shift));
+        }
+
         /* AOS performance hint (smooth transforms) */
         [data-aos] {
             will-change: transform, opacity;
@@ -215,6 +310,7 @@
 
 <body class="font-sans">
     <div id="top" aria-hidden="true"></div>
+    <div id="ambientLights" aria-hidden="true"></div>
     <!-- Preloader -->
     <div id="preloader" aria-label="Loading">
         <div class="loader" aria-hidden="true"></div>
@@ -359,6 +455,17 @@
         class="to-top fixed right-4 bottom-[5.25rem] sm:bottom-[6rem] z-40 grid place-items-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl glass hover:bg-white/10 transition"
         type="button" aria-label="Back to top">
         <i class="bi bi-arrow-up text-[1.2rem]"></i>
+    </button>
+
+    <!-- Background music (autoplay attempt + user prompt fallback) -->
+    <audio id="bgMusic" preload="auto" loop playsinline>
+        <source src="assets/background.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="musicToggle"
+        class="fixed right-4 bottom-[9.75rem] sm:bottom-[10.75rem] z-40 hidden grid place-items-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl glass hover:bg-white/10 transition"
+        type="button" aria-label="Toggle background music" title="Background music">
+        <i id="musicIcon" class="bi bi-music-note-beamed text-[1.15rem]"></i>
     </button>
 
     <!-- Floating WhatsApp -->
@@ -1322,6 +1429,92 @@
             });
         }
 
+        // Background music
+        const MUSIC_PREF_KEY = 'bgMusicEnabled';
+        const music = document.getElementById('bgMusic');
+        const musicToggle = document.getElementById('musicToggle');
+        const musicIcon = document.getElementById('musicIcon');
+
+        function setMusicUi(isOn) {
+            if (!musicToggle || !musicIcon) return;
+            musicToggle.classList.remove('hidden');
+            musicIcon.className = isOn
+                ? 'bi bi-volume-up text-[1.15rem]'
+                : 'bi bi-volume-mute text-[1.15rem]';
+        }
+
+        async function tryStartMusic({ fromUserGesture = false } = {}) {
+            if (!music) return false;
+            try {
+                music.volume = 0.22;
+                await music.play();
+                setMusicUi(true);
+                if (fromUserGesture) localStorage.setItem(MUSIC_PREF_KEY, '1');
+                return true;
+            } catch {
+                setMusicUi(false);
+                if (fromUserGesture) localStorage.setItem(MUSIC_PREF_KEY, '0');
+                return false;
+            }
+        }
+
+        function stopMusic() {
+            if (!music) return;
+            try { music.pause(); } catch {}
+            music.currentTime = 0;
+            setMusicUi(false);
+        }
+
+        // Attempt autoplay on first visit; if blocked, ask once.
+        window.addEventListener('load', async () => {
+            const pref = localStorage.getItem(MUSIC_PREF_KEY);
+            if (pref === '0') {
+                setMusicUi(false);
+                return;
+            }
+
+            const started = await tryStartMusic();
+            if (started) {
+                localStorage.setItem(MUSIC_PREF_KEY, '1');
+                return;
+            }
+
+            // Autoplay blocked: ask permission (only when no explicit opt-out)
+            if (pref === '1') return;
+            if (!window.Swal) return;
+
+            const result = await Swal.fire({
+                icon: 'question',
+                title: 'Enable background music?',
+                text: 'Some browsers require a tap to start audio. You can turn it off anytime.',
+                confirmButtonText: 'Enable',
+                cancelButtonText: 'No thanks',
+                showCancelButton: true,
+                reverseButtons: true
+            });
+
+            if (result.isConfirmed) {
+                const ok = await tryStartMusic({ fromUserGesture: true });
+                if (!ok) {
+                    localStorage.setItem(MUSIC_PREF_KEY, '0');
+                }
+            } else {
+                localStorage.setItem(MUSIC_PREF_KEY, '0');
+                stopMusic();
+            }
+        });
+
+        // Toggle button (always user-gesture safe)
+        musicToggle?.addEventListener('click', async () => {
+            if (!music) return;
+            if (!music.paused) {
+                localStorage.setItem(MUSIC_PREF_KEY, '0');
+                stopMusic();
+                return;
+            }
+            await tryStartMusic({ fromUserGesture: true });
+        });
+
         // Preloader
         const preloader = document.getElementById('preloader');
         setTimeout(() => preloader.classList.add('hide'), 2500);
@@ -1345,6 +1538,7 @@
         function updateToTopVisibility() {
             const show = window.scrollY > 140;
             toTopBtn?.classList.toggle('is-visible', show);
+            musicToggle?.classList.toggle('is-lowered', !show);
             toTopTicking = false;
         }
 
