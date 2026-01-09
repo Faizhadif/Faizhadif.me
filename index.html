@@ -1,122 +1,120 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Faiz — Portfolio | Web Dev & Design Student</title>
+    <title>Faiz Hadif — Web Developer & UI Engineer</title>
+
     <!-- Primary Meta -->
-    <meta name="description" content="Faiz membina laman web yang laju, bersih dan kreatif untuk perniagaan serta personal brand. Fokus kepada performance, UI kemas dan pengalaman pengguna yang mantap." />
+    <meta name="description" content="Faiz Hadif designs and builds fast, modern, and conversion-focused websites for businesses and personal brands—performance-first engineering with refined UI." />
     <meta name="robots" content="index,follow" />
     <link rel="canonical" href="https://faizhadif.me/" />
     <meta name="author" content="Faiz Hadif" />
-    <meta name="keywords" content="Web Developer Malaysia, Web Design Perlis, PHP MySQL, Portfolio Web Developer, Laman Web Profesional" />
+    <meta name="keywords" content="Web Developer Malaysia, UI UX, PHP MySQL, Portfolio Web Developer, Professional Website" />
 
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="ms_MY" />
-    <meta property="og:site_name" content="Faiz Web Developer" />
-    <meta property="og:title" content="Faiz — Web Developer & Design Student" />
-    <meta property="og:description" content="Faiz membina laman web yang pantas, bersih & kreatif untuk bisnes dan personal brand. Performance • UI kemas • UX padu." />
+    <meta property="og:locale" content="en_MY" />
+    <meta property="og:site_name" content="Faiz Hadif" />
+    <meta property="og:title" content="Faiz Hadif — Web Developer & UI Engineer" />
+    <meta property="og:description" content="Fast, modern, and conversion-focused websites—performance-first engineering with refined UI." />
     <meta property="og:url" content="https://faizhadif.me/" />
-    <!-- Gantikan og:image di bawah dengan file imej sebenar (1200x630) yang anda host contohnya /og-cover.jpg -->
     <meta property="og:image" content="https://faizhadif.me/images/og-cover.webp" />
+    <meta property="og:image:type" content="image/webp" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Paparan projek web moden oleh Faiz" />
+    <meta property="og:image:alt" content="Faiz Hadif — Web Developer Portfolio" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Faiz — Web Developer & Design" />
-    <meta name="twitter:description" content="Laman web laju, bersih & kreatif untuk perniagaan dan personal brand." />
+    <meta name="twitter:title" content="Faiz Hadif — Web Developer & UI Engineer" />
+    <meta name="twitter:description" content="Fast, modern, and conversion-focused websites—performance-first engineering with refined UI." />
     <meta name="twitter:image" content="https://faizhadif.me/images/og-cover.webp" />
+    <meta name="twitter:image:alt" content="Faiz Hadif — Web Developer Portfolio" />
 
-    <!-- Preconnect (performance hint) -->
+    <!-- Theme -->
+    <meta name="theme-color" content="#083636" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Structured Data JSON-LD -->
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "url": "https://faizhadif.me/",
-            "name": "Faiz Web Developer",
-            "description": "Faiz membina laman web laju, bersih dan kreatif untuk perniagaan dan personal brand di Malaysia.",
-            "inLanguage": "ms-MY",
-            "creator": {
-                "@type": "Person",
-                "name": "Faiz Hadif",
-                "jobTitle": "Web Developer & Design Student",
-                "url": "https://faizhadif.me/"
-            }
-        }
-    </script>
+    <!-- Google Sans (Required) + Inter fallback -->
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
-        rel="stylesheet">
+    <!-- Bootstrap Icons (Required) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
-    <!-- Bootstrap 5.3 -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" href="images/faizhadif.ico" sizes="any">
+    <link rel="shortcut icon" href="images/faizhadif.ico">
 
-    <!-- Icons -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
-        rel="stylesheet">
-    <link
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        rel="stylesheet">
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <!-- AOS -->
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
-        rel="stylesheet">
+    <!-- Tailwind (built locally via CLI) -->
+    <link rel="stylesheet" href="assets/tailwind.css">
 
-    <!-- SweetAlert2 -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css"
-        rel="stylesheet">
+    <!-- Typed.js (Hero typing effect) -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
 
-    <!-- Favicons -->
-    <link rel="icon" type="image/png" href="https://fav.farm/🧩">
-    <meta name="theme-color" content="#0b3435">
+    <!-- Alpine.js (Mobile menu overlay) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
-        :root {
-            --emerald: #21721e;
-            --teal: #145757;
-            --navy: #0b3435;
-            --glass: rgba(255, 255, 255, .08);
-            --stroke: rgba(255, 255, 255, .25);
-            --white: #ffffff;
-            --muted: #cde8e6;
-            --grad: radial-gradient(1200px 600px at 15% 10%, rgba(33, 114, 30, .8), transparent 60%),
-                radial-gradient(1000px 500px at 85% 20%, rgba(20, 87, 87, .7), transparent 55%),
-                radial-gradient(900px 500px at 50% 90%, rgba(11, 52, 53, .9), transparent 60%),
-                linear-gradient(160deg, #0b3435 10%, #145757 55%, #21721e 120%);
+        [x-cloak] {
+            display: none !important;
         }
 
-        /* Global */
-        html {
-            scroll-behavior: smooth;
-            /* Prevent horizontal scroll on small devices */
-            overflow-x: hidden;
+        :root {
+            --emerald: #128a3e;
+            --teal: #0b5f59;
+            --navy: #083636;
+            --glass: rgba(255, 255, 255, .10);
+            --stroke: rgba(255, 255, 255, .22);
+            --muted: rgba(234, 255, 251, .78);
+            --muted2: rgba(234, 255, 251, .62);
+            --accent: #7ef7c6;
+
+            --grad:
+                radial-gradient(1200px 700px at 18% 12%, rgba(126, 247, 198, .40), transparent 62%),
+                radial-gradient(1100px 640px at 85% 18%, rgba(34, 211, 238, .28), transparent 58%),
+                radial-gradient(900px 560px at 55% 92%, rgba(34, 197, 94, .30), transparent 62%),
+                linear-gradient(160deg, #083636 0%, #0b5f59 52%, #128a3e 120%);
         }
 
         body {
             background: var(--grad);
-            color: var(--white);
-            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
-            overflow-x: hidden;
+            color: #fff;
+            font-family: "Google Sans", Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
         }
 
-        h1,
-        h2,
-        h3,
-        .navbar-brand {
-            font-family: Poppins, Inter, sans-serif;
+        .glass {
+            background: var(--glass);
+            border: 1px solid var(--stroke);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .25), inset 0 1px 0 rgba(255, 255, 255, .07);
+        }
+
+        .stroke {
+            border: 1px solid var(--stroke);
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        .muted2 {
+            color: var(--muted2);
+        }
+
+        /* Prevent horizontal scroll caused by blobs */
+        html,
+        body {
+            overflow-x: hidden;
         }
 
         /* Preloader */
@@ -125,9 +123,9 @@
             inset: 0;
             display: grid;
             place-items: center;
-            background: #081f20;
-            z-index: 9999;
-            transition: opacity .4s ease, visibility .4s ease;
+            background: #082827;
+            z-index: 60;
+            transition: opacity .35s ease, visibility .35s ease;
         }
 
         #preloader.hide {
@@ -136,600 +134,24 @@
         }
 
         .loader {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            border: 4px solid rgba(255, 255, 255, .15);
-            border-top-color: #7ef7c6;
+            width: 60px;
+            height: 60px;
+            border-radius: 999px;
+            border: 4px solid rgba(255, 255, 255, .14);
+            border-top-color: var(--accent);
             animation: spin 1s linear infinite;
         }
 
         @keyframes spin {
             to {
-                transform: rotate(360deg)
+                transform: rotate(360deg);
             }
         }
 
-        /* Navbar */
-        .navbar {
-            backdrop-filter: blur(10px);
-            background: rgba(7, 28, 30, .35) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, .08);
-            transition: padding .25s ease, background .25s ease, box-shadow .25s ease;
-        }
-
-        /* Bagi toggle icon nampak putih */
-        .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28 255, 255, 255, .9 %29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-        }
-
-        .navbar .nav-link {
-            color: #eafffb;
-            font-size: .95rem;
-        }
-
-        .navbar .nav-link:hover {
-            color: #7ef7c6;
-        }
-
-        .navbar-brand {
-            letter-spacing: .5px;
-            font-size: 1.05rem;
-        }
-
-        .navbar-scrolled {
-            padding-top: .35rem !important;
-            padding-bottom: .35rem !important;
-            background: rgba(7, 28, 30, .85) !important;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
-        }
-
-        /* Hero */
-        .hero {
-            position: relative;
-            min-height: 100svh;
-            display: grid;
-            place-items: center;
-            text-align: center;
-            overflow: hidden;
-            padding-top: 96px;
-            /* offset navbar */
-            padding-bottom: 72px;
-        }
-
-        /* Fluid hero heading size (works across breakpoints) */
-        .hero h1 {
-            font-size: clamp(2.1rem, 6.2vw, 3.3rem);
-            line-height: 1.15;
-            word-break: break-word;
-        }
-
-        .hero .bg-blob {
-            position: absolute;
-            inset: -10% -10% auto -10%;
-            background: radial-gradient(650px 350px at 20% 20%, rgba(126, 247, 198, .25), transparent 60%),
-                radial-gradient(800px 400px at 80% 10%, rgba(33, 114, 30, .28), transparent 60%);
-            filter: blur(50px);
-            transform: translateZ(0);
-            animation: floaty 16s ease-in-out infinite alternate;
-            pointer-events: none;
-        }
-
-        @keyframes floaty {
-            0% {
-                transform: translate3d(0, 0, 0)
-            }
-
-            100% {
-                transform: translate3d(0, -30px, 0)
-            }
-        }
-
-        .typed-cursor {
-            color: #7ef7c6;
-        }
-
-        .cta-btn {
-            border: 1px solid var(--stroke);
-            backdrop-filter: blur(8px);
-        }
-
-        .cta-btn:hover {
-            box-shadow: 0 10px 30px rgba(126, 247, 198, .18);
-            transform: translateY(-1px);
-        }
-
-        /* Floating socials */
-        .floating-social {
-            position: fixed;
-            right: 14px;
-            bottom: 18px;
-            display: flex;
-            flex-direction: column;
-            gap: .6rem;
-            z-index: 999;
-        }
-
-        .floating-social a {
-            width: 64px !important;
-            height: 64px !important;
-            border-radius: 12px;
-            display: grid;
-            place-items: center;
-            background: var(--glass);
-            border: 1px solid var(--stroke);
-            color: #eafffb;
-            backdrop-filter: blur(10px);
-            transition: transform .2s ease, background .2s ease;
-        }
-
-        .floating-social a:hover {
-            transform: translateY(-2px);
-            background: rgba(255, 255, 255, .12);
-            color: #7ef7c6;
-        }
-
-        /* Sections */
-        section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            letter-spacing: .3px;
-        }
-
-        .muted {
-            color: var(--muted);
-        }
-
-        /* Glass cards */
-        .glass {
-            background: var(--glass);
-            border: 1px solid var(--stroke);
-            backdrop-filter: blur(10px);
-            border-radius: 18px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .25), inset 0 1px 0 rgba(255, 255, 255, .06);
-        }
-
-        /* About */
-        .about-img {
-            border-radius: 18px;
-            border: 1px solid var(--stroke);
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, .35);
-        }
-
-        .stat-card {
-            padding: 18px;
-            text-align: center;
-        }
-
-        .stat-card h3 {
-            margin: 0;
-            font-weight: 700;
-        }
-
-        .stat-card p {
-            margin: 0;
-            font-size: .9rem;
-            opacity: .8;
-        }
-
-        /* Skills */
-        .skill-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: .5rem;
-            padding: .55rem .8rem;
-            border-radius: 999px;
-            border: 1px solid var(--stroke);
-            background: rgba(255, 255, 255, .06);
-            margin: .35rem .35rem 0 0;
-            transition: transform .15s ease, box-shadow .15s ease, background .2s ease;
-            will-change: transform;
-        }
-
-        .skill-badge:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
-            background: rgba(255, 255, 255, .12);
-        }
-
-        /* Portfolio */
-        .project-card {
-            overflow: hidden;
-            border-radius: 16px;
-            border: 1px solid var(--stroke);
-            background: rgba(6, 21, 22, .55);
-        }
-
-        .project-card .thumb {
-            aspect-ratio: 16/10;
-            object-fit: cover;
-            width: 100%;
-        }
-
-        .project-card .body {
-            padding: 16px;
-        }
-
-        .project-card .overlay {
-            position: absolute;
-            inset: 0;
-            display: grid;
-            place-items: center;
-            background: linear-gradient(to top, rgba(0, 0, 0, .55), rgba(0, 0, 0, .1));
-            opacity: 0;
-            transition: opacity .25s ease;
-        }
-
-        .project-card:hover .overlay {
-            opacity: 1;
-        }
-
-        /* Coming soon placeholder card */
-        .project-card.coming-soon {
-            background: linear-gradient(140deg, rgba(6,21,22,.65), rgba(20,87,87,.35));
-            position: relative;
-            overflow: hidden;
-        }
-        .project-card.coming-soon::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(110deg, rgba(255,255,255,.05) 25%, rgba(255,255,255,.02) 50%, rgba(255,255,255,.05) 75%);
-            background-size: 200% 100%;
-            animation: shimmer 6s linear infinite;
-            pointer-events: none;
-        }
-        @keyframes shimmer { to { background-position: -200% 0; } }
-        .coming-inner { position: relative; z-index: 2; }
-        .coming-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 16px;
-            display: grid;
-            place-items: center;
-            margin-bottom: .75rem;
-            background: radial-gradient(circle at 35% 35%, rgba(126,247,198,.25), rgba(11,52,53,.55));
-            border: 1px solid var(--stroke);
-        }
-        .coming-icon i { font-size: 1.7rem; color: #7ef7c6; }
-        .placeholder-badge {
-            display: inline-block;
-            padding: .35rem .7rem;
-            font-size: .65rem;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-            border-radius: 999px;
-            background: rgba(126,247,198,.12);
-            border: 1px solid rgba(126,247,198,.35);
-            color: #7ef7c6;
-            backdrop-filter: blur(6px);
-        }
-
-        /* Services */
-        .service-card {
-            padding: 24px;
-            border-radius: 16px;
-            border: 1px solid var(--stroke);
-            background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .03));
-            transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, .35), 0 0 0 1px rgba(126, 247, 198, .15) inset;
-            border-color: rgba(126, 247, 198, .45);
-        }
-
-        /* Contact */
-        .form-control,
-        .form-select {
-            background: rgba(255, 255, 255, .06);
-            border: 1px solid var(--stroke);
-            color: #eafffb;
-        }
-
-        .form-control::placeholder {
-            color: rgba(226, 251, 247, 0.65);
-        }
-
-        .form-control:focus {
-            border-color: #7ef7c6;
-            box-shadow: 0 0 0 .2rem rgba(126, 247, 198, .15);
-        }
-
-        .contact-info .item {
-            display: flex;
-            gap: .8rem;
-            align-items: flex-start;
-        }
-
-        /* SweetAlert2: comfy responsive sizing */
-        .swal2-popup {
-            border-radius: 18px;
-            box-sizing: border-box;
-            width: min(92vw, 480px) !important;
-            /* smaller, steadier width */
-            padding: 1.1rem 1.25rem;
-            overflow: visible;
-            /* avoid inner clipping */
-            line-height: 1.4;
-            font-size: .95rem;
-            /* slightly smaller base font */
-        }
-
-        .swal2-popup * {
-            box-sizing: border-box;
-        }
-
-        .swal2-title {
-            font-size: 1.1rem;
-            margin-bottom: .5rem;
-        }
-
-        .swal2-input,
-        .swal2-textarea {
-            background: rgba(255, 255, 255, .06);
-            border: 1px solid var(--stroke);
-            color: #eafffb;
-            box-shadow: none !important;
-            width: 100% !important;
-            max-width: 100%;
-            font-size: .95rem;
-            padding: .6rem .75rem;
-            margin: 0 0 .75rem 0;
-            border-radius: 10px;
-        }
-
-        .swal2-textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .swal2-actions {
-            gap: .5rem;
-        }
-
-        .swal2-container {
-            padding: 14px;
-        }
-
-        .swal2-html-container {
-            margin: 0 !important;
-            padding: 0 !important;
-            overflow: visible !important;
-            /* prevent hidden cut-off of labels */
-            text-align: left;
-        }
-
-        .swal2-html-container .form-label {
-            display: block;
-            margin: .35rem 0 .25rem;
-        }
-
-        .swal2-html-container input,
-        .swal2-html-container textarea {
-            width: 100%;
-        }
-
-        @media (min-width: 992px) {
-            .swal2-popup {
-                width: 480px !important;
-                padding: 1.25rem 1.5rem;
-            }
-        }
-
-        @media (max-width: 575.98px) {
-            .swal2-popup {
-                width: min(94vw, 480px) !important;
-                padding: .95rem 1rem;
-                font-size: .93rem;
-            }
-
-            .swal2-actions {
-                width: 100%;
-                display: flex;
-            }
-
-            .swal2-actions .swal2-styled {
-                flex: 1;
-                min-width: 0;
-            }
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid rgba(255, 255, 255, .08);
-            padding: 28px 0;
-            color: #bfe8e3;
-            font-size: .9rem;
-        }
-
-        /* ===========================
-   RESPONSIVE / MOBILE APP FEEL
-   =========================== */
-
-        /* Tablet & down */
-        @media (max-width: 991.98px) {
-            .hero h1 {
-                font-size: clamp(1.9rem, 7.2vw, 2.6rem);
-            }
-
-            .hero .lead {
-                font-size: .95rem;
-                max-width: 28rem;
-                margin-inline: auto;
-            }
-
-            .navbar {
-                padding-top: .45rem !important;
-                padding-bottom: .45rem !important;
-            }
-
-            #nav {
-                background: rgba(5, 20, 22, .98);
-                border-radius: 0 0 18px 18px;
-                padding: .75rem 1rem 1rem;
-                margin-top: .5rem;
-            }
-
-            .navbar-nav .nav-link {
-                padding-left: .25rem;
-                padding-right: .25rem;
-            }
-
-            section {
-                padding: 64px 0;
-            }
-        }
-
-        /* Pure mobile: app style */
-        @media (max-width: 575.98px) {
-            body {
-                font-size: 15px;
-            }
-
-            .container {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-
-            .hero {
-                padding-top: 88px;
-                padding-bottom: 56px;
-                /* Keep hero clipped so absolute blobs don't cause side scroll */
-                overflow: hidden;
-            }
-
-            .hero .muted {
-                font-size: .8rem;
-            }
-
-            .hero .lead {
-                font-size: .9rem;
-                opacity: .85;
-            }
-
-            .hero .d-flex.gap-2 {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .hero .d-flex.gap-2 .btn {
-                width: 100%;
-                justify-content: center;
-            }
-
-            section {
-                padding: 56px 0;
-            }
-
-            #about .row.g-4 {
-                row-gap: 1.75rem;
-            }
-
-            .about-img img {
-                max-height: 230px;
-                object-fit: cover;
-            }
-
-            .glass {
-                border-radius: 16px;
-            }
-
-            .service-card,
-            .project-card {
-                padding: 18px;
-                border-radius: 16px;
-            }
-
-            .project-card img {
-                border-radius: 12px;
-            }
-
-            #skills .glass {
-                padding: 14px;
-            }
-
-            .skill-badge {
-                font-size: .8rem;
-                padding: .4rem .7rem;
-            }
-
-            /* Contact card spacing */
-            #contact .glass {
-                padding: 1.1rem 1.1rem;
-            }
-
-            #contact .form-label {
-                font-size: .85rem;
-                margin-bottom: .15rem;
-            }
-
-            #contact textarea {
-                min-height: 120px;
-            }
-
-            #contact .col-12.d-flex.gap-2 {
-                flex-direction: column;
-            }
-
-            #contact .col-12.d-flex.gap-2 .btn {
-                width: 100%;
-                justify-content: center;
-            }
-
-            /* Footer stack like app bottom sheet */
-            footer .d-flex.flex-column.flex-md-row {
-                align-items: flex-start !important;
-            }
-
-            footer .d-flex.gap-3 {
-                flex-wrap: wrap;
-                justify-content: flex-start;
-            }
-
-            .floating-social {
-                right: 10px;
-                bottom: 12px;
-            }
-
-            .floating-social a {
-                width: 40px;
-                height: 40px;
-                border-radius: 999px;
-            }
-
-            /* Project cards full width feel */
-            #portfolio .row.g-4>[class^="col-"] {
-                max-width: 100%;
-            }
-
-            /* Modal body padding a bit tighter */
-            .modal-content {
-                border-radius: 18px;
-            }
-
-            .modal-body {
-                padding: 1rem 1rem 1.25rem;
-            }
-        }
-
-        /* Extra small devices: very narrow (<380px) */
-        @media (max-width: 379.98px) {
-            .hero h1 {
-                font-size: clamp(1.75rem, 9.5vw, 2.25rem);
-            }
-
-            .hero .lead {
-                font-size: .85rem;
-            }
-
-            .btn.cta-btn {
-                padding: .55rem .9rem;
-            }
+        /* Focus style */
+        :focus-visible {
+            outline: 2px solid rgba(126, 247, 198, .65);
+            outline-offset: 3px;
         }
 
         /* Reduce motion */
@@ -742,1193 +164,1403 @@
             }
         }
 
-        /* ======================
-        EDUCATION & CERTS
-        ====================== */
-
-        .edu-wrapper {
-            gap: 1.75rem;
+        /* Modal animations */
+        #backdrop {
+            opacity: 0;
+            transition: opacity .2s ease;
         }
 
-        .edu-card {
-            padding: 20px 20px 18px;
+        #backdrop.is-visible {
+            opacity: 1;
         }
 
-        .edu-timeline {
-            position: relative;
-            padding-left: 1.4rem;
-            margin: 0;
+        .modal .modal-panel {
+            opacity: 0;
+            transform: translateY(14px) scale(.985);
+            transition: transform .22s ease, opacity .22s ease;
+            will-change: transform, opacity;
         }
 
-        .edu-timeline::before {
-            content: "";
-            position: absolute;
-            left: 6px;
-            top: 4px;
-            bottom: 4px;
-            width: 2px;
-            background: linear-gradient(to bottom, rgba(126, 247, 198, .6), rgba(255, 255, 255, .06));
-            opacity: .9;
+        .modal.is-open .modal-panel {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
 
-        .edu-item {
-            position: relative;
-            padding-bottom: 1.4rem;
+        .modal.is-closing .modal-panel {
+            opacity: 0;
+            transform: translateY(14px) scale(.985);
         }
 
-        .edu-item:last-child {
-            padding-bottom: 0;
+        /* Back-to-top button (appears after scroll) */
+        .to-top {
+            opacity: 0;
+            transform: translateY(10px) scale(.98);
+            pointer-events: none;
+            transition: opacity 220ms ease, transform 220ms ease;
+            will-change: opacity, transform;
         }
 
-        .edu-dot {
-            position: absolute;
-            left: -1.4rem;
-            top: 2px;
-            width: 12px;
-            height: 12px;
-            border-radius: 999px;
-            background: #7ef7c6;
-            box-shadow: 0 0 0 4px rgba(126, 247, 198, .18);
+        .to-top.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
         }
 
-        .edu-meta {
-            font-size: .8rem;
-            text-transform: uppercase;
-            letter-spacing: .06em;
-            color: rgba(226, 251, 247, .7);
-        }
-
-        .edu-title {
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
-
-        .edu-place {
-            font-size: .9rem;
-            color: rgba(226, 251, 247, .8);
-        }
-
-        /* Certificates */
-        .cert-card {
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--stroke);
-            background: rgba(6, 21, 22, .75);
-            transition: transform .18s ease, box-shadow .2s ease, border-color .2s ease;
-        }
-
-        .cert-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 18px 40px rgba(0, 0, 0, .45);
-            border-color: rgba(126, 247, 198, .5);
-        }
-
-        .cert-thumb-wrap {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cert-thumb {
-            width: 100%;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .cert-tag {
-            position: absolute;
-            left: 10px;
-            top: 10px;
-            padding: .18rem .55rem;
-            border-radius: 999px;
-            font-size: .7rem;
-            letter-spacing: .05em;
-            text-transform: uppercase;
-            background: rgba(11, 52, 53, .9);
-            border: 1px solid rgba(255, 255, 255, .22);
-            color: #eafffb;
-        }
-
-        .cert-body {
-            padding: 12px 14px 14px;
-        }
-
-        .cert-title {
-            font-size: .98rem;
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
-
-        .cert-issuer {
-            font-size: .8rem;
-            color: rgba(226, 251, 247, .8);
-        }
-
-        .cert-meta {
-            font-size: .78rem;
-            color: rgba(226, 251, 247, .7);
-        }
-
-        /* Mobile tweaks */
-        @media (max-width: 575.98px) {
-            .edu-card {
-                padding: 16px 14px;
-            }
-
-            .edu-timeline {
-                padding-left: 1.25rem;
-            }
-
-            .cert-body {
-                padding: 10px 12px 12px;
-            }
-        }
-
-        /* Education logos */
-        .edu-head {
-            display: flex;
-            align-items: flex-start;
-            gap: .75rem;
-            margin-bottom: .15rem;
-        }
-
-        .edu-logo-wrap {
-            width: clamp(56px, 6.5vw, 68px);
-            height: clamp(56px, 6.5vw, 68px);
-            border-radius: 18px;
-            overflow: hidden;
-            border: 1px solid var(--stroke);
-            background: linear-gradient(145deg, rgba(5,20,22,.92), rgba(10,40,42,.85));
-            flex-shrink: 0;
-            display: grid;
-            place-items: center;
-            box-shadow: 0 6px 18px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05);
-        }
-
-        .edu-logo-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        /* Desktop: center the education cards & timeline visually */
-        @media (min-width: 992px) {
-            #education .edu-wrapper {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            #education .edu-wrapper > [class*="col-"] {
-                max-width: 950px;
-            }
-            /* Centered card, left-aligned timeline line */
-            .edu-timeline {
-                padding-left: 1.4rem; /* restore left gutter for line */
-                margin: 0 auto;
-                max-width: 880px;
-            }
-            .edu-timeline::before {
-                left: 6px;           /* line on the left */
-                transform: none;
-            }
-            .edu-item {
-                padding-left: 0; /* remove left indent since line centered */
-            }
-            .edu-dot {
-                left: -1.4rem;       /* dot aligns to left line */
-                transform: none;
-            }
-            .edu-head {
-                justify-content: flex-start; /* align content left for normal reading */
-            }
-            .text-tengah {
-                text-align: center !important;
-            }
-        }
-
-        /* Mobile kecil */
-        @media (max-width: 575.98px) {
-            .edu-logo-wrap {
-                width: 56px;
-                height: 56px;
-                border-radius: 16px;
-            }
+        /* AOS performance hint (smooth transforms) */
+        [data-aos] {
+            will-change: transform, opacity;
         }
     </style>
 </head>
 
-<body>
+<body class="font-sans">
+    <div id="top" aria-hidden="true"></div>
     <!-- Preloader -->
-    <div id="preloader">
-        <div class="loader"
-            aria-label="Loading your experience ✨"></div>
+    <div id="preloader" aria-label="Loading">
+        <div class="loader" aria-hidden="true"></div>
     </div>
 
-    <!-- Navbar -->
-    <nav id="mainNav" class="navbar navbar-expand-lg fixed-top py-3">
-        <div class="container">
-            <a
-                class="navbar-brand fw-semibold d-flex align-items-center gap-2"
-                href="#"
-                style="color: #ffffff !important;">
-                <i
-                    class="fa-solid fa-code-branch text-success-emphasis"
-                    style="color: #ffffff !important;"></i>
-                Faiz<span class="d-none d-sm-inline"> • Web Dev</span>
-            </a>
-            <button class="navbar-toggler text-white border-0" type="button"
-                data-bs-toggle="collapse" data-bs-target="#nav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div id="nav" class="collapse navbar-collapse">
-                <ul
-                    class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-                    <li class="nav-item"><a class="nav-link"
-                            href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link"
-                            href="#skills">Skills</a></li>
-                    <li class="nav-item"><a class="nav-link"
-                            href="#portfolio">Portfolio</a></li>
-                    <li class="nav-item"><a class="nav-link"
-                            href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link"
-                            href="#education">Education</a></li>
-                    <li class="nav-item"><a class="nav-link"
-                            href="#certificates">Certificates</a></li>
-                    <li class="nav-item"><a class="nav-link"
-                            href="#contact">Contact</a></li>
-                    <li class="nav-item ms-lg-2"><a
-                            class="btn btn-sm btn-outline-light cta-btn"
-                            href="#" id="hireBtn"><i
-                                class="fa-solid fa-paper-plane me-1"></i>Hire
-                            Me</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Sticky Navbar -->
+    <header class="fixed top-0 inset-x-0 z-50" x-data="{ open: false }"
+        x-effect="document.documentElement.style.overflow = open ? 'hidden' : ''; document.body.style.overflow = open ? 'hidden' : ''"
+        @keydown.escape.window="open=false">
+        <nav id="mainNav" class="transition-all">
+            <div class="mx-auto max-w-6xl px-4 sm:px-6">
+                <div class="glass mt-3 rounded-2xl px-4 py-3">
+                    <div class="flex items-center justify-between gap-3">
+                        <a href="#top" class="flex items-center gap-2 font-semibold tracking-wide">
+                            <span class="grid place-items-center w-9 h-9 rounded-xl stroke bg-white/5">
+                                <i class="bi bi-code-slash text-[1.05rem] text-white"></i>
+                            </span>
+                            <span class="text-white">Faiz</span>
+                            <span class="hidden sm:inline muted2">• Web Developer</span>
+                        </a>
 
-    <!-- Hero -->
-    <header class="hero position-relative">
-        <div class="bg-blob"></div>
-        <div class="container position-relative">
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <p class="muted mb-2" data-aos="fade-up"
-                        data-aos-delay="50">Modern • Fast • Clean</p>
-                    <h1 class="display-4 fw-bold mb-3" data-aos="fade-up"
-                        data-aos-delay="100">
-                        <span id="typed"></span>
-                    </h1>
-                    <p class="lead text-white-50 mb-4" data-aos="fade-up"
-                        data-aos-delay="150">
-                        I build fast, clean, and creative web experiences.
-                    </p>
-                    <div class="d-flex gap-2 justify-content-center"
-                        data-aos="fade-up" data-aos-delay="200">
-                        <a href="#portfolio"
-                            class="btn btn-success cta-btn"><i
-                                class="fa-solid fa-grid-2 me-1"></i> View My
-                            Work</a>
-                        <a href="#" id="hireBtn2"
-                            class="btn btn-outline-light cta-btn"><i
-                                class="fa-solid fa-bolt me-1"></i> Hire
-                            Me</a>
+                        <button id="navBtn" class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl stroke bg-white/5 hover:bg-white/10 transition"
+                            aria-label="Open menu" :aria-expanded="open.toString()" aria-controls="mobileNav" @click="open = !open">
+                            <i class="bi bi-list text-[1.35rem]"></i>
+                        </button>
+
+                        <div id="navMenu" class="hidden lg:flex items-center gap-2">
+                            <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#about">About</a>
+                            <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#skills">Skills</a>
+                            <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#portfolio">Portfolio</a>
+                            <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#services">Services</a>
+                            <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#education">Education</a>
+                            <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#certificates">Certificates</a>
+                            <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#contact">Contact</a>
+
+                            <button id="hireBtn" class="ml-1 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold stroke bg-white/5 hover:bg-white/10 transition">
+                                <i class="bi bi-send"></i>
+                                <span>Start a Project</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile overlay -->
+        <div x-show="open" x-cloak x-transition.opacity.duration.200ms
+            class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm lg:hidden" @click="open=false" aria-hidden="true"></div>
+
+        <!-- Mobile menu (overlay card) -->
+        <div id="mobileNav" x-show="open" x-cloak
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="transform translate-y-3 opacity-0"
+            x-transition:enter-end="transform translate-y-0 opacity-100"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="transform translate-y-0 opacity-100"
+            x-transition:leave-end="transform translate-y-3 opacity-0"
+            class="fixed left-0 right-0 top-0 z-[60] mx-auto max-w-6xl px-4 sm:px-6 pt-4 lg:hidden">
+            <div class="glass rounded-[2rem] shadow-soft">
+                <div class="flex items-center justify-between p-4">
+                    <div class="flex items-center gap-3 font-bold tracking-tight">
+                        <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl stroke bg-white/5 text-white">
+                            <i class="bi bi-code-slash"></i>
+                        </span>
+                        <span class="text-white">Menu</span>
+                    </div>
+                    <button type="button" @click="open=false"
+                        class="inline-flex items-center justify-center rounded-2xl stroke bg-white/5 px-3 py-2 text-white hover:bg-white/10 transition"
+                        aria-label="Close menu">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+
+                <div class="px-4 pb-4 max-h-[calc(100dvh-92px)] overflow-y-auto">
+                    <nav class="grid gap-2" aria-label="Mobile navigation">
+                        <a href="#top" @click.prevent="open=false; $nextTick(() => window.scrollTo({ top: 0, behavior: 'smooth' }))"
+                            class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 hover:bg-white/10 transition">
+                            <span class="inline-flex items-center gap-3"><i class="bi bi-house-door"></i> Home</span>
+                            <i class="bi bi-chevron-right text-white/50"></i>
+                        </a>
+
+                        <a href="#about" @click="open=false"
+                            class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 hover:bg-white/10 transition">
+                            <span class="inline-flex items-center gap-3"><i class="bi bi-info-circle"></i> About</span>
+                            <i class="bi bi-chevron-right text-white/50"></i>
+                        </a>
+
+                        <a href="#skills" @click="open=false"
+                            class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 hover:bg-white/10 transition">
+                            <span class="inline-flex items-center gap-3"><i class="bi bi-stars"></i> Skills</span>
+                            <i class="bi bi-chevron-right text-white/50"></i>
+                        </a>
+
+                        <a href="#portfolio" @click="open=false"
+                            class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 hover:bg-white/10 transition">
+                            <span class="inline-flex items-center gap-3"><i class="bi bi-grid-3x3-gap"></i> Portfolio</span>
+                            <i class="bi bi-chevron-right text-white/50"></i>
+                        </a>
+
+                        <a href="#services" @click="open=false"
+                            class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 hover:bg-white/10 transition">
+                            <span class="inline-flex items-center gap-3"><i class="bi bi-pc-display"></i> Services</span>
+                            <i class="bi bi-chevron-right text-white/50"></i>
+                        </a>
+
+                        <a href="#education" @click="open=false"
+                            class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 hover:bg-white/10 transition">
+                            <span class="inline-flex items-center gap-3"><i class="bi bi-mortarboard"></i> Education</span>
+                            <i class="bi bi-chevron-right text-white/50"></i>
+                        </a>
+
+                        <a href="#certificates" @click="open=false"
+                            class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 hover:bg-white/10 transition">
+                            <span class="inline-flex items-center gap-3"><i class="bi bi-patch-check"></i> Certificates</span>
+                            <i class="bi bi-chevron-right text-white/50"></i>
+                        </a>
+
+                        <a href="#contact" @click="open=false"
+                            class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 hover:bg-white/10 transition">
+                            <span class="inline-flex items-center gap-3"><i class="bi bi-envelope"></i> Contact</span>
+                            <i class="bi bi-chevron-right text-white/50"></i>
+                        </a>
+                    </nav>
+
+                    <div class="mt-4 grid gap-2 sm:grid-cols-2">
+                        <button id="hireBtnMobile" @click="open=false"
+                            class="inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500/90 px-5 py-3 text-sm font-semibold text-white shadow-soft hover:bg-emerald-500 transition">
+                            <i class="bi bi-chat-dots"></i> Start a Project
+                        </button>
+                        <a href="#portfolio" @click="open=false"
+                            class="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white/90 hover:bg-white/10 transition">
+                            <i class="bi bi-grid-3x3-gap"></i> View Portfolio
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Floating Social -->
-    <div class="floating-social">
-        <!-- <a href="https://github.com/" target="_blank" aria-label="GitHub"><i
-                class="bi bi-github"></i></a> -->
-        <!-- <a href="https://www.linkedin.com/" target="_blank"
-            aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a> -->
-        <a href="https://wa.me/60138280843?text=Hi%20Faiz%2C%20saya%20berminat%20untuk%20buat%20website.%20Boleh%20kita%20bincang%3F" target="_blank"
-            aria-label="WhatsApp"><i class="bi bi-whatsapp" style="font-size: 1.8rem;"></i></a>
-        <!-- <a href="https://www.instagram.com/" target="_blank"
-            aria-label="Instagram"><i class="bi bi-instagram"></i></a> -->
-    </div>
+    <!-- Back to top (shows after scroll) -->
+    <button id="toTopBtn"
+        class="to-top fixed right-4 bottom-[5.25rem] sm:bottom-[6rem] z-40 grid place-items-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl glass hover:bg-white/10 transition"
+        type="button" aria-label="Back to top">
+        <i class="bi bi-arrow-up text-[1.2rem]"></i>
+    </button>
 
-    <!-- About -->
-    <section id="about">
-        <div class="container">
-            <div class="row g-4 align-items-center">
-                <div class="col-lg-5" data-aos="fade-right">
-                    <div class="about-img">
-                        <img
-                            src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1600&auto=format&fit=crop"
-                            alt="Faiz at work" class="w-100">
-                    </div>
-                </div>
-                <div class="col-lg-7" data-aos="fade-left">
-                    <h2 class="section-title fw-bold mb-3">About Me</h2>
-                    <p class="mb-3">I’m a student passionate about coding,
-                        design, and creating impactful websites for
-                        businesses and personal brands. I mix creativity
-                        with functionality.</p>
-                    <p class="text-white-50">Fokus saya: performance, UI
-                        yang
-                        kemas, dan pengalaman pengguna yang padu — dari
-                        landing page sampai e-commerce yang penuh
-                        dengan experience.</p>
+    <!-- Floating WhatsApp -->
+    <a
+        href="https://wa.me/60138280843?text=Hi%20Faiz%2C%20I%27d%20like%20to%20discuss%20a%20website%20project."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="fixed right-4 bottom-4 z-40 grid place-items-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl glass hover:bg-white/10 transition"
+        aria-label="WhatsApp">
+        <i class="bi bi-whatsapp text-[1.35rem]"></i>
+    </a>
 
-                    <div class="row g-3 mt-2">
-                        <div class="col-6 col-md-4">
-                            <div class="glass stat-card">
-                                <h3>2</h3>
-                                <p>Projects</p>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-4">
-                            <div class="glass stat-card">
-                                <h3>1+</h3>
-                                <p>Years Exp</p>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-4">
-                            <div class="glass stat-card">
-                                <h3>HTML • PHP</h3>
-                                <p>Bootstrap 5 • MySQL</p>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Hero -->
+    <main class="pt-28 sm:pt-32">
+        <section class="relative">
+            <!-- glow blobs -->
+            <div aria-hidden="true" class="pointer-events-none absolute -top-24 -left-24 w-[520px] h-[520px] rounded-full blur-3xl opacity-40"
+                style="background: radial-gradient(circle at 30% 30%, rgba(126,247,198,.35), rgba(11,52,53,.0) 60%);"></div>
+            <div aria-hidden="true" class="pointer-events-none absolute -top-28 -right-20 w-[520px] h-[520px] rounded-full blur-3xl opacity-35"
+                style="background: radial-gradient(circle at 30% 30%, rgba(33,114,30,.35), rgba(11,52,53,.0) 60%);"></div>
 
-                    <div class="d-flex gap-2 mt-4">
+            <div class="mx-auto max-w-6xl px-4 sm:px-6">
+                <div class="glass rounded-3xl px-5 sm:px-10 py-10 sm:py-14 text-center" data-aos="fade-up" data-aos-duration="980">
+                    <p class="muted2 text-xs sm:text-sm tracking-[0.18em] uppercase" data-aos="fade-up" data-aos-delay="0">Modern • Fast • Clean</p>
+
+                    <h1 class="mt-4 text-3xl sm:text-5xl font-bold leading-tight" data-aos="fade-up" data-aos-delay="160">
+                        <span id="typed" class="text-white"></span>
+                    </h1>
+
+                    <p class="mt-4 mx-auto max-w-2xl muted2 text-base sm:text-lg" data-aos="fade-up" data-aos-delay="300">
+                        I design and build high-quality websites that load fast, look premium, and convert.
+                        From landing pages to full eCommerce systems, every detail is engineered for performance and clarity.
+                    </p>
+
+                    <div class="mt-7 flex flex-col sm:flex-row gap-3 justify-center" data-aos="fade-up" data-aos-delay="420">
                         <a href="#portfolio"
-                            class="btn btn-outline-light cta-btn"><i
-                                class="fa-solid fa-eye me-1"></i>
-                            Portfolio</a>
-                        <a href="#contact"
-                            class="btn btn-success cta-btn"><i
-                                class="fa-solid fa-envelope me-1"></i>
-                            Contact</a>
+                            class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition">
+                            <i class="bi bi-grid-3x3-gap"></i>
+                            <span>View Portfolio</span>
+                        </a>
+                        <button id="hireBtnHero"
+                            class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition shadow-soft">
+                            <i class="bi bi-lightning-charge"></i>
+                            <span>Start a Project</span>
+                        </button>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Skills -->
-    <section id="skills">
-        <div class="container">
-            <h2 class="section-title fw-bold mb-3"
-                data-aos="fade-up">Skills</h2>
-            <p class="text-white-50 mb-4" data-aos="fade-up"
-                data-aos-delay="50">Frontend, Backend & Tools — all the
-                goodies I use to ship fast.</p>
-
-            <div class="row g-4">
-                <div class="col-lg-4" data-aos="fade-up"
-                    data-aos-delay="100">
-                    <div class="glass p-3">
-                        <h5 class="mb-2"><i
-                                class="fa-solid fa-palette me-2" style="color: #13de6bff"></i>Frontend</h5>
-                        <div>
-                            <span class="skill-badge"><i
-                                    class="fa-brands fa-html5"></i>
-                                HTML</span>
-                            <span class="skill-badge"><i
-                                    class="fa-brands fa-css3-alt"></i>
-                                CSS</span>
-                            <span class="skill-badge"><i
-                                    class="fa-brands fa-js"></i>
-                                JavaScript</span>
-                            <span class="skill-badge"><i
-                                    class="fa-brands fa-bootstrap"></i>
-                                Bootstrap</span>
-                            <span class="skill-badge"><i
-                                    class="fa-solid fa-wind"></i>
-                                Tailwind</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4" data-aos="fade-up"
-                    data-aos-delay="150">
-                    <div class="glass p-3">
-                        <h5 class="mb-2"><i
-                                class="fa-solid fa-database me-2" style="color: #275beaff"></i>Backend</h5>
-                        <div>
-                            <span class="skill-badge"><i
-                                    class="fa-brands fa-php"></i> PHP</span>
-                            <span class="skill-badge"><i
-                                    class="fa-solid fa-database"></i>
-                                MySQL</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4" data-aos="fade-up"
-                    data-aos-delay="200">
-                    <div class="glass p-3">
-                        <h5 class="mb-2"><i
-                                class="fa-solid fa-screwdriver-wrench me-2" style="color: #eeff30ff"></i>Tools</h5>
-                        <div>
-                            <span class="skill-badge"><i
-                                    class="fa-brands fa-github"></i>
-                                GitHub</span>
-                            <span class="skill-badge"><i
-                                    class="fa-solid fa-code"></i> VS
-                                Code</span>
-                            <span class="skill-badge"><i
-                                    class="fa-brands fa-figma"></i>
-                                Figma</span>
-                            <span class="skill-badge"><i
-                                    class="fa-solid fa-wand-magic-sparkles"></i>
-                                Canva</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio -->
-    <section id="portfolio">
-        <div class="container">
-            <div
-                class="d-flex align-items-end justify-content-between mb-3">
-                <div>
-                    <h2 class="section-title fw-bold mb-1"
-                        data-aos="fade-up">Portfolio</h2>
-                    <p class="text-white-50" data-aos="fade-up"
-                        data-aos-delay="50">Beberapa projek saya — klik
-                        untuk details.</p>
-                </div>
-            </div>
-
-            <div class="row g-4">
-                <!-- Project 1 -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up"
-                    data-aos-delay="50">
-                    <article class="project-card position-relative h-100">
-                        <img class="thumb"
-                            src="images/bannerkangaq-ecommerce.webp"
-                            alt="Printing System">
-                        <div class="body">
-                            <h5 class="mb-1">Banner Kangaq Printing Order - eCommerce</h5>
-                            <p class="text-white-50 mb-0">Order management +
-                                upload design, pricing & checkout.</p>
-                        </div>
-                        <div class="overlay">
-                            <button class="btn btn-success"
-                                data-bs-toggle="modal"
-                                data-bs-target="#proj1">View
-                                Details</button>
-                        </div>
-                    </article>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up"
-                    data-aos-delay="100">
-                    <article class="project-card position-relative h-100">
-                        <img class="thumb"
-                            src="images/medigreen-ecommerce.webp"
-                            alt="MEDIgreen e-commerce">
-                        <div class="body">
-                            <h5 class="mb-1">MEDIgreen eCommerce - Products
-                                Order</h5>
-                            <p class="text-white-50 mb-0">Order products,
-                                add to cart, checkout and payment.</p>
-                        </div>
-                        <div class="overlay">
-                            <button class="btn btn-success"
-                                data-bs-toggle="modal"
-                                data-bs-target="#proj2">View
-                                Details</button>
-                        </div>
-                    </article>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up"
-                    data-aos-delay="100">
-                    <article class="project-card position-relative h-100">
-                        <img class="thumb"
-                            src="images/dheducation.webp"
-                            alt="DH Education">
-                        <div class="body">
-                            <h5 class="mb-1">DH Education - Website Education</h5>
-                            <p class="text-white-50 mb-0">Educational site with syllabus for A Level, SPM,
-                                and Advanced Mathematics.</p>
-                        </div>
-                        <div class="overlay">
-                            <button class="btn btn-success"
-                                data-bs-toggle="modal"
-                                data-bs-target="#proj3">View
-                                Details</button>
-                        </div>
-                    </article>
-                </div>
-
-                <!-- Project 4 (Coming Soon Placeholder) -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
-                    <article class="project-card coming-soon position-relative h-100" aria-label="Project coming soon">
-                        <div class="coming-inner d-flex flex-column justify-content-center align-items-center text-center p-4 h-100">
-                            <div class="coming-icon"><i class="fa-solid fa-rocket"></i></div>
-                            <h5 class="mb-1">Project Baru Akan Datang</h5>
-                            <p class="text-white-50 small mb-2">Sedang dalam pembangunan — stay tuned!</p>
-                            <span class="placeholder-badge">Coming Soon</span>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section id="services">
-        <div class="container">
-            <h2 class="section-title fw-bold mb-3"
-                data-aos="fade-up">Services</h2>
-            <p class="text-white-50 mb-4" data-aos="fade-up"
-                data-aos-delay="50">Nak boost brand anda? Pilih pakej yang
-                sesuai.</p>
-
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-3" data-aos="zoom-in"
-                    data-aos-delay="50">
-                    <div class="service-card h-100">
-                        <div class="d-flex align-items-center gap-2 mb-2"><i
-                                class="fa-solid fa-laptop-code"></i>
-                            <h5
-                                class="mb-0">Web Design 💻</h5>
-                        </div>
-                        <p class="text-white-50">Landing page laju & bagus,
-                            convert visitor jadi customer.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3" data-aos="zoom-in"
-                    data-aos-delay="100">
-                    <div class="service-card h-100">
-                        <div class="d-flex align-items-center gap-2 mb-2"><i
-                                class="fa-solid fa-swatchbook"></i>
-                            <h5
-                                class="mb-0">UI/UX Revamp 🎨</h5>
-                        </div>
-                        <p class="text-white-50">Polish interface, simplify
-                            flow, naikkan engagement dan SEO.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3" data-aos="zoom-in"
-                    data-aos-delay="150">
-                    <div class="service-card h-100">
-                        <div class="d-flex align-items-center gap-2 mb-2"><i
-                                class="fa-solid fa-screwdriver-wrench"></i>
-                            <h5
-                                class="mb-0">Maintenance 🔧</h5>
-                        </div>
-                        <p class="text-white-50">Update, bug fix, backup —
-                            site sentiasa steady.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3" data-aos="zoom-in"
-                    data-aos-delay="200">
-                    <div class="service-card h-100">
-                        <div class="d-flex align-items-center gap-2 mb-2"><i
-                                class="fa-solid fa-database"></i>
-                            <h5
-                                class="mb-0">DB Integration 💾</h5>
-                        </div>
-                        <p class="text-white-50">PHP + MySQL setup yang
-                            secure & scalable.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education -->
-    <section id="education">
-        <div class="container">
-            <h2 class="section-title fw-bold mb-3 text-tengah" data-aos="fade-up">
-                Education
-            </h2>
-            <p class="text-white-50 mb-4 text-tengah" data-aos="fade-up" data-aos-delay="50">
-                Perjalanan belajar yang bantu bentuk mindset & skill saya dalam web development.
-            </p>
-
-            <div class="row edu-wrapper">
-                <!-- Summary card (centered) -->
-                <div class="col-lg-10 mx-auto mb-4" data-aos="fade-up" data-aos-delay="80">
-                    <div class="glass edu-card h-100">
-                        <h5 class="mb-2">
-                            <i class="fa-solid fa-graduation-cap me-2"></i>
-                            Ringkasan
-                        </h5>
-                        <p class="text-white-50 mb-3">
-                            Fokus pada asas programming, database, dan project sebenar yang boleh apply untuk bisnes.
-                        </p>
-                        <ul class="mb-0 text-white-50" style="font-size:.9rem;">
-                            <li>Asas HTML, CSS, JavaScript, PHP</li>
-                            <li>Database design (ERD, MySQL, PHPMyAdmin)</li>
-                            <li>Pengalaman membina laman web jual beli online.</li>
-                            <li>Deployment & hosting (cPanel, domain setup)</li>
-                            <li>Pelajaran Diploma dan Degree</li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- Timeline (centered) -->
-                <div class="col-lg-10 mx-auto" data-aos="fade-up" data-aos-delay="140">
-                    <div class="glass edu-card h-100">
-                        <div class="edu-timeline">
-                            <!-- Item 1 -->
-                            <div class="edu-item">
-                                <div class="edu-dot"></div>
-                                <div class="edu-meta mb-1">Oct 2022 – Sept 2025</div>
-
-                                <div class="edu-head">
-                                    <div class="edu-logo-wrap">
-                                        <img src="images/politeknik.webp" alt="Logo Universiti Utama">
-                                    </div>
-                                    <div>
-                                        <div class="edu-title">Diploma Teknologi Maklumat</div>
-                                        <div class="edu-place">Politeknik Tuanku Syed Sirajuddin</div>
-                                    </div>
-                                </div>
-
-                                <div class="text-white-50" style="font-size:.9rem;">
-                                    Pembelajaran diploma dengan subjek berkaitan C++, Object-Oriented Programming,
-                                    Software Requirement & System Analysis, Web Development dan Database Administration.
-                                </div>
+                    <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                        <div class="glass rounded-2xl p-4 text-left" data-aos="fade-up" data-aos-delay="0" data-aos-duration="950">
+                            <div class="flex items-center gap-2">
+                                <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke">
+                                    <i class="bi bi-speedometer2"></i>
+                                </span>
+                                <div class="font-semibold">Performance-first</div>
                             </div>
+                            <div class="mt-2 muted2 text-sm">
+                                Optimized assets, clean structure, and fast interactions for real users.
+                            </div>
+                        </div>
 
-                            <!-- Item 2 -->
-                            <div class="edu-item">
-                                <div class="edu-dot"></div>
-                                <div class="edu-meta mb-1">Oct 2025 – Sept 2028</div>
+                        <div class="glass rounded-2xl p-4 text-left" data-aos="fade-up" data-aos-delay="90" data-aos-duration="880">
+                            <div class="flex items-center gap-2">
+                                <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke">
+                                    <i class="bi bi-palette2"></i>
+                                </span>
+                                <div class="font-semibold">Refined UI</div>
+                            </div>
+                            <div class="mt-2 muted2 text-sm">
+                                A premium visual system that feels consistent across every screen size.
+                            </div>
+                        </div>
 
-                                <div class="edu-head">
-                                    <div class="edu-logo-wrap">
-                                        <img src="images/utem.webp" alt="Logo Kolej">
-                                    </div>
-                                    <div>
-                                        <div class="edu-title">Ijazah Sarjana Muda Sains Komputer (Perisian Komputer) dengan Kepujian</div>
-                                        <div class="edu-place">Universiti Teknikal Malaysia Melaka</div>
-                                    </div>
-                                </div>
-
-                                <div class="text-white-50" style="font-size:.9rem;">
-                                    Lebih mendalami konsep pengaturcaraan, pembangunan perisian, dan pengurusan projek IT
-                                    dengan pembelajaran berkaitan Perisian dan aturcara, Software Development, Database Design
-                                    dan Methodologies Agile, Spiral & SDLC.
-                                </div>
+                        <div class="glass rounded-2xl p-4 text-left" data-aos="fade-up" data-aos-delay="180" data-aos-duration="880">
+                            <div class="flex items-center gap-2">
+                                <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke">
+                                    <i class="bi bi-shield-check"></i>
+                                </span>
+                                <div class="font-semibold">Production-ready</div>
+                            </div>
+                            <div class="mt-2 muted2 text-sm">
+                                Clear UX, maintainable code, and a delivery approach designed for business outcomes.
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Certificates -->
-    <section id="certificates">
-        <div class="container">
-            <div class="d-flex align-items-end justify-content-between mb-3">
-                <div>
-                    <h2 class="section-title fw-bold mb-1" data-aos="fade-up">
-                        Certificates
-                    </h2>
-                    <p class="text-white-50 mb-0" data-aos="fade-up" data-aos-delay="50">
-                        Sijil & pengiktirafan yang telah saya kumpul sepanjang belajar & terlibat dalam projek.
+        <!-- About -->
+        <section id="about" class="mt-10 sm:mt-14">
+            <div class="mx-auto max-w-6xl px-4 sm:px-6">
+                <div class="grid lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+                    <div class="lg:col-span-5">
+                        <div class="glass rounded-3xl overflow-hidden" data-aos="fade-right" data-aos-duration="900">
+                            <img
+                                src="images/about-me.webp"
+                                alt="Faiz working on a web project"
+                                class="w-full h-[240px] sm:h-[320px] object-cover"
+                                loading="lazy"
+                                decoding="async" />
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7">
+                        <div class="glass rounded-3xl p-6 sm:p-8" data-aos="fade-left" data-aos-duration="900">
+                            <div class="flex items-start justify-between gap-4">
+                                <div>
+                                    <h2 class="text-2xl sm:text-3xl font-bold">About</h2>
+                                    <p class="mt-2 muted2">
+                                        I am a developer who combines engineering discipline with a design-driven approach.
+                                        My goal is simple: deliver websites that look premium, load fast, and communicate value clearly.
+                                    </p>
+                                </div>
+                                <span class="hidden sm:grid place-items-center w-28 h-12 rounded-2xl bg-white/5 stroke">
+                                    <i class="bi bi-stars text-[1.15rem]"></i>
+                                </span>
+                            </div>
+
+                            <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <div class="glass rounded-2xl p-4 text-center" data-aos="zoom-in" data-aos-delay="0">
+                                    <div class="text-2xl font-bold">3+</div>
+                                    <div class="muted2 text-sm mt-1">Projects Delivered</div>
+                                </div>
+                                <div class="glass rounded-2xl p-4 text-center" data-aos="zoom-in" data-aos-delay="90">
+                                    <div class="text-2xl font-bold">1+ Year</div>
+                                    <div class="muted2 text-sm mt-1">Hands-on Experience</div>
+                                </div>
+                                <div class="glass rounded-2xl p-4 text-center" data-aos="zoom-in" data-aos-delay="180">
+                                    <div class="text-base font-semibold">HTML • PHP</div>
+                                    <div class="muted2 text-sm mt-1">Tailwind • MySQL</div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 flex flex-col sm:flex-row gap-3" data-aos="fade-up" data-aos-delay="220">
+                                <a href="#portfolio" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition">
+                                    <i class="bi bi-eye"></i>
+                                    <span>Explore Work</span>
+                                </a>
+                                <a href="#contact" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition">
+                                    <i class="bi bi-envelope-paper"></i>
+                                    <span>Contact</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section id="skills" class="mt-10 sm:mt-14">
+            <div class="mx-auto max-w-6xl px-4 sm:px-6">
+                <div class="glass rounded-3xl p-6 sm:p-8" data-aos="fade-up">
+                    <div class="flex items-end justify-between gap-4">
+                        <div>
+                            <h2 class="text-2xl sm:text-3xl font-bold">Skills</h2>
+                            <p class="mt-2 muted2 max-w-2xl">
+                                A practical toolkit for building responsive interfaces, backend logic, and production-ready workflows.
+                            </p>
+                        </div>
+                        <span class="hidden sm:grid place-items-center w-12 h-12 rounded-2xl bg-white/5 stroke">
+                            <i class="bi bi-tools text-[1.15rem]"></i>
+                        </span>
+                    </div>
+
+                    <!-- Quick Tech Icons -->
+                    <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
+                        <div class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="0">
+                            <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke"><i class="bi bi-filetype-html"></i></span>
+                            <div class="text-sm font-semibold">HTML</div>
+                        </div>
+                        <div class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="60">
+                            <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke"><i class="bi bi-filetype-css"></i></span>
+                            <div class="text-sm font-semibold">CSS</div>
+                        </div>
+                        <div class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="120">
+                            <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke"><i class="bi bi-filetype-js"></i></span>
+                            <div class="text-sm font-semibold">JavaScript</div>
+                        </div>
+                        <div class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="180">
+                            <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke"><i class="bi bi-filetype-php"></i></span>
+                            <div class="text-sm font-semibold">PHP</div>
+                        </div>
+                        <div class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="240">
+                            <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke"><i class="bi bi-database"></i></span>
+                            <div class="text-sm font-semibold">MySQL</div>
+                        </div>
+                        <div class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="300">
+                            <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke"><i class="bi bi-lightning-charge"></i></span>
+                            <div class="text-sm font-semibold">Tailwind</div>
+                        </div>
+                        <div class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="360">
+                            <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke"><i class="bi bi-bootstrap"></i></span>
+                            <div class="text-sm font-semibold">Bootstrap</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 grid md:grid-cols-3 gap-4">
+                        <div class="glass rounded-2xl p-5" data-aos="fade-up" data-aos-delay="0">
+                            <div class="flex items-center gap-2 font-semibold">
+                                <i class="bi bi-palette2"></i>
+                                <span>Frontend</span>
+                            </div>
+                            <div class="mt-3 flex flex-wrap gap-2">
+                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-filetype-html"></i><span>HTML</span></span>
+                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-filetype-css"></i><span>CSS</span></span>
+                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-filetype-js"></i><span>JavaScript</span></span>
+                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
+                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-bootstrap"></i><span>Bootstrap</span></span>
+                            </div>
+                        </div>
+
+                        <div class="glass rounded-2xl p-5" data-aos="fade-up" data-aos-delay="90">
+                            <div class="flex items-center gap-2 font-semibold">
+                                <i class="bi bi-database"></i>
+                                <span>Backend</span>
+                            </div>
+                            <div class="mt-3 flex flex-wrap gap-2">
+                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-filetype-php"></i><span>PHP</span></span>
+                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-database"></i><span>MySQL</span></span>
+                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-diagram-3"></i><span>REST Basics</span></span>
+                            </div>
+                        </div>
+
+                        <div class="glass rounded-2xl p-5" data-aos="fade-up" data-aos-delay="180">
+                            <div class="flex items-center gap-2 font-semibold">
+                                <i class="bi bi-gear"></i>
+                                <span>Tools</span>
+                            </div>
+                            <div class="mt-3 flex flex-wrap gap-2">
+                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-github"></i><span>GitHub</span></span>
+                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-code-slash"></i><span>VS Code</span></span>
+                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-figma"></i><span>Figma</span></span>
+                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-palette"></i><span>Canva</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio -->
+        <section id="portfolio" class="mt-10 sm:mt-14">
+            <div class="mx-auto max-w-6xl px-4 sm:px-6">
+                <div class="glass rounded-3xl p-6 sm:p-8" data-aos="fade-up">
+                    <div class="flex items-end justify-between gap-4">
+                        <div>
+                            <h2 class="text-2xl sm:text-3xl font-bold">Portfolio</h2>
+                            <p class="mt-2 muted2">Selected projects that demonstrate strong UX, clean UI, and production-ready delivery. Tap a project to view details.</p>
+                        </div>
+                        <span class="hidden sm:grid place-items-center w-12 h-12 rounded-2xl bg-white/5 stroke">
+                            <i class="bi bi-grid-3x3-gap text-[1.15rem]"></i>
+                        </span>
+                    </div>
+
+                    <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Project 1 -->
+                        <button
+                            class="group text-left glass rounded-2xl overflow-hidden hover:bg-white/10 transition"
+                            data-modal-open="proj1"
+                            data-aos="zoom-in" data-aos-delay="0"
+                            aria-label="Open project details">
+                            <img src="images/bannerkangaq-ecommerce.webp" alt="Banner Kangaq Printing eCommerce" class="w-full h-44 object-cover" loading="lazy" decoding="async" />
+                            <div class="p-5">
+                                <div class="flex items-start justify-between gap-3">
+                                    <div class="font-semibold leading-snug">Banner Kangaq Printing Order — eCommerce</div>
+                                    <i class="bi bi-box-arrow-up-right muted2 group-hover:text-white transition"></i>
+                                </div>
+                                <p class="mt-2 muted2 text-sm">
+                                    End-to-end printing workflow: design upload, pricing logic, cart, and checkout.
+                                </p>
+                                <div class="mt-4 inline-flex items-center gap-2 text-sm font-semibold">
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-php"></i><span>PHP</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-database"></i><span>MySQL</span></span>
+                                </div>
+                            </div>
+                        </button>
+
+                        <!-- Project 2 -->
+                        <button
+                            class="group text-left glass rounded-2xl overflow-hidden hover:bg-white/10 transition"
+                            data-modal-open="proj2"
+                            data-aos="zoom-in" data-aos-delay="90"
+                            aria-label="Open project details">
+                            <img src="images/medigreen-ecommerce.webp" alt="MEDIgreen eCommerce" class="w-full h-44 object-cover" loading="lazy" decoding="async" />
+                            <div class="p-5">
+                                <div class="flex items-start justify-between gap-3">
+                                    <div class="font-semibold leading-snug">MEDIgreen — Online Product Ordering</div>
+                                    <i class="bi bi-box-arrow-up-right muted2 group-hover:text-white transition"></i>
+                                </div>
+                                <p class="mt-2 muted2 text-sm">
+                                    Product catalog, cart flow, checkout, and payment-ready structure.
+                                </p>
+                                <div class="mt-4 inline-flex items-center gap-2 text-sm font-semibold">
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-php"></i><span>PHP</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
+                                </div>
+                            </div>
+                        </button>
+
+                        <!-- Project 3 -->
+                        <button
+                            class="group text-left glass rounded-2xl overflow-hidden hover:bg-white/10 transition"
+                            data-modal-open="proj3"
+                            data-aos="zoom-in" data-aos-delay="180"
+                            aria-label="Open project details">
+                            <img src="images/dheducation.webp" alt="DH Education Website" class="w-full h-44 object-cover" loading="lazy" decoding="async" />
+                            <div class="p-5">
+                                <div class="flex items-start justify-between gap-3">
+                                    <div class="font-semibold leading-snug">DH Education — Educational Website</div>
+                                    <i class="bi bi-box-arrow-up-right muted2 group-hover:text-white transition"></i>
+                                </div>
+                                <p class="mt-2 muted2 text-sm">
+                                    Structured learning content with clear hierarchy and clean reading experience.
+                                </p>
+                                <div class="mt-4 inline-flex items-center gap-2 text-sm font-semibold">
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-html"></i><span>HTML</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
+                                </div>
+                            </div>
+                        </button>
+
+                        <!-- Coming Soon -->
+                        <div class="glass rounded-2xl p-6 sm:p-7 text-center" data-aos="fade-up" data-aos-delay="270">
+                            <div class="mx-auto grid place-items-center w-14 h-14 rounded-2xl bg-white/5 stroke">
+                                <i class="bi bi-rocket-takeoff text-[1.4rem]"></i>
+                            </div>
+                            <div class="mt-4 font-semibold">Upcoming Project</div>
+                            <p class="mt-2 muted2 text-sm">
+                                A new build is currently in progress. This slot will be updated with a full case study soon.
+                            </p>
+                            <div class="mt-4 inline-block px-3 py-1 rounded-full stroke bg-white/5 text-xs tracking-[0.14em] uppercase muted">
+                                Coming Soon
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="mt-6 muted2 text-sm">
+                        If you would like a similar system tailored to your business model, I can propose an implementation plan and deliver a clean, scalable build.
                     </p>
                 </div>
             </div>
+        </section>
 
-            <div class="row g-4">
-                <!-- Cert 1: Microsoft SC-900 -->
-                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="310">
-                    <article class="cert-card h-100">
-                        <div class="cert-thumb-wrap">
-                            <span class="cert-tag">2025</span>
-                            <img
-                                src="images/sijil1.jpg"
-                                alt="Microsoft Certified: Security, Compliance, and Identity Fundamentals"
-                                class="cert-thumb">
+        <!-- Services -->
+        <section id="services" class="mt-10 sm:mt-14">
+            <div class="mx-auto max-w-6xl px-4 sm:px-6">
+                <div class="glass rounded-3xl p-6 sm:p-8" data-aos="fade-up">
+                    <div class="flex items-end justify-between gap-4">
+                        <div>
+                            <h2 class="text-2xl sm:text-3xl font-bold">Services</h2>
+                            <p class="mt-2 muted2 max-w-2xl">
+                                Clear deliverables, professional communication, and a build process aligned with business goals.
+                            </p>
                         </div>
-                        <div class="cert-body">
-                            <div class="cert-title">Microsoft Certified: SCI Fundamentals</div>
-                            <div class="cert-issuer mb-1">Microsoft</div>
-                            <div class="cert-meta">
-                                Sijil profesional “Microsoft Certified: Security, Compliance, and Identity Fundamentals”
-                                yang mengesahkan kefahaman asas dalam keselamatan, pematuhan dan pengurusan identiti
-                                dalam ekosistem Microsoft.
+                        <span class="hidden sm:grid place-items-center w-12 h-12 rounded-2xl bg-white/5 stroke">
+                            <i class="bi bi-briefcase text-[1.15rem]"></i>
+                        </span>
+                    </div>
+
+                    <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="glass rounded-2xl p-5 hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="0">
+                            <div class="flex items-center gap-2 font-semibold">
+                                <i class="bi bi-laptop"></i>
+                                <span>Website Design</span>
+                            </div>
+                            <p class="mt-2 muted2 text-sm">
+                                Premium landing pages and business websites designed to communicate value clearly and convert.
+                            </p>
+                        </div>
+
+                        <div class="glass rounded-2xl p-5 hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="90">
+                            <div class="flex items-center gap-2 font-semibold">
+                                <i class="bi bi-layout-text-window-reverse"></i>
+                                <span>UI/UX Revamp</span>
+                            </div>
+                            <p class="mt-2 muted2 text-sm">
+                                Interface refinement, flow simplification, and UX improvements that reduce friction and increase trust.
+                            </p>
+                        </div>
+
+                        <div class="glass rounded-2xl p-5 hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="180">
+                            <div class="flex items-center gap-2 font-semibold">
+                                <i class="bi bi-wrench-adjustable"></i>
+                                <span>Maintenance</span>
+                            </div>
+                            <p class="mt-2 muted2 text-sm">
+                                Updates, bug fixes, backups, and stability improvements to keep your site reliable and secure.
+                            </p>
+                        </div>
+
+                        <div class="glass rounded-2xl p-5 hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="270">
+                            <div class="flex items-center gap-2 font-semibold">
+                                <i class="bi bi-database-check"></i>
+                                <span>Database Integration</span>
+                            </div>
+                            <p class="mt-2 muted2 text-sm">
+                                PHP + MySQL architecture for scalable workflows, clean data modeling, and operational clarity.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex flex-col sm:flex-row gap-3" data-aos="fade-up" data-aos-delay="220">
+                        <button id="servicesCta" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition">
+                            <i class="bi bi-chat-dots"></i>
+                            <span>Request a Quote</span>
+                        </button>
+                        <a href="#contact" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition">
+                            <i class="bi bi-envelope"></i>
+                            <span>Send Project Details</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section id="education" class="mt-10 sm:mt-14">
+            <div class="mx-auto max-w-6xl px-4 sm:px-6">
+                <div class="glass rounded-3xl p-6 sm:p-8" data-aos="fade-up">
+                    <div class="text-center">
+                        <h2 class="text-2xl sm:text-3xl font-bold">Education</h2>
+                        <p class="mt-2 muted2 max-w-2xl mx-auto">
+                            Formal training that strengthened system thinking, software fundamentals, and practical delivery.
+                        </p>
+                    </div>
+
+                    <div class="mt-6 grid lg:grid-cols-12 gap-4">
+                        <div class="lg:col-span-5 glass rounded-2xl p-6" data-aos="fade-right" data-aos-delay="0">
+                            <div class="flex items-center gap-2 font-semibold">
+                                <i class="bi bi-mortarboard"></i>
+                                <span>Summary</span>
+                            </div>
+                            <ul class="mt-3 muted2 text-sm space-y-2 list-disc list-inside">
+                                <li>Programming foundations, web development, and database systems</li>
+                                <li>Structured approach to requirements, analysis, and implementation</li>
+                                <li>Hands-on work through business-oriented web projects</li>
+                                <li>Deployment knowledge and practical hosting setup</li>
+                            </ul>
+                        </div>
+
+                        <div class="lg:col-span-7 glass rounded-2xl p-5 sm:p-6" data-aos="fade-left" data-aos-delay="60">
+                            <div class="grid gap-3">
+                                <article class="relative glass rounded-2xl p-5 overflow-hidden hover:bg-white/10 transition">
+                                    <div class="absolute left-4 top-5 bottom-5 w-1 rounded-full bg-emerald-300/35"></div>
+
+                                    <div class="pl-5">
+                                        <div class="flex flex-wrap items-center justify-between gap-2">
+                                            <div class="text-xs tracking-[0.14em] uppercase muted2">Oct 2022 – Sept 2025</div>
+                                            <span class="px-3 py-1 rounded-full text-[11px] tracking-[0.14em] uppercase stroke bg-white/5 text-white/80">Diploma</span>
+                                        </div>
+
+                                        <div class="mt-3 flex items-start gap-3">
+                                            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl overflow-hidden stroke bg-white/5 grid place-items-center shrink-0">
+                                                <img src="images/politeknik.webp" alt="PTSS logo" class="w-full h-full object-contain" loading="lazy" decoding="async">
+                                            </div>
+                                            <div>
+                                                <div class="font-semibold">Diploma in Information Technology</div>
+                                                <div class="muted2 text-sm">Politeknik Tuanku Syed Sirajuddin</div>
+                                                <p class="mt-2 muted2 text-sm">
+                                                    Focused on programming, object-oriented development, web fundamentals, and database administration.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article class="relative glass rounded-2xl p-5 overflow-hidden hover:bg-white/10 transition">
+                                    <div class="absolute left-4 top-5 bottom-5 w-1 rounded-full bg-emerald-300/35"></div>
+
+                                    <div class="pl-5">
+                                        <div class="flex flex-wrap items-center justify-between gap-2">
+                                            <div class="text-xs tracking-[0.14em] uppercase muted2">Oct 2025 – Sept 2028</div>
+                                            <span class="px-3 py-1 rounded-full text-[11px] tracking-[0.14em] uppercase stroke bg-white/5 text-white/80">Degree</span>
+                                        </div>
+
+                                        <div class="mt-3 flex items-start gap-3">
+                                            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl overflow-hidden stroke bg-white/5 grid place-items-center shrink-0">
+                                                <img src="images/utem.webp" alt="UTeM logo" class="w-full h-full object-contain" loading="lazy" decoding="async">
+                                            </div>
+                                            <div>
+                                                <div class="font-semibold">BSc (Hons) Computer Science (Software Engineering)</div>
+                                                <div class="muted2 text-sm">Universiti Teknikal Malaysia Melaka</div>
+                                                <p class="mt-2 muted2 text-sm">
+                                                    Deepening software engineering practice: development methodologies, database design, and structured project delivery.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
                             </div>
                         </div>
-                    </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates -->
+        <section id="certificates" class="mt-10 sm:mt-14">
+            <div class="mx-auto max-w-6xl px-4 sm:px-6">
+                <div class="glass rounded-3xl p-6 sm:p-8" data-aos="fade-up">
+                    <div class="flex items-end justify-between gap-4">
+                        <div>
+                            <h2 class="text-2xl sm:text-3xl font-bold">Certificates</h2>
+                            <p class="mt-2 muted2">
+                                Professional training and recognition that support real-world delivery and credibility.
+                            </p>
+                        </div>
+                        <span class="hidden sm:grid place-items-center w-12 h-12 rounded-2xl bg-white/5 stroke">
+                            <i class="bi bi-award text-[1.15rem]"></i>
+                        </span>
+                    </div>
+
+                    <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Card template -->
+                        <article class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="50">
+                            <div class="relative">
+                                <span class="absolute left-3 top-3 px-3 py-1 rounded-full text-xs tracking-[0.14em] uppercase stroke bg-black/40">2025</span>
+                                <img src="images/sijil1.jpg" alt="Microsoft Certified: Security, Compliance, and Identity Fundamentals" class="w-full h-44 object-cover" loading="lazy" decoding="async">
+                            </div>
+                            <div class="p-5">
+                                <div class="font-semibold">Microsoft Certified: SCI Fundamentals</div>
+                                <div class="muted2 text-sm mt-1">Microsoft</div>
+                                <p class="mt-2 muted2 text-sm">
+                                    Validates foundational knowledge in security, compliance, and identity concepts within Microsoft ecosystems.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="100">
+                            <div class="relative">
+                                <span class="absolute left-3 top-3 px-3 py-1 rounded-full text-xs tracking-[0.14em] uppercase stroke bg-black/40">2024</span>
+                                <img src="images/sijil5.jpg" alt="AWS Flash – Introduction to Responsible AI" class="w-full h-44 object-cover" loading="lazy" decoding="async">
+                            </div>
+                            <div class="p-5">
+                                <div class="font-semibold">AWS Flash — Responsible AI</div>
+                                <div class="muted2 text-sm mt-1">AWS Training and Certification</div>
+                                <p class="mt-2 muted2 text-sm">
+                                    Covers principles and practices for responsible development and usage of AI systems.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="150">
+                            <div class="relative">
+                                <span class="absolute left-3 top-3 px-3 py-1 rounded-full text-xs tracking-[0.14em] uppercase stroke bg-black/40">2024</span>
+                                <img src="images/sijil6.jpg" alt="POLYCC Large Language Model League 2024" class="w-full h-44 object-cover" loading="lazy" decoding="async">
+                            </div>
+                            <div class="p-5">
+                                <div class="font-semibold">POLYCC LLM League 2024</div>
+                                <div class="muted2 text-sm mt-1">AWS Malaysia &amp; POLYCC</div>
+                                <p class="mt-2 muted2 text-sm">
+                                    Participation recognition in a program focused on large language model awareness and application.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="200">
+                            <div class="relative">
+                                <span class="absolute left-3 top-3 px-3 py-1 rounded-full text-xs tracking-[0.14em] uppercase stroke bg-black/40">2023</span>
+                                <img src="images/sijil4.jpg" alt="IRISE 2023 Gold Medal" class="w-full h-44 object-cover" loading="lazy" decoding="async">
+                            </div>
+                            <div class="p-5">
+                                <div class="font-semibold">Gold Medal — IRISE 2023</div>
+                                <div class="muted2 text-sm mt-1">UiTM Kelantan &amp; DIGIT360</div>
+                                <p class="mt-2 muted2 text-sm">
+                                    Awarded for a technology project presented at an international research and innovation expo.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="250">
+                            <div class="relative">
+                                <span class="absolute left-3 top-3 px-3 py-1 rounded-full text-xs tracking-[0.14em] uppercase stroke bg-black/40">2024</span>
+                                <img src="images/sijil3.jpg" alt="Mobile Application Development with MySQL" class="w-full h-44 object-cover" loading="lazy" decoding="async">
+                            </div>
+                            <div class="p-5">
+                                <div class="font-semibold">Mobile Development with MySQL</div>
+                                <div class="muted2 text-sm mt-1">PTSS</div>
+                                <p class="mt-2 muted2 text-sm">
+                                    Workshop completion covering practical integration between mobile development workflows and MySQL.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="300">
+                            <div class="relative">
+                                <span class="absolute left-3 top-3 px-3 py-1 rounded-full text-xs tracking-[0.14em] uppercase stroke bg-black/40">2024</span>
+                                <img src="images/sijil2.jpg" alt="Web Development Using Laravel Framework" class="w-full h-44 object-cover" loading="lazy" decoding="async">
+                            </div>
+                            <div class="p-5">
+                                <div class="font-semibold">Web Development Using Laravel</div>
+                                <div class="muted2 text-sm mt-1">PTSS</div>
+                                <p class="mt-2 muted2 text-sm">
+                                    Training focused on Laravel fundamentals and structured web development practices.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="mt-10 sm:mt-14 pb-14 sm:pb-20">
+            <div class="mx-auto max-w-6xl px-4 sm:px-6">
+                <div class="glass rounded-3xl p-6 sm:p-8" data-aos="fade-up">
+                    <div class="flex items-end justify-between gap-4">
+                        <div>
+                            <h2 class="text-2xl sm:text-3xl font-bold">Contact</h2>
+                            <p class="mt-2 muted2">
+                                Share your goals, timeline, and constraints. I will respond with a clear scope and next steps.
+                            </p>
+                        </div>
+                        <span class="hidden sm:grid place-items-center w-12 h-12 rounded-2xl bg-white/5 stroke">
+                            <i class="bi bi-chat-square-text text-[1.15rem]"></i>
+                        </span>
+                    </div>
+
+                    <div class="mt-6 grid lg:grid-cols-12 gap-4">
+                        <form id="contactForm" class="lg:col-span-7 glass rounded-2xl p-5 sm:p-6" data-aos="fade-right" data-aos-delay="0">
+                            <div class="grid sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label class="text-sm font-semibold">Full Name</label>
+                                    <input name="name" type="text" required
+                                        class="mt-2 w-full rounded-xl bg-white/5 stroke px-4 py-3 placeholder:text-white/50"
+                                        placeholder="Your full name">
+                                </div>
+                                <div>
+                                    <label class="text-sm font-semibold">Email</label>
+                                    <input name="email" type="email" required
+                                        class="mt-2 w-full rounded-xl bg-white/5 stroke px-4 py-3 placeholder:text-white/50"
+                                        placeholder="you@domain.com">
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+                                <label class="text-sm font-semibold">Subject</label>
+                                <input name="subject" type="text" required
+                                    class="mt-2 w-full rounded-xl bg-white/5 stroke px-4 py-3 placeholder:text-white/50"
+                                    placeholder="What would you like to build?">
+                            </div>
+
+                            <div class="mt-3">
+                                <label class="text-sm font-semibold">Message</label>
+                                <textarea name="message" rows="5" required
+                                    class="mt-2 w-full rounded-xl bg-white/5 stroke px-4 py-3 placeholder:text-white/50"
+                                    placeholder="Briefly describe your scope, timeline, and any reference links."></textarea>
+                            </div>
+
+                            <div class="mt-4 flex flex-col sm:flex-row gap-3">
+                                <button type="submit"
+                                    class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition">
+                                    <i class="bi bi-whatsapp"></i>
+                                    <span>Send via WhatsApp</span>
+                                </button>
+                                <button type="button" id="openHireFromContact"
+                                    class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition">
+                                    <i class="bi bi-send"></i>
+                                    <span>Open Project Form</span>
+                                </button>
+                            </div>
+
+                            <p class="mt-4 muted2 text-xs">
+                                By sending a message, you agree to share your details for project discussion purposes only.
+                            </p>
+                        </form>
+
+                        <aside class="lg:col-span-5 glass rounded-2xl p-5 sm:p-6" data-aos="fade-left" data-aos-delay="80">
+                            <div class="font-semibold flex items-center gap-2">
+                                <i class="bi bi-person-badge"></i>
+                                <span>Contact Details</span>
+                            </div>
+
+                            <div class="mt-4 grid gap-3 text-sm">
+                                <div class="flex gap-3 items-start">
+                                    <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke">
+                                        <i class="bi bi-envelope"></i>
+                                    </span>
+                                    <div>
+                                        <div class="font-semibold">Email</div>
+                                        <div class="muted2">faizhadif3@gmail.com</div>
+                                    </div>
+                                </div>
+
+                                <div class="flex gap-3 items-start">
+                                    <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke">
+                                        <i class="bi bi-telephone"></i>
+                                    </span>
+                                    <div>
+                                        <div class="font-semibold">Phone</div>
+                                        <div class="muted2">+60 13-828 0843</div>
+                                    </div>
+                                </div>
+
+                                <div class="flex gap-3 items-start">
+                                    <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke">
+                                        <i class="bi bi-geo-alt"></i>
+                                    </span>
+                                    <div>
+                                        <div class="font-semibold">Location</div>
+                                        <div class="muted2">Kangar, Perlis, Malaysia</div>
+                                    </div>
+                                </div>
+
+                                <div class="flex gap-3 items-start">
+                                    <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke">
+                                        <i class="bi bi-clock"></i>
+                                    </span>
+                                    <div>
+                                        <div class="font-semibold">Availability</div>
+                                        <div class="muted2">Monday–Saturday, 9:00 AM–6:00 PM</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 glass rounded-2xl p-4">
+                                <div class="font-semibold">What to include</div>
+                                <ul class="mt-2 muted2 text-sm space-y-1 list-disc list-inside">
+                                    <li>Business goal and target audience</li>
+                                    <li>Reference sites or design direction</li>
+                                    <li>Required pages and functionality</li>
+                                    <li>Timeline and budget range</li>
+                                </ul>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="pb-10">
+            <div class="mx-auto max-w-6xl px-4 sm:px-6">
+                <div class="glass rounded-3xl px-6 py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                    <div class="muted2 text-sm">© <span id="currentYear"></span> Faiz Hadif. All rights reserved.</div>
+
+                    <div class="flex flex-wrap gap-2 text-sm">
+                        <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#top">Home</a>
+                        <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#about">About</a>
+                        <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#services">Services</a>
+                        <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#portfolio">Portfolio</a>
+                        <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#contact">Contact</a>
+                    </div>
+
+                    <a
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 stroke transition text-sm font-semibold"
+                        href="https://wa.me/60138280843?text=Hi%20Faiz%2C%20I%27d%20like%20to%20discuss%20a%20website%20project."
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        <i class="bi bi-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- MODALS (Projects + Hire) -->
+    <!-- Backdrop -->
+    <div id="backdrop" class="fixed inset-0 bg-black/60 hidden z-50" aria-hidden="true"></div>
+
+    <!-- Hire Modal -->
+    <section id="modalHire" class="modal fixed inset-0 hidden z-[60]" aria-hidden="true">
+        <div class="min-h-full grid place-items-center p-4">
+            <div class="modal-panel w-full max-w-lg glass rounded-3xl p-5 sm:p-6">
+                <div class="flex items-start justify-between gap-3">
+                    <div>
+                        <h3 class="text-xl font-bold">Start a Project</h3>
+                        <p class="mt-1 muted2 text-sm">
+                            Share a brief overview. I will respond with suggested scope and next steps.
+                        </p>
+                    </div>
+                    <button class="w-10 h-10 grid place-items-center rounded-xl bg-white/5 stroke hover:bg-white/10 transition" data-modal-close aria-label="Close">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
                 </div>
 
-                <!-- Cert 2: AWS Responsible AI -->
-                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="110">
-                    <article class="cert-card h-100">
-                        <div class="cert-thumb-wrap">
-                            <span class="cert-tag">2024</span>
-                            <img
-                                src="images/sijil5.jpg"
-                                alt="AWS Flash – Introduction to Responsible AI"
-                                class="cert-thumb">
-                        </div>
-                        <div class="cert-body">
-                            <div class="cert-title">AWS Flash – Introduction to Responsible AI</div>
-                            <div class="cert-issuer mb-1">AWS Training and Certification</div>
-                            <div class="cert-meta">
-                                Sijil pengiktirafan bagi tamatnya kursus “AWS Flash – Introduction to Responsible AI”
-                                yang memfokuskan kepada pembangunan dan penggunaan kecerdasan buatan secara bertanggungjawab.
-                            </div>
-                        </div>
-                    </article>
+                <form id="hireForm" class="mt-4 grid gap-3">
+                    <div>
+                        <label class="text-sm font-semibold">Name</label>
+                        <input id="hName" type="text" class="mt-2 w-full rounded-xl bg-white/5 stroke px-4 py-3 placeholder:text-white/50" placeholder="Your name" required>
+                    </div>
+                    <div>
+                        <label class="text-sm font-semibold">Email</label>
+                        <input id="hEmail" type="email" class="mt-2 w-full rounded-xl bg-white/5 stroke px-4 py-3 placeholder:text-white/50" placeholder="you@domain.com" required>
+                    </div>
+                    <div>
+                        <label class="text-sm font-semibold">Project Brief</label>
+                        <textarea id="hMsg" rows="5" class="mt-2 w-full rounded-xl bg-white/5 stroke px-4 py-3 placeholder:text-white/50" placeholder="Goals, timeline, and key requirements" required></textarea>
+                    </div>
+
+                    <div class="mt-1 flex flex-col sm:flex-row gap-3">
+                        <button type="submit" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition">
+                            <i class="bi bi-whatsapp"></i>
+                            <span>Send via WhatsApp</span>
+                        </button>
+                        <button type="button" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition" data-modal-close>
+                            <i class="bi bi-x-circle"></i>
+                            <span>Close</span>
+                        </button>
+                    </div>
+
+                    <p id="hireError" class="hidden text-sm text-red-200"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal Template (1) -->
+    <section id="proj1" class="modal fixed inset-0 hidden z-[60]" aria-hidden="true">
+        <div class="min-h-full grid place-items-center p-4">
+            <div class="modal-panel w-full max-w-3xl glass rounded-3xl overflow-hidden">
+                <div class="flex items-center justify-between p-5 border-b border-white/10">
+                    <h3 class="font-bold text-lg">Banner Kangaq Printing Order — eCommerce</h3>
+                    <button class="w-10 h-10 grid place-items-center rounded-xl bg-white/5 stroke hover:bg-white/10 transition" data-modal-close aria-label="Close">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
                 </div>
 
-                <!-- Cert 3: POLYCC LLM League -->
-                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="60">
-                    <article class="cert-card h-100">
-                        <div class="cert-thumb-wrap">
-                            <span class="cert-tag">2024</span>
-                            <img
-                                src="images/sijil6.jpg"
-                                alt="POLYCC Large Language Model League 2024"
-                                class="cert-thumb">
-                        </div>
-                        <div class="cert-body">
-                            <div class="cert-title">POLYCC Large Language Model League 2024</div>
-                            <div class="cert-issuer mb-1">AWS Malaysia &amp; POLYCC</div>
-                            <div class="cert-meta">
-                                Sijil penyertaan yang mengesahkan penglibatan dalam POLYCC Large Language Model League 2024
-                                anjuran AWS Malaysia Sdn. Bhd., yang berlangsung dari 13 Ogos 2024 hingga 3 September 2024.
-                            </div>
-                        </div>
-                    </article>
-                </div>
+                <div class="p-5 sm:p-6 grid gap-4">
+                    <img src="images/bannerkangaq-ecommerce.webp" alt="Banner Kangaq project preview" class="w-full rounded-2xl stroke object-cover" loading="lazy" decoding="async">
+                    <p class="muted2 text-sm">
+                        A complete printing order workflow: design upload (PDF/image/link), page selection, pricing by size and options, cart logic, and checkout-ready structure.
+                    </p>
+                    <div class="muted2 text-sm">
+                        <span class="font-semibold text-white">Stack:</span> PHP, MySQL, Tailwind/Bootstrap utilities, JavaScript.
+                    </div>
+                    <div class="flex flex-wrap gap-2 text-sm font-semibold">
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-php"></i><span>PHP</span></span>
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-database"></i><span>MySQL</span></span>
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-bootstrap"></i><span>Bootstrap</span></span>
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-js"></i><span>JavaScript</span></span>
+                    </div>
 
-                <!-- Cert 4: IRISE Gold Medal -->
-                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="160">
-                    <article class="cert-card h-100">
-                        <div class="cert-thumb-wrap">
-                            <span class="cert-tag">2023</span>
-                            <img
-                                src="images/sijil4.jpg"
-                                alt="IRISE 2023 Gold Medal"
-                                class="cert-thumb">
-                        </div>
-                        <div class="cert-body">
-                            <div class="cert-title">Gold Medal – IRISE 2023</div>
-                            <div class="cert-issuer mb-1">UiTM Cawangan Kelantan &amp; DIGIT360</div>
-                            <div class="cert-meta">
-                                Sijil anugerah Pingat Emas (Tertiary – Science &amp; Technology, Online) di
-                                International Research and Information Science Expo (IRISE) 2023 bagi projek
-                                “Daily Use Sign Language Application with AR and AI (BIM)”.
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-                <!-- Cert 5: PTSS Mobile + MySQL -->
-                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="210">
-                    <article class="cert-card h-100">
-                        <div class="cert-thumb-wrap">
-                            <span class="cert-tag">2024</span>
-                            <img
-                                src="images/sijil3.jpg"
-                                alt="Bengkel Mobile Application Development with MySQL"
-                                class="cert-thumb">
-                        </div>
-                        <div class="cert-body">
-                            <div class="cert-title">Mobile Application Development with MySQL</div>
-                            <div class="cert-issuer mb-1">Politeknik Tuanku Syed Sirajuddin (PTSS)</div>
-                            <div class="cert-meta">
-                                Sijil penyertaan bengkel “Mobile Application Development with MySQL”
-                                anjuran Jabatan Teknologi Maklumat dan Komunikasi, PTSS pada 21 Februari 2024.
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-                <!-- Cert 6: PTSS Laravel -->
-                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="260">
-                    <article class="cert-card h-100">
-                        <div class="cert-thumb-wrap">
-                            <span class="cert-tag">2024</span>
-                            <img
-                                src="images/sijil2.jpg"
-                                alt="Bengkel Web Development Using Laravel Framework"
-                                class="cert-thumb">
-                        </div>
-                        <div class="cert-body">
-                            <div class="cert-title">Web Development Using Laravel Framework</div>
-                            <div class="cert-issuer mb-1">Politeknik Tuanku Syed Sirajuddin (PTSS)</div>
-                            <div class="cert-meta">
-                                Sijil penyertaan bengkel “Web Development Using Laravel Framework”
-                                yang diadakan pada 14–15 Mac 2024 di Makmal MTM, PTSS.
-                            </div>
-                        </div>
-                    </article>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition"
+                            href="https://bannerkangaq.com" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-box-arrow-up-right"></i>
+                            <span>Visit Website</span>
+                        </a>
+                        <button class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition" data-modal-open="modalHire">
+                            <i class="bi bi-send"></i>
+                            <span>Start a Similar Project</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact">
-        <div class="container">
-            <h2 class="section-title fw-bold mb-3"
-                data-aos="fade-up">Contact</h2>
-            <p class="text-white-50 mb-4" data-aos="fade-up"
-                data-aos-delay="50">Ada idea? Jom bincang ☕</p>
-
-            <div class="row g-4">
-                <div class="col-lg-7" data-aos="fade-right">
-                    <form id="contactForm" class="glass p-3 p-md-4">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label class="form-label">Nama</label>
-                                <input type="text" class="form-control"
-                                    name="name" placeholder="Nama penuh"
-                                    required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control"
-                                    name="email"
-                                    placeholder="nama@email.com" required>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label">Subjek</label>
-                                <input type="text" class="form-control"
-                                    name="subject"
-                                    placeholder="Apa yang anda perlukan?"
-                                    required>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label">Mesej</label>
-                                <textarea class="form-control" rows="5"
-                                    name="message"
-                                    placeholder="Cerita ringkas projek anda..."
-                                    required></textarea>
-                            </div>
-                            <div class="col-12 d-flex gap-2">
-                                <button class="btn btn-success cta-btn"
-                                    type="submit"><i
-                                        class="fa-solid fa-paper-plane me-1"></i>
-                                    Hantar ke ( <i class="bi bi-whatsapp me-1"> WhatsApp )</i></button>
-                            </div>
-                        </div>
-                    </form>
+    <!-- Project Modal (2) -->
+    <section id="proj2" class="modal fixed inset-0 hidden z-[60]" aria-hidden="true">
+        <div class="min-h-full grid place-items-center p-4">
+            <div class="modal-panel w-full max-w-3xl glass rounded-3xl overflow-hidden">
+                <div class="flex items-center justify-between p-5 border-b border-white/10">
+                    <h3 class="font-bold text-lg">MEDIgreen — Online Product Ordering</h3>
+                    <button class="w-10 h-10 grid place-items-center rounded-xl bg-white/5 stroke hover:bg-white/10 transition" data-modal-close aria-label="Close">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
                 </div>
-                <div class="col-lg-5" data-aos="fade-left">
-                    <div class="glass p-3 p-md-4 contact-info h-100">
-                        <h5 class="mb-3"><i class="fa-solid fa-address-card me-2"></i>Maklumat</h5>
-                        <div class="item mb-2"><i
-                                class="fa-solid fa-envelope mt-1"></i>
-                            <div>faizhadif3@gmail.com</div>
-                        </div>
-                        <div class="item mb-2"><i
-                                class="fa-solid fa-phone mt-1"></i>
-                            <div>+60 13-828 0843</div>
-                        </div>
-                        <div class="item mb-2"><i
-                                class="fa-solid fa-location-dot mt-1"></i>
-                            <div>Kangar, Perlis · MY</div>
-                        </div>
-                        <div class="item"><i
-                                class="fa-solid fa-clock mt-1"></i>
-                            <div>Availability: Mon–Sat, 9am–6pm</div>
-                        </div>
+
+                <div class="p-5 sm:p-6 grid gap-4">
+                    <img src="images/medigreen-ecommerce.webp" alt="MEDIgreen project preview" class="w-full rounded-2xl stroke object-cover" loading="lazy" decoding="async">
+                    <p class="muted2 text-sm">
+                        Product catalog, add-to-cart experience, checkout flow, and payment-ready structure designed for clarity and conversion.
+                    </p>
+                    <div class="muted2 text-sm">
+                        <span class="font-semibold text-white">Stack:</span> PHP, MySQL, Tailwind, JavaScript.
+                    </div>
+                    <div class="flex flex-wrap gap-2 text-sm font-semibold">
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-php"></i><span>PHP</span></span>
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-database"></i><span>MySQL</span></span>
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-js"></i><span>JavaScript</span></span>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition"
+                            href="https://medigreen.my" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-box-arrow-up-right"></i>
+                            <span>Visit Website</span>
+                        </a>
+                        <button class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition" data-modal-open="modalHire">
+                            <i class="bi bi-send"></i>
+                            <span>Start a Similar Project</span>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="text-center">
-        <div class="container">
-            <div
-                class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
-                <div>© 2025 Faiz. All rights reserved.</div>
-                <div class="d-flex gap-3">
-                    <a class="link-light link-underline-opacity-0"
-                        href="#">Home</a>
-                    <a class="link-light link-underline-opacity-0"
-                        href="#about">About</a>
-                    <a class="link-light link-underline-opacity-0"
-                        href="#services">Services</a>
-                    <a class="link-light link-underline-opacity-0"
-                        href="#portfolio">Portfolio</a>
-                    <a class="link-light link-underline-opacity-0"
-                        href="#contact">Contact</a>
+    <!-- Project Modal (3) -->
+    <section id="proj3" class="modal fixed inset-0 hidden z-[60]" aria-hidden="true">
+        <div class="min-h-full grid place-items-center p-4">
+            <div class="modal-panel w-full max-w-3xl glass rounded-3xl overflow-hidden">
+                <div class="flex items-center justify-between p-5 border-b border-white/10">
+                    <h3 class="font-bold text-lg">DH Education — Educational Website</h3>
+                    <button class="w-10 h-10 grid place-items-center rounded-xl bg-white/5 stroke hover:bg-white/10 transition" data-modal-close aria-label="Close">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
                 </div>
-                <div class="d-flex gap-2">
-                    <!-- <a class="text-light" href="https://github.com/"
-                            target="_blank"><i class="bi bi-github"></i></a> -->
-                    <!-- <a class="text-light" href="https://www.linkedin.com/"
-                            target="_blank"><i class="bi bi-linkedin"></i></a> -->
-                    <a class="text-light" href="https://wa.me/60138280843?text=Hi%20Faiz%2C%20saya%20berminat%20untuk%20buat%20website.%20Boleh%20kita%20bincang%3F"
-                        target="_blank"><i class="bi bi-whatsapp"></i></a>
-                    <!-- <a class="text-light" href="https://www.instagram.com/"
-                            target="_blank"><i class="bi bi-instagram"></i></a> -->
-                </div>
-            </div>
-        </div>
-    </footer>
 
-    <!-- Project Modals -->
-    <div class="modal fade" id="proj1" tabindex="-1" aria-hidden="true">
-        <div
-            class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content bg-dark text-white">
-                <div class="modal-header">
-                    <h5 class="modal-title">Banner Kangaq Printing Order - eCommerce</h5>
-                    <button class="btn-close btn-close-white"
-                        data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <img class="img-fluid rounded mb-3"
-                        src="images/bannerkangaq-ecommerce.webp"
-                        alt>
-                    <p>Sistem tempahan percetakan lengkap: upload design
-                        (PDF/JPG/PNG), pilih halaman, pengiraan harga (size,
-                        addons, finishing), cart & checkout.</p>
-                    <div class="small text-white-50">Stack: PHP, MySQL,
-                        Bootstrap 5.3, JS, Payment Gateaway Integration.</div>
-                    <div class="mt-3 d-flex gap-2">
-                        <a class="btn btn-success"
-                            href="https://bannerkangaq.com"
-                            target="_blank"><i
-                                class="fa-solid fa-up-right-from-square me-1"></i>
-                            Visit Website</a>
+                <div class="p-5 sm:p-6 grid gap-4">
+                    <img src="images/dheducation.webp" alt="DH Education project preview" class="w-full rounded-2xl stroke object-cover" loading="lazy" decoding="async">
+                    <p class="muted2 text-sm">
+                        A structured educational website with clear information architecture, optimized readability, and a consistent layout system.
+                    </p>
+                    <div class="muted2 text-sm">
+                        <span class="font-semibold text-white">Stack:</span> HTML, Tailwind, JavaScript.
+                    </div>
+                    <div class="flex flex-wrap gap-2 text-sm font-semibold">
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-html"></i><span>HTML</span></span>
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-js"></i><span>JavaScript</span></span>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition"
+                            href="https://thedheducation.com" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-box-arrow-up-right"></i>
+                            <span>Visit Website</span>
+                        </a>
+                        <button class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition" data-modal-open="modalHire">
+                            <i class="bi bi-send"></i>
+                            <span>Start a Similar Project</span>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="modal fade" id="proj2" tabindex="-1" aria-hidden="true">
-        <div
-            class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content bg-dark text-white">
-                <div class="modal-header">
-                    <h5 class="modal-title">Medigreen Online Order - eCommerce</h5><button
-                        class="btn-close btn-close-white"
-                        data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <img class="img-fluid rounded mb-3"
-                        src="images/medigreen-ecommerce.webp"
-                        alt="MEDIgreen eCommerce">
-                    <p>Order products, add to cart, checkout and payment
-                        dengan payment gateaway yang ditetapkan
-                        dengan harga product yang berpatutan.</p>
-                    <div class="small text-white-50">Stack: PHP, MySQL,
-                        Bootstrap 5, JS, Payment Gateaway Integration.</div>
-                    <div class="mt-3 d-flex gap-2">
-                        <a class="btn btn-success"
-                            href="https://medigreen.my"
-                            target="_blank"><i
-                                class="fa-solid fa-up-right-from-square me-1"></i>
-                            Visit Website</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="proj3" tabindex="-1" aria-hidden="true">
-        <div
-            class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content bg-dark text-white">
-                <div class="modal-header">
-                    <h5 class="modal-title">DH Education - Website Education</h5><button
-                        class="btn-close btn-close-white"
-                        data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <img class="img-fluid rounded mb-3"
-                        src="images/dheducation.webp"
-                        alt="DH Education">
-                    <p>Laman web pendidikan yang menyediakan syllabus untuk A Level, SPM, dan Advanced Mathematics
-                        dalam susun atur yang kemas dan mudah dibaca.</p>
-                    <div class="small text-white-50">Stack: HTML, CSS,
-                        Tailwind, JS.</div>
-                    <div class="mt-3 d-flex gap-2">
-                        <a class="btn btn-success"
-                            href="https://thedheducation.com"
-                            target="_blank" rel="noopener"><i
-                                class="fa-solid fa-up-right-from-square me-1"></i>
-                            Visit Website</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Vendors -->
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script
-        src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.min.js"></script>
+    <!-- AOS + SweetAlert2 -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script
-        src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
 
-    <!-- Main JS -->
     <script>
+        // Current year (footer)
+        const currentYearEl = document.getElementById('currentYear');
+        if (currentYearEl) currentYearEl.textContent = String(new Date().getFullYear());
+
+        // AOS
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (window.AOS) {
+            AOS.init({
+                duration: 1050,
+                delay: 60,
+                easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+                once: true,
+                offset: 120,
+                anchorPlacement: 'top-bottom',
+                disable: prefersReducedMotion
+            });
+
+            // Ensure correct positions after images/fonts load (prevents "snappy" feel)
+            window.addEventListener('load', () => {
+                try { AOS.refreshHard(); } catch { AOS.refresh(); }
+            });
+        }
+
         // Preloader
         const preloader = document.getElementById('preloader');
+        setTimeout(() => preloader.classList.add('hide'), 2500);
+        window.addEventListener('load', () => setTimeout(() => preloader.classList.add('hide'), 250));
 
-        // Fallback: kalau apa-apa jadi, auto hide lepas 3s
-        setTimeout(() => {
-            preloader.classList.add('hide');
-        }, 3000);
-
-        // Hide bila DOM siap (tak tunggu gambar besar)
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => preloader.classList.add('hide'), 400);
-        });
-
-        // Navbar shrink on scroll
-        const nav = document.getElementById('mainNav');
-        const toggleNavShrink = () => {
-            if (window.scrollY > 10) {
-                nav.classList.add('navbar-scrolled');
-            } else {
-                nav.classList.remove('navbar-scrolled');
-            }
-        };
-        toggleNavShrink();
-        window.addEventListener('scroll', toggleNavShrink);
-
-        // AOS init
-        AOS.init({
-            once: true,
-            offset: 60,
-            duration: 650,
-            easing: 'ease-out'
-        });
-
-        // Typed.js (Hero)
+        // Typed.js
         new Typed('#typed', {
-            strings: ["Hi, I’m <span style='color: #13de6bff'>Faiz</span> — Web Developer "],
-            typeSpeed: 45,
+            strings: [
+                "Hello, I'm <span style='color:#7ef7c6'>Faiz</span> — Web Developer & UI Engineer"
+            ],
+            typeSpeed: 42,
             backSpeed: 0,
             showCursor: true,
             smartBackspace: false
         });
 
-        // Smooth scroll fix for collapsed navbar
-        document.querySelectorAll('.navbar .nav-link[href^="#"]').forEach(link => {
-            link.addEventListener('click', () => {
-                const bsCollapse = bootstrap.Collapse.getOrCreateInstance(document.getElementById('nav'));
-                bsCollapse.hide();
-            });
-        });
+        // Back-to-top toggle
+        const toTopBtn = document.getElementById('toTopBtn');
+        let toTopTicking = false;
 
-        // SweetAlert2 — Hire Me (Contact Modal)
-        function openHireModal() {
-            Swal.fire({
-                title: 'Hire Me',
-                html: `
-                <div class="text-start">
-                    <label class="form-label">Nama</label>
-                    <input id="swal-name" class="swal2-input" placeholder="Nama anda">
-                    <label class="form-label">Email</label>
-                    <input id="swal-email" type="email" class="swal2-input" placeholder="email@domain.com">
-                    <label class="form-label">Ringkasan Projek</label>
-                    <textarea id="swal-msg" class="swal2-textarea" placeholder="Cerita sikit scope & timeline"></textarea>
-                </div>
-                `,
-                confirmButtonText: 'Hantar ke WhatsApp',
-                showCancelButton: true,
-                cancelButtonText: 'Batal',
-                focusConfirm: false,
-                preConfirm: () => {
-                    const name = document.getElementById('swal-name').value.trim();
-                    const email = document.getElementById('swal-email').value.trim();
-                    const msg = document.getElementById('swal-msg').value.trim();
-                    if (!name || !email || !msg) {
-                        Swal.showValidationMessage('Lengkapkan semua field dulu ya 🙏');
-                        return false;
-                    }
-                    return {
-                        name,
-                        email,
-                        msg
-                    };
-                },
-                background: '#0b3435',
-                color: '#eafffb',
-            }).then((res) => {
-                if (res.isConfirmed && res.value) {
-                    const name = res.value.name;
-                    const email = res.value.email;
-                    const msg = res.value.msg;
-
-                    const base = 'https://wa.me/60138280843';
-                    const text =
-                        `Hi Faiz, saya ${name} (${email}). ` +
-                        `Saya berminat nak hire untuk projek website.\n\n` +
-                        `Ringkasan projek:\n${msg}`;
-
-                    const url = `${base}?text=${encodeURIComponent(text)}`;
-                    window.open(url, '_blank'); // buka WhatsApp Web / App
-                }
-            });
+        function updateToTopVisibility() {
+            const show = window.scrollY > 140;
+            toTopBtn?.classList.toggle('is-visible', show);
+            toTopTicking = false;
         }
 
-        document.getElementById('hireBtn').addEventListener('click', e => {
-            e.preventDefault();
-            openHireModal();
-        });
-        document.getElementById('hireBtn2').addEventListener('click', e => {
-            e.preventDefault();
-            openHireModal();
+        window.addEventListener('scroll', () => {
+            if (toTopTicking) return;
+            toTopTicking = true;
+            requestAnimationFrame(updateToTopVisibility);
+        }, { passive: true });
+
+        window.addEventListener('load', updateToTopVisibility);
+
+        toTopBtn?.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
         });
 
-        // Contact form (frontend validate + SweetAlert)
-        // Contact form → direct WhatsApp
-        const cform = document.getElementById('contactForm');
-        cform.addEventListener('submit', (e) => {
+        // Modal helpers
+        const backdrop = document.getElementById('backdrop');
+        let openModalId = null;
+
+        const MODAL_ANIM_MS = prefersReducedMotion ? 0 : 220;
+
+        function showBackdrop() {
+            backdrop.classList.remove('hidden');
+            requestAnimationFrame(() => backdrop.classList.add('is-visible'));
+        }
+
+        function hideBackdrop(immediate = false) {
+            backdrop.classList.remove('is-visible');
+            if (immediate || MODAL_ANIM_MS === 0) {
+                backdrop.classList.add('hidden');
+                return;
+            }
+            setTimeout(() => backdrop.classList.add('hidden'), MODAL_ANIM_MS);
+        }
+
+        function openModal(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+
+            if (openModalId && openModalId !== id) {
+                closeModal({ immediate: true });
+            }
+
+            openModalId = id;
+            showBackdrop();
+            el.classList.remove('hidden');
+            el.setAttribute('aria-hidden', 'false');
+            el.classList.remove('is-closing');
+            requestAnimationFrame(() => el.classList.add('is-open'));
+
+            // prevent background scroll
+            document.documentElement.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden';
+
+            // focus first input if exists
+            const focusable = el.querySelector('input, textarea, button');
+            focusable?.focus();
+        }
+
+        function closeModal({ immediate = false } = {}) {
+            if (!openModalId) return;
+            const el = document.getElementById(openModalId);
+
+            if (immediate || MODAL_ANIM_MS === 0) {
+                hideBackdrop(true);
+                el?.classList.add('hidden');
+                el?.classList.remove('is-open', 'is-closing');
+                el?.setAttribute('aria-hidden', 'true');
+            } else {
+                el?.classList.add('is-closing');
+                el?.classList.remove('is-open');
+                hideBackdrop(false);
+
+                setTimeout(() => {
+                    el?.classList.add('hidden');
+                    el?.classList.remove('is-closing');
+                    el?.setAttribute('aria-hidden', 'true');
+                }, MODAL_ANIM_MS);
+            }
+
+            openModalId = null;
+            document.documentElement.style.overflow = '';
+            document.body.style.overflow = '';
+        }
+
+        // Open modal buttons
+        document.querySelectorAll('[data-modal-open]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = btn.getAttribute('data-modal-open');
+                if (!id) return;
+                openModal(id);
+            });
+        });
+
+        // Close modal buttons
+        document.querySelectorAll('[data-modal-close]').forEach(btn => {
+            btn.addEventListener('click', closeModal);
+        });
+
+        // Backdrop click to close
+        backdrop.addEventListener('click', closeModal);
+
+        // ESC to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Wire Hire buttons
+        const hireBtn = document.getElementById('hireBtn');
+        const hireBtnMobile = document.getElementById('hireBtnMobile');
+        const hireBtnHero = document.getElementById('hireBtnHero');
+        const servicesCta = document.getElementById('servicesCta');
+        const openHireFromContact = document.getElementById('openHireFromContact');
+
+        [hireBtn, hireBtnMobile, hireBtnHero, servicesCta, openHireFromContact].forEach(b => {
+            b?.addEventListener('click', () => openModal('modalHire'));
+        });
+
+        // Hire form -> WhatsApp
+        const hireForm = document.getElementById('hireForm');
+        const hireError = document.getElementById('hireError');
+
+        hireForm?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            hireError.classList.add('hidden');
+            hireError.textContent = '';
+
+            const name = document.getElementById('hName').value.trim();
+            const email = document.getElementById('hEmail').value.trim();
+            const msg = document.getElementById('hMsg').value.trim();
+
+            if (!name || !email || !msg) {
+                if (window.Swal) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Incomplete details',
+                        text: 'Please complete all fields before sending.'
+                    });
+                } else {
+                    hireError.textContent = 'Please complete all fields before sending.';
+                    hireError.classList.remove('hidden');
+                }
+                return;
+            }
+
+            const base = 'https://wa.me/60138280843';
+            const safeName = encodeURIComponent(name);
+            const safeEmail = encodeURIComponent(email);
+            const safeMsg = encodeURIComponent(msg);
+            const text =
+                `Hi Faiz, this is ${safeName} (${safeEmail}).%0A%0A` +
+                `Project brief:%0A${safeMsg}`;
+
+            window.open(`${base}?text=${text}`, '_blank', 'noopener,noreferrer');
+            closeModal();
+            hireForm.reset();
+
+            if (window.Swal) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Opening WhatsApp…',
+                    showConfirmButton: false,
+                    timer: 1800,
+                    timerProgressBar: true
+                });
+            }
+        });
+
+        // Contact form -> WhatsApp
+        const contactForm = document.getElementById('contactForm');
+        contactForm?.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const fd = new FormData(cform);
+            const fd = new FormData(contactForm);
             const name = String(fd.get('name') || '').trim();
             const email = String(fd.get('email') || '').trim();
             const subject = String(fd.get('subject') || '').trim();
             const message = String(fd.get('message') || '').trim();
 
             if (!name || !email || !subject || !message) {
-                return Swal.fire({
-                    icon: 'warning',
-                    title: 'Oops',
-                    text: 'Semua field wajib diisi.',
-                    background: '#0b3435',
-                    color: '#eafffb'
-                });
+                if (window.Swal) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Incomplete details',
+                        text: 'Please fill in your name, email, subject, and message.'
+                    });
+                }
+                return;
             }
 
             const base = 'https://wa.me/60138280843';
+            const safeName = encodeURIComponent(name);
+            const safeEmail = encodeURIComponent(email);
+            const safeSubject = encodeURIComponent(subject);
+            const safeMessage = encodeURIComponent(message);
             const text =
-                `Hi Faiz, saya ${name} (${email}).\n` +
-                `Subjek: ${subject}\n\n` +
-                `${message}`;
+                `Hi Faiz, this is ${safeName} (${safeEmail}).%0A` +
+                `Subject: ${safeSubject}%0A%0A` +
+                `${safeMessage}`;
 
-            const url = `${base}?text=${encodeURIComponent(text)}`;
+            window.open(`${base}?text=${text}`, '_blank', 'noopener,noreferrer');
+            contactForm.reset();
 
-            // buka WhatsApp
-            window.open(url, '_blank');
-
-            // optional: bagi feedback manja sikit
-            Swal.fire({
-                icon: 'success',
-                title: 'Opening WhatsApp…',
-                text: 'Kalau tak auto buka, check popup block dekat browser ya 😉',
-                background: '#0b3435',
-                color: '#eafffb',
-                timer: 2500,
-                showConfirmButton: false
-            });
-
-            cform.reset();
+            if (window.Swal) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Opening WhatsApp…',
+                    showConfirmButton: false,
+                    timer: 1800,
+                    timerProgressBar: true
+                });
+            }
         });
     </script>
 </body>
