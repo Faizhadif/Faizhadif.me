@@ -40,25 +40,39 @@
     <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
 
-    <!-- Google Sans (Required) + Inter fallback -->
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Sans + Inter (defer stylesheet to reduce render-blocking) -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+    </noscript>
 
-    <!-- Bootstrap Icons (Required) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons (defer stylesheet to reduce render-blocking) -->
+    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    </noscript>
 
     <!-- Favicon -->
     <link rel="icon" href="images/faizhadif.ico" sizes="any">
     <link rel="shortcut icon" href="images/faizhadif.ico">
 
-    <!-- AOS (Animate On Scroll) -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Preload likely LCP image (About card can be above-the-fold on desktop) -->
+    <link rel="preload" as="image" href="images/about-me.webp" fetchpriority="high">
+
+    <!-- AOS (defer stylesheet; animations are non-critical for first paint) -->
+    <link rel="preload" as="style" href="https://unpkg.com/aos@2.3.1/dist/aos.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    </noscript>
 
     <!-- Tailwind (built locally via CLI) -->
     <link rel="stylesheet" href="assets/tailwind.css">
 
     <!-- Typed.js (Hero typing effect) -->
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
 
     <!-- Alpine.js (Mobile menu overlay) -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -223,6 +237,34 @@
         .hero-reveal.is-revealed .hero-reveal-item {
             animation: heroItemReveal 720ms var(--hero-reveal-ease) forwards;
             animation-delay: var(--d, 0ms);
+        }
+
+        /* Mobile perf: avoid expensive blur + clip-path on the initial hero paint */
+        @media (max-width: 640px) {
+            .hero-reveal {
+                filter: none;
+                clip-path: none;
+            }
+
+            .hero-reveal::after {
+                display: none;
+            }
+
+            .hero-reveal .hero-reveal-item {
+                filter: none;
+            }
+
+            @keyframes heroPanelReveal {
+                0% {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+
+                100% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
         }
 
         @keyframes heroPanelReveal {
@@ -1027,7 +1069,8 @@
                                     src="images/about-me.webp"
                                     alt="Faiz working on a web project"
                                     class="about-3d-media w-full h-[240px] sm:h-[320px] object-cover"
-                                    loading="lazy"
+                                    loading="eager"
+                                    fetchpriority="high"
                                     decoding="async" />
                             </div>
                         </div>
@@ -2435,15 +2478,21 @@
         }
 
         // Preloader
+        // IMPORTANT for LCP: don't gate the hero reveal on full window.load or long fixed delays.
+        // Hide as soon as DOM is ready, with a short fallback timer.
         const preloader = document.getElementById('preloader');
-        setTimeout(() => {
+        let preloaderHidden = false;
+
+        function hidePreloaderAndStartHero() {
+            if (preloaderHidden) return;
+            preloaderHidden = true;
             preloader?.classList.add('hide');
             startHeroReveal();
-        }, 2500);
-        window.addEventListener('load', () => setTimeout(() => {
-            preloader?.classList.add('hide');
-            startHeroReveal();
-        }, 250));
+        }
+
+        window.addEventListener('DOMContentLoaded', () => setTimeout(hidePreloaderAndStartHero, 120));
+        window.addEventListener('load', () => setTimeout(hidePreloaderAndStartHero, 60));
+        setTimeout(hidePreloaderAndStartHero, 1200);
 
         // Back-to-top toggle
         const toTopBtn = document.getElementById('toTopBtn');
