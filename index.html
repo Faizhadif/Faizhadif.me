@@ -98,8 +98,19 @@
             position: fixed;
             inset: 0;
             pointer-events: none;
-            z-index: -1;
+            z-index: -2;
             overflow: hidden;
+        }
+
+        /* Scroll scenes backdrop (fades to black during pricing scene) */
+        #sceneBackdrop {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            background: #000;
+            opacity: 0;
+            will-change: opacity;
         }
 
         #ambientLights::before,
@@ -394,6 +405,70 @@
             outline-offset: 3px;
         }
 
+        /* Micro-interactions: subtle 3D lift + highlight (CSS-only) */
+        [data-micro3d] {
+            position: relative;
+            transform: translateZ(0);
+            will-change: transform, box-shadow, filter;
+            transition:
+                transform 160ms cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 160ms cubic-bezier(0.16, 1, 0.3, 1),
+                filter 160ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        [data-micro3d]::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            opacity: 0;
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, .18),
+                    rgba(255, 255, 255, 0) 46%,
+                    rgba(126, 247, 198, .12));
+            mix-blend-mode: overlay;
+            transition: opacity 160ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            [data-micro3d]:hover {
+                transform: perspective(900px) translateY(-2px) rotateX(2.25deg) rotateY(-2.5deg);
+                box-shadow: 0 18px 38px rgba(0, 0, 0, .28), inset 0 1px 0 rgba(255, 255, 255, .07);
+                filter: saturate(1.05);
+            }
+
+            [data-micro3d]:hover::before {
+                opacity: .75;
+            }
+
+            [data-micro3d]:active {
+                transform: perspective(900px) translateY(0px) rotateX(0deg) rotateY(0deg) scale(.99);
+                transition-duration: 80ms;
+            }
+
+            [data-micro3d="card"]:hover {
+                transform: perspective(1000px) translateY(-3px) rotateX(3.25deg) rotateY(-3.5deg);
+            }
+
+            [data-micro3d="btn"]:hover {
+                transform: perspective(900px) translateY(-2px) rotateX(2deg) rotateY(-2deg);
+            }
+
+            [data-micro3d="chip"]:hover {
+                transform: perspective(700px) translateY(-1px) rotateX(1.2deg) rotateY(-1.2deg);
+                box-shadow: 0 10px 22px rgba(0, 0, 0, .22);
+                filter: saturate(1.04);
+            }
+        }
+
+        @media (hover: none) {
+            [data-micro3d]:active {
+                transform: translateY(1px) scale(.99);
+                transition-duration: 80ms;
+            }
+        }
+
         /* Reduce motion */
         @media (prefers-reduced-motion: reduce) {
             * {
@@ -401,6 +476,16 @@
                 animation-iteration-count: 1 !important;
                 transition-duration: .01ms !important;
                 scroll-behavior: auto !important;
+            }
+
+            [data-micro3d] {
+                transform: none !important;
+                transition: none !important;
+                filter: none !important;
+            }
+
+            [data-micro3d]::before {
+                display: none !important;
             }
 
             .hero-reveal::after {
@@ -423,6 +508,10 @@
             .about-3d-glow,
             .about-3d-shine {
                 display: none !important;
+            }
+
+            #sceneBackdrop {
+                opacity: 0 !important;
             }
         }
 
@@ -489,6 +578,186 @@
             transform: translateY(var(--music-shift));
         }
 
+        /* Pricing scroll scene (between Portfolio and Services) */
+        #pricingScene {
+            position: relative;
+        }
+
+        #pricingScene.is-scroll-driven {
+            height: 620vh;
+        }
+
+        #pricingScene .pricing-sticky {
+            display: flex;
+            align-items: center;
+        }
+
+        #pricingScene.is-scroll-driven .pricing-sticky {
+            height: 100vh;
+            width: 100%;
+            padding-top: 5.75rem;
+            padding-bottom: 2rem;
+            box-sizing: border-box;
+        }
+
+        /* Pinning: keep the whole stage centered while scrolling the scene */
+        #pricingScene.is-scroll-driven.is-pinned .pricing-sticky {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1;
+        }
+
+        /* After the scene ends, park it at the bottom to avoid jump */
+        #pricingScene.is-scroll-driven.is-after .pricing-sticky {
+            position: absolute;
+            top: auto;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 0;
+        }
+
+        #pricingScene .pricing-stage {
+            position: relative;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, .14);
+            background: rgba(0, 0, 0, .38);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 18px 46px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .08);
+            overflow: hidden;
+            will-change: opacity, transform, filter, clip-path;
+        }
+
+        /* Stage reveal (controlled by JS during scroll-driven mode) */
+        #pricingScene.is-scroll-driven .pricing-stage {
+            opacity: 0;
+            transform: translateY(-10px);
+            filter: blur(10px);
+            clip-path: inset(0 0 100% 0 round 1.5rem);
+        }
+
+        #pricingScene .pricing-stage::before {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background:
+                radial-gradient(520px 360px at 20% 30%, rgba(126, 247, 198, .22), transparent 60%),
+                radial-gradient(560px 380px at 80% 60%, rgba(34, 211, 238, .18), transparent 62%);
+            filter: blur(34px);
+            opacity: .85;
+            pointer-events: none;
+        }
+
+        #pricingScene .pricing-stage::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .10), rgba(255, 255, 255, 0));
+            opacity: .35;
+            pointer-events: none;
+        }
+
+        #pricingScene .pricing-steps {
+            padding: 2.25rem 1.25rem;
+        }
+
+        #pricingScene .pricing-step {
+            text-align: center;
+            padding: 2.1rem 0;
+        }
+
+        #pricingScene .pricing-step:not(:last-child) {
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        #pricingScene.is-scroll-driven .pricing-steps {
+            position: relative;
+            min-height: 56vh;
+            display: grid;
+            place-items: center;
+        }
+
+        #pricingScene.is-scroll-driven .pricing-step {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            border-bottom: none;
+            padding: 0;
+            opacity: 0;
+            transform: translateY(14px) scale(.98);
+            filter: blur(10px);
+            will-change: opacity, transform, filter;
+        }
+
+        #pricingScene .pricing-kicker {
+            color: rgba(234, 255, 251, .72);
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            font-size: .75rem;
+        }
+
+        #pricingScene .pricing-title {
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.05;
+            font-size: clamp(2rem, 5vw, 3.25rem);
+        }
+
+        #pricingScene .pricing-amount {
+            display: inline-block;
+            font-variant-numeric: tabular-nums;
+            min-width: 6ch;
+        }
+
+        #pricingScene .pricing-sub {
+            color: rgba(234, 255, 251, .70);
+            margin-top: .85rem;
+            max-width: 56ch;
+            font-size: 1rem;
+        }
+
+        #pricingScene .pricing-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .55rem .9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .18);
+            background: rgba(255, 255, 255, .06);
+            color: rgba(234, 255, 251, .78);
+            font-weight: 700;
+            margin-top: 1.1rem;
+        }
+
+        #pricingScene .pricing-ctaRow {
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1.2rem;
+        }
+
+        @media (min-width: 640px) {
+            #pricingScene .pricing-ctaRow {
+                flex-direction: row;
+            }
+        }
+
+        @media (max-width: 640px) {
+            #pricingScene.is-scroll-driven {
+                height: 760vh;
+            }
+
+            #pricingScene.is-scroll-driven .pricing-steps {
+                min-height: 66vh;
+            }
+        }
+
         /* AOS performance hint (smooth transforms) */
         [data-aos] {
             will-change: transform, opacity;
@@ -498,6 +767,7 @@
 
 <body class="font-sans">
     <div id="top" aria-hidden="true"></div>
+    <div id="sceneBackdrop" aria-hidden="true"></div>
     <div id="ambientLights" aria-hidden="true"></div>
     <!-- Preloader -->
     <div id="preloader" aria-label="Loading">
@@ -690,11 +960,13 @@
 
                     <div class="hero-reveal-item mt-7 flex flex-col sm:flex-row gap-3 justify-center" style="--d: 380ms">
                         <a href="#portfolio"
+                            data-micro3d="btn"
                             class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition">
                             <i class="bi bi-grid-3x3-gap"></i>
                             <span>View Portfolio</span>
                         </a>
                         <button id="hireBtnHero"
+                            data-micro3d="btn"
                             class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition shadow-soft">
                             <i class="bi bi-lightning-charge"></i>
                             <span>Start a Project</span>
@@ -702,7 +974,7 @@
                     </div>
 
                     <div class="hero-reveal-item mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4" style="--d: 520ms">
-                        <div class="glass rounded-2xl p-4 text-left">
+                        <div data-micro3d="card" class="glass rounded-2xl p-4 text-left">
                             <div class="flex items-center gap-2">
                                 <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke">
                                     <i class="bi bi-speedometer2"></i>
@@ -714,7 +986,7 @@
                             </div>
                         </div>
 
-                        <div class="glass rounded-2xl p-4 text-left">
+                        <div data-micro3d="card" class="glass rounded-2xl p-4 text-left">
                             <div class="flex items-center gap-2">
                                 <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke">
                                     <i class="bi bi-palette2"></i>
@@ -726,7 +998,7 @@
                             </div>
                         </div>
 
-                        <div class="glass rounded-2xl p-4 text-left">
+                        <div data-micro3d="card" class="glass rounded-2xl p-4 text-left">
                             <div class="flex items-center gap-2">
                                 <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke">
                                     <i class="bi bi-shield-check"></i>
@@ -792,11 +1064,11 @@
                             </div>
 
                             <div class="mt-6 flex flex-col sm:flex-row gap-3" data-aos="fade-up" data-aos-delay="220">
-                                <a href="#portfolio" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition">
+                                <a href="#portfolio" data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition">
                                     <i class="bi bi-eye"></i>
                                     <span>Explore Work</span>
                                 </a>
-                                <a href="#contact" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition">
+                                <a href="#contact" data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition">
                                     <i class="bi bi-envelope-paper"></i>
                                     <span>Contact</span>
                                 </a>
@@ -825,31 +1097,31 @@
 
                     <!-- Quick Tech Icons -->
                     <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
-                        <div class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="0">
+                        <div data-micro3d="card" class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="0">
                             <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke"><i class="bi bi-filetype-html"></i></span>
                             <div class="text-sm font-semibold">HTML</div>
                         </div>
-                        <div class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="60">
+                        <div data-micro3d="card" class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="60">
                             <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke"><i class="bi bi-filetype-css"></i></span>
                             <div class="text-sm font-semibold">CSS</div>
                         </div>
-                        <div class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="120">
+                        <div data-micro3d="card" class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="120">
                             <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke"><i class="bi bi-filetype-js"></i></span>
                             <div class="text-sm font-semibold">JavaScript</div>
                         </div>
-                        <div class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="180">
+                        <div data-micro3d="card" class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="180">
                             <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke"><i class="bi bi-filetype-php"></i></span>
                             <div class="text-sm font-semibold">PHP</div>
                         </div>
-                        <div class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="240">
+                        <div data-micro3d="card" class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="240">
                             <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke"><i class="bi bi-database"></i></span>
                             <div class="text-sm font-semibold">MySQL</div>
                         </div>
-                        <div class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="300">
+                        <div data-micro3d="card" class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="300">
                             <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke"><i class="bi bi-lightning-charge"></i></span>
                             <div class="text-sm font-semibold">Tailwind</div>
                         </div>
-                        <div class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="360">
+                        <div data-micro3d="card" class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="360">
                             <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke"><i class="bi bi-bootstrap"></i></span>
                             <div class="text-sm font-semibold">Bootstrap</div>
                         </div>
@@ -862,11 +1134,11 @@
                                 <span>Frontend</span>
                             </div>
                             <div class="mt-3 flex flex-wrap gap-2">
-                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-filetype-html"></i><span>HTML</span></span>
-                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-filetype-css"></i><span>CSS</span></span>
-                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-filetype-js"></i><span>JavaScript</span></span>
-                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
-                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-bootstrap"></i><span>Bootstrap</span></span>
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-filetype-html"></i><span>HTML</span></span>
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-filetype-css"></i><span>CSS</span></span>
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-filetype-js"></i><span>JavaScript</span></span>
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-bootstrap"></i><span>Bootstrap</span></span>
                             </div>
                         </div>
 
@@ -876,9 +1148,9 @@
                                 <span>Backend</span>
                             </div>
                             <div class="mt-3 flex flex-wrap gap-2">
-                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-filetype-php"></i><span>PHP</span></span>
-                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-database"></i><span>MySQL</span></span>
-                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-diagram-3"></i><span>REST Basics</span></span>
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-filetype-php"></i><span>PHP</span></span>
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-database"></i><span>MySQL</span></span>
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-diagram-3"></i><span>REST Basics</span></span>
                             </div>
                         </div>
 
@@ -888,10 +1160,10 @@
                                 <span>Tools</span>
                             </div>
                             <div class="mt-3 flex flex-wrap gap-2">
-                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-github"></i><span>GitHub</span></span>
-                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-code-slash"></i><span>VS Code</span></span>
-                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-figma"></i><span>Figma</span></span>
-                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-palette"></i><span>Canva</span></span>
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-github"></i><span>GitHub</span></span>
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-code-slash"></i><span>VS Code</span></span>
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-figma"></i><span>Figma</span></span>
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-palette"></i><span>Canva</span></span>
                             </div>
                         </div>
                     </div>
@@ -916,6 +1188,7 @@
                     <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         <!-- Project 1 -->
                         <button
+                            data-micro3d="card"
                             class="group text-left glass rounded-2xl overflow-hidden hover:bg-white/10 transition"
                             data-modal-open="proj1"
                             data-aos="zoom-in" data-aos-delay="0"
@@ -938,6 +1211,7 @@
 
                         <!-- Project 2 -->
                         <button
+                            data-micro3d="card"
                             class="group text-left glass rounded-2xl overflow-hidden hover:bg-white/10 transition"
                             data-modal-open="proj2"
                             data-aos="zoom-in" data-aos-delay="90"
@@ -960,6 +1234,7 @@
 
                         <!-- Project 3 -->
                         <button
+                            data-micro3d="card"
                             class="group text-left glass rounded-2xl overflow-hidden hover:bg-white/10 transition"
                             data-modal-open="proj3"
                             data-aos="zoom-in" data-aos-delay="180"
@@ -981,7 +1256,7 @@
                         </button>
 
                         <!-- Coming Soon -->
-                        <div class="glass rounded-2xl p-6 sm:p-7 text-center" data-aos="fade-up" data-aos-delay="270">
+                        <div data-micro3d="card" class="glass rounded-2xl p-6 sm:p-7 text-center" data-aos="fade-up" data-aos-delay="270">
                             <div class="mx-auto grid place-items-center w-14 h-14 rounded-2xl bg-white/5 stroke">
                                 <i class="bi bi-rocket-takeoff text-[1.4rem]"></i>
                             </div>
@@ -998,6 +1273,75 @@
                     <p class="mt-6 muted2 text-sm">
                         If you would like a similar system tailored to your business model, I can propose an implementation plan and deliver a clean, scalable build.
                     </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Scroll Scene (between Portfolio and Services) -->
+        <section id="pricingScene" aria-label="Pricing scroll scene">
+            <div class="pricing-sticky">
+                <div class="mx-auto max-w-6xl w-full px-4 sm:px-6">
+                    <div class="pricing-stage rounded-3xl">
+                        <div class="pricing-steps">
+                            <div class="pricing-step" data-pricing-step="0">
+                                <div>
+                                    <div class="pricing-kicker">Transparent starting points</div>
+                                    <div class="pricing-title mt-4">Prices?</div>
+                                    <div class="pricing-sub">
+                                        Scroll to explore common ranges. Final quotes depend on scope, pages, and features.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pricing-step" data-pricing-step="1">
+                                <div>
+                                    <div class="pricing-kicker">Starter landing</div>
+                                    <div class="pricing-title mt-4">Starting from <span class="pricing-amount" data-rm-target="250">RM250</span></div>
+                                    <div class="pricing-sub">A clean, fast landing page with strong layout, CTA, and mobile-first polish.</div>
+                                    <div class="pricing-pill"><i class="bi bi-lightning-charge"></i> Fast delivery • Clean UI</div>
+                                </div>
+                            </div>
+
+                            <div class="pricing-step" data-pricing-step="2">
+                                <div>
+                                    <div class="pricing-kicker">Business site</div>
+                                    <div class="pricing-title mt-4"><span class="pricing-amount" data-rm-target="400">RM400</span></div>
+                                    <div class="pricing-sub">More pages, clearer information architecture, and a stronger conversion flow.</div>
+                                    <div class="pricing-pill"><i class="bi bi-grid-3x3-gap"></i> Multiple pages • Better UX</div>
+                                </div>
+                            </div>
+
+                            <div class="pricing-step" data-pricing-step="3">
+                                <div>
+                                    <div class="pricing-kicker">Custom builds</div>
+                                    <div class="pricing-title mt-4">Flexible until <span class="pricing-amount" data-rm-target="1000" data-rm-suffix="+">RM1000+</span></div>
+                                    <div class="pricing-sub">For advanced UI, systems, or database-driven workflows (PHP + MySQL), built for scale.</div>
+                                    <div class="pricing-pill"><i class="bi bi-database"></i> Custom logic • Integrations</div>
+                                </div>
+                            </div>
+
+                            <div class="pricing-step" data-pricing-step="4">
+                                <div>
+                                    <div class="pricing-kicker">Ready when you are</div>
+                                    <div class="pricing-title mt-4">Let’s build something premium.</div>
+                                    <div class="pricing-sub">Share your goals and timeline — I’ll propose a clear scope and next steps.</div>
+
+                                    <div class="pricing-ctaRow">
+                                        <button data-micro3d="btn" data-modal-open="modalHire"
+                                            class="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition">
+                                            <i class="bi bi-send"></i>
+                                            <span>Start a Project</span>
+                                        </button>
+                                        <a data-micro3d="btn" href="#contact"
+                                            class="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition">
+                                            <i class="bi bi-chat-square-text"></i>
+                                            <span>Contact</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1019,7 +1363,7 @@
                     </div>
 
                     <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <div class="glass rounded-2xl p-5 hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="0">
+                        <div data-micro3d="card" class="glass rounded-2xl p-5 hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="0">
                             <div class="flex items-center gap-2 font-semibold">
                                 <i class="bi bi-laptop"></i>
                                 <span>Website Design</span>
@@ -1029,7 +1373,7 @@
                             </p>
                         </div>
 
-                        <div class="glass rounded-2xl p-5 hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="90">
+                        <div data-micro3d="card" class="glass rounded-2xl p-5 hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="90">
                             <div class="flex items-center gap-2 font-semibold">
                                 <i class="bi bi-layout-text-window-reverse"></i>
                                 <span>UI/UX Revamp</span>
@@ -1039,7 +1383,7 @@
                             </p>
                         </div>
 
-                        <div class="glass rounded-2xl p-5 hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="180">
+                        <div data-micro3d="card" class="glass rounded-2xl p-5 hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="180">
                             <div class="flex items-center gap-2 font-semibold">
                                 <i class="bi bi-wrench-adjustable"></i>
                                 <span>Maintenance</span>
@@ -1049,7 +1393,7 @@
                             </p>
                         </div>
 
-                        <div class="glass rounded-2xl p-5 hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="270">
+                        <div data-micro3d="card" class="glass rounded-2xl p-5 hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="270">
                             <div class="flex items-center gap-2 font-semibold">
                                 <i class="bi bi-database-check"></i>
                                 <span>Database Integration</span>
@@ -1061,11 +1405,11 @@
                     </div>
 
                     <div class="mt-6 flex flex-col sm:flex-row gap-3" data-aos="fade-up" data-aos-delay="220">
-                        <button id="servicesCta" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition">
+                        <button id="servicesCta" data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition">
                             <i class="bi bi-chat-dots"></i>
                             <span>Request a Quote</span>
                         </button>
-                        <a href="#contact" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition">
+                        <a href="#contact" data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition">
                             <i class="bi bi-envelope"></i>
                             <span>Send Project Details</span>
                         </a>
@@ -1101,7 +1445,7 @@
 
                         <div class="lg:col-span-7 glass rounded-2xl p-5 sm:p-6" data-aos="fade-left" data-aos-delay="60">
                             <div class="grid gap-3">
-                                <article class="relative glass rounded-2xl p-5 overflow-hidden hover:bg-white/10 transition">
+                                <article data-micro3d="card" class="relative glass rounded-2xl p-5 overflow-hidden hover:bg-white/10 transition">
                                     <div class="absolute left-4 top-5 bottom-5 w-1 rounded-full bg-emerald-300/35"></div>
 
                                     <div class="pl-5">
@@ -1125,7 +1469,7 @@
                                     </div>
                                 </article>
 
-                                <article class="relative glass rounded-2xl p-5 overflow-hidden hover:bg-white/10 transition">
+                                <article data-micro3d="card" class="relative glass rounded-2xl p-5 overflow-hidden hover:bg-white/10 transition">
                                     <div class="absolute left-4 top-5 bottom-5 w-1 rounded-full bg-emerald-300/35"></div>
 
                                     <div class="pl-5">
@@ -1173,7 +1517,7 @@
 
                     <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         <!-- Card template -->
-                        <article class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="50">
+                        <article data-micro3d="card" class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="50">
                             <div class="relative">
                                 <span class="absolute left-3 top-3 px-3 py-1 rounded-full text-xs tracking-[0.14em] uppercase stroke bg-black/40">2025</span>
                                 <img src="images/sijil1.jpg" alt="Microsoft Certified: Security, Compliance, and Identity Fundamentals" class="w-full h-44 object-cover" loading="lazy" decoding="async">
@@ -1187,7 +1531,7 @@
                             </div>
                         </article>
 
-                        <article class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="100">
+                        <article data-micro3d="card" class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="100">
                             <div class="relative">
                                 <span class="absolute left-3 top-3 px-3 py-1 rounded-full text-xs tracking-[0.14em] uppercase stroke bg-black/40">2024</span>
                                 <img src="images/sijil5.jpg" alt="AWS Flash – Introduction to Responsible AI" class="w-full h-44 object-cover" loading="lazy" decoding="async">
@@ -1201,7 +1545,7 @@
                             </div>
                         </article>
 
-                        <article class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="150">
+                        <article data-micro3d="card" class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="150">
                             <div class="relative">
                                 <span class="absolute left-3 top-3 px-3 py-1 rounded-full text-xs tracking-[0.14em] uppercase stroke bg-black/40">2024</span>
                                 <img src="images/sijil6.jpg" alt="POLYCC Large Language Model League 2024" class="w-full h-44 object-cover" loading="lazy" decoding="async">
@@ -1215,7 +1559,7 @@
                             </div>
                         </article>
 
-                        <article class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="200">
+                        <article data-micro3d="card" class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="200">
                             <div class="relative">
                                 <span class="absolute left-3 top-3 px-3 py-1 rounded-full text-xs tracking-[0.14em] uppercase stroke bg-black/40">2023</span>
                                 <img src="images/sijil4.jpg" alt="IRISE 2023 Gold Medal" class="w-full h-44 object-cover" loading="lazy" decoding="async">
@@ -1229,7 +1573,7 @@
                             </div>
                         </article>
 
-                        <article class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="250">
+                        <article data-micro3d="card" class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="250">
                             <div class="relative">
                                 <span class="absolute left-3 top-3 px-3 py-1 rounded-full text-xs tracking-[0.14em] uppercase stroke bg-black/40">2024</span>
                                 <img src="images/sijil3.jpg" alt="Mobile Application Development with MySQL" class="w-full h-44 object-cover" loading="lazy" decoding="async">
@@ -1243,7 +1587,7 @@
                             </div>
                         </article>
 
-                        <article class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="300">
+                        <article data-micro3d="card" class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="300">
                             <div class="relative">
                                 <span class="absolute left-3 top-3 px-3 py-1 rounded-full text-xs tracking-[0.14em] uppercase stroke bg-black/40">2024</span>
                                 <img src="images/sijil2.jpg" alt="Web Development Using Laravel Framework" class="w-full h-44 object-cover" loading="lazy" decoding="async">
@@ -1290,7 +1634,7 @@
                                     <label class="text-sm font-semibold">Email</label>
                                     <input name="email" type="email" required
                                         class="mt-2 w-full rounded-xl bg-white/5 stroke px-4 py-3 placeholder:text-white/50"
-                                        placeholder="you@domain.com">
+                                        placeholder="you@mail.com">
                                 </div>
                             </div>
 
@@ -1309,12 +1653,12 @@
                             </div>
 
                             <div class="mt-4 flex flex-col sm:flex-row gap-3">
-                                <button type="submit"
+                                <button type="submit" data-micro3d="btn"
                                     class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition">
                                     <i class="bi bi-whatsapp"></i>
                                     <span>Send via WhatsApp</span>
                                 </button>
-                                <button type="button" id="openHireFromContact"
+                                <button type="button" id="openHireFromContact" data-micro3d="btn"
                                     class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition">
                                     <i class="bi bi-send"></i>
                                     <span>Open Project Form</span>
@@ -1403,7 +1747,7 @@
                         <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#contact">Contact</a>
                     </div>
 
-                    <a
+                    <a data-micro3d="btn"
                         class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 stroke transition text-sm font-semibold"
                         href="https://wa.me/60138280843?text=Hi%20Faiz%2C%20I%27d%20like%20to%20discuss%20a%20website%20project."
                         target="_blank"
@@ -1431,7 +1775,7 @@
                             Share a brief overview. I will respond with suggested scope and next steps.
                         </p>
                     </div>
-                    <button class="w-10 h-10 grid place-items-center rounded-xl bg-white/5 stroke hover:bg-white/10 transition" data-modal-close aria-label="Close">
+                    <button data-micro3d="btn" class="w-10 h-10 grid place-items-center rounded-xl bg-white/5 stroke hover:bg-white/10 transition" data-modal-close aria-label="Close">
                         <i class="bi bi-x-lg"></i>
                     </button>
                 </div>
@@ -1443,7 +1787,7 @@
                     </div>
                     <div>
                         <label class="text-sm font-semibold">Email</label>
-                        <input id="hEmail" type="email" class="mt-2 w-full rounded-xl bg-white/5 stroke px-4 py-3 placeholder:text-white/50" placeholder="you@domain.com" required>
+                        <input id="hEmail" type="email" class="mt-2 w-full rounded-xl bg-white/5 stroke px-4 py-3 placeholder:text-white/50" placeholder="you@mail.com" required>
                     </div>
                     <div>
                         <label class="text-sm font-semibold">Project Brief</label>
@@ -1451,11 +1795,11 @@
                     </div>
 
                     <div class="mt-1 flex flex-col sm:flex-row gap-3">
-                        <button type="submit" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition">
+                        <button type="submit" data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition">
                             <i class="bi bi-whatsapp"></i>
                             <span>Send via WhatsApp</span>
                         </button>
-                        <button type="button" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition" data-modal-close>
+                        <button type="button" data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition" data-modal-close>
                             <i class="bi bi-x-circle"></i>
                             <span>Close</span>
                         </button>
@@ -1473,7 +1817,7 @@
             <div class="modal-panel w-full max-w-3xl glass rounded-3xl overflow-hidden">
                 <div class="flex items-center justify-between p-5 border-b border-white/10">
                     <h3 class="font-bold text-lg">Banner Kangaq Printing Order — eCommerce</h3>
-                    <button class="w-10 h-10 grid place-items-center rounded-xl bg-white/5 stroke hover:bg-white/10 transition" data-modal-close aria-label="Close">
+                    <button data-micro3d="btn" class="w-10 h-10 grid place-items-center rounded-xl bg-white/5 stroke hover:bg-white/10 transition" data-modal-close aria-label="Close">
                         <i class="bi bi-x-lg"></i>
                     </button>
                 </div>
@@ -1487,20 +1831,20 @@
                         <span class="font-semibold text-white">Stack:</span> PHP, MySQL, Tailwind/Bootstrap utilities, JavaScript.
                     </div>
                     <div class="flex flex-wrap gap-2 text-sm font-semibold">
-                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-php"></i><span>PHP</span></span>
-                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-database"></i><span>MySQL</span></span>
-                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
-                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-bootstrap"></i><span>Bootstrap</span></span>
-                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-js"></i><span>JavaScript</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-php"></i><span>PHP</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-database"></i><span>MySQL</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-bootstrap"></i><span>Bootstrap</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-js"></i><span>JavaScript</span></span>
                     </div>
 
                     <div class="flex flex-col sm:flex-row gap-3">
-                        <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition"
+                        <a data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition"
                             href="https://bannerkangaq.com" target="_blank" rel="noopener noreferrer">
                             <i class="bi bi-box-arrow-up-right"></i>
                             <span>Visit Website</span>
                         </a>
-                        <button class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition" data-modal-open="modalHire">
+                        <button data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition" data-modal-open="modalHire">
                             <i class="bi bi-send"></i>
                             <span>Start a Similar Project</span>
                         </button>
@@ -1516,7 +1860,7 @@
             <div class="modal-panel w-full max-w-3xl glass rounded-3xl overflow-hidden">
                 <div class="flex items-center justify-between p-5 border-b border-white/10">
                     <h3 class="font-bold text-lg">MEDIgreen — Online Product Ordering</h3>
-                    <button class="w-10 h-10 grid place-items-center rounded-xl bg-white/5 stroke hover:bg-white/10 transition" data-modal-close aria-label="Close">
+                    <button data-micro3d="btn" class="w-10 h-10 grid place-items-center rounded-xl bg-white/5 stroke hover:bg-white/10 transition" data-modal-close aria-label="Close">
                         <i class="bi bi-x-lg"></i>
                     </button>
                 </div>
@@ -1530,19 +1874,19 @@
                         <span class="font-semibold text-white">Stack:</span> PHP, MySQL, Tailwind, JavaScript.
                     </div>
                     <div class="flex flex-wrap gap-2 text-sm font-semibold">
-                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-php"></i><span>PHP</span></span>
-                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-database"></i><span>MySQL</span></span>
-                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
-                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-js"></i><span>JavaScript</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-php"></i><span>PHP</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-database"></i><span>MySQL</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-js"></i><span>JavaScript</span></span>
                     </div>
 
                     <div class="flex flex-col sm:flex-row gap-3">
-                        <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition"
+                        <a data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition"
                             href="https://medigreen.my" target="_blank" rel="noopener noreferrer">
                             <i class="bi bi-box-arrow-up-right"></i>
                             <span>Visit Website</span>
                         </a>
-                        <button class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition" data-modal-open="modalHire">
+                        <button data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition" data-modal-open="modalHire">
                             <i class="bi bi-send"></i>
                             <span>Start a Similar Project</span>
                         </button>
@@ -1558,7 +1902,7 @@
             <div class="modal-panel w-full max-w-3xl glass rounded-3xl overflow-hidden">
                 <div class="flex items-center justify-between p-5 border-b border-white/10">
                     <h3 class="font-bold text-lg">DH Education — Educational Website</h3>
-                    <button class="w-10 h-10 grid place-items-center rounded-xl bg-white/5 stroke hover:bg-white/10 transition" data-modal-close aria-label="Close">
+                    <button data-micro3d="btn" class="w-10 h-10 grid place-items-center rounded-xl bg-white/5 stroke hover:bg-white/10 transition" data-modal-close aria-label="Close">
                         <i class="bi bi-x-lg"></i>
                     </button>
                 </div>
@@ -1572,18 +1916,18 @@
                         <span class="font-semibold text-white">Stack:</span> HTML, Tailwind, JavaScript.
                     </div>
                     <div class="flex flex-wrap gap-2 text-sm font-semibold">
-                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-html"></i><span>HTML</span></span>
-                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
-                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-js"></i><span>JavaScript</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-html"></i><span>HTML</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-js"></i><span>JavaScript</span></span>
                     </div>
 
                     <div class="flex flex-col sm:flex-row gap-3">
-                        <a class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition"
+                        <a data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition"
                             href="https://thedheducation.com" target="_blank" rel="noopener noreferrer">
                             <i class="bi bi-box-arrow-up-right"></i>
                             <span>Visit Website</span>
                         </a>
-                        <button class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition" data-modal-open="modalHire">
+                        <button data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition" data-modal-open="modalHire">
                             <i class="bi bi-send"></i>
                             <span>Start a Similar Project</span>
                         </button>
@@ -1620,6 +1964,174 @@
                 try { AOS.refreshHard(); } catch { AOS.refresh(); }
             });
         }
+
+        // Pricing: scroll-driven scene (between Portfolio and Services)
+        (() => {
+            const pricingScene = document.getElementById('pricingScene');
+            const sceneBackdrop = document.getElementById('sceneBackdrop');
+            if (!pricingScene || !sceneBackdrop) return;
+
+            if (prefersReducedMotion) {
+                sceneBackdrop.style.opacity = '0';
+                return;
+            }
+
+            const steps = Array.from(pricingScene.querySelectorAll('[data-pricing-step]'));
+            if (!steps.length) return;
+
+            const stageEl = pricingScene.querySelector('.pricing-stage');
+            const counterEls = Array.from(pricingScene.querySelectorAll('[data-rm-target]'));
+
+            pricingScene.classList.add('is-scroll-driven');
+
+            const clamp01 = (v) => Math.min(1, Math.max(0, v));
+            const smoothstep = (edge0, edge1, x) => {
+                const t = clamp01((x - edge0) / (edge1 - edge0 || 1));
+                return t * t * (3 - 2 * t);
+            };
+
+            const easeOutCubic = (t) => 1 - Math.pow(1 - clamp01(t), 3);
+            const formatRM = (n, suffix = '') => {
+                const rounded = Math.max(0, Math.round(n));
+                return `RM${rounded.toLocaleString('en-MY')}${suffix}`;
+            };
+
+            const segments = (() => {
+                const start = 0.10;
+                const end = 0.90;
+                // Weighted segments: give price steps a bit more dwell time.
+                // Order matches your DOM: 0=Prices?, 1=RM250, 2=RM400, 3=RM1000+, 4=CTA
+                const weights = steps.map((_, i) => {
+                    if (i === 1 || i === 2) return 1.45;
+                    if (i === 3) return 2.20;
+                    return 1.0;
+                });
+                const total = weights.reduce((sum, w) => sum + w, 0) || 1;
+                const spanTotal = (end - start);
+
+                let cursor = start;
+                return steps.map((_, i) => {
+                    const span = spanTotal * (weights[i] / total);
+                    const a = cursor;
+                    const b = cursor + span;
+                    cursor = b;
+                    return [a, b];
+                });
+            })();
+
+            let ticking = false;
+
+            function render() {
+                ticking = false;
+
+                const rect = pricingScene.getBoundingClientRect();
+                const vh = window.innerHeight || 1;
+                const docY = window.scrollY || window.pageYOffset || 0;
+
+                const startY = docY + rect.top;
+                const endY = startY + pricingScene.offsetHeight - vh;
+                const denom = Math.max(1, endY - startY);
+                const p = clamp01((docY - startY) / denom);
+
+                const isPinned = docY >= startY && docY <= endY;
+                const isAfter = docY > endY;
+                pricingScene.classList.toggle('is-pinned', isPinned);
+                pricingScene.classList.toggle('is-after', isAfter);
+
+                // Backdrop: fade in to black, hold, then fade out back to theme.
+                let backdropOpacity = 0;
+                if (p > 0.02 && p < 0.98) {
+                    const fadeIn = smoothstep(0.02, 0.10, p);
+                    const fadeOut = 1 - smoothstep(0.90, 0.98, p);
+                    backdropOpacity = Math.min(1, fadeIn, fadeOut);
+                }
+                sceneBackdrop.style.opacity = String(backdropOpacity);
+
+                // Stage: hero-like reveal + exit (wipe + fade + blur)
+                if (stageEl) {
+                    const enter = smoothstep(0.04, 0.12, p);
+                    const exit = 1 - smoothstep(0.88, 0.96, p);
+                    const vis = Math.min(1, enter, exit);
+
+                    const y = (1 - vis) * -10;
+                    const blur = (1 - vis) * 10;
+                    const clipBottom = (1 - vis) * 100;
+
+                    stageEl.style.opacity = String(vis);
+                    stageEl.style.transform = `translateY(${y}px)`;
+                    stageEl.style.filter = `blur(${blur}px)`;
+                    stageEl.style.clipPath = `inset(0 0 ${clipBottom}% 0 round 1.5rem)`;
+                }
+
+                const fadeEdge = 0.16;
+
+                // RM counters: min -> target (scroll-scrubbed within each step segment)
+                if (counterEls.length) {
+                    steps.forEach((stepEl, i) => {
+                        const counterEl = stepEl.querySelector('[data-rm-target]');
+                        if (!counterEl) return;
+
+                        const target = Number(counterEl.getAttribute('data-rm-target') || '0') || 0;
+                        const suffix = counterEl.getAttribute('data-rm-suffix') || '';
+
+                        const [a, b] = segments[i];
+                        const t = clamp01((p - a) / (b - a || 1));
+
+                        // Counter timing within the step:
+                        // - delay a bit at the start (avoid tiny values)
+                        // - finish earlier
+                        // - then HOLD the final value for a longer portion of the segment
+                        const counterT = clamp01((t - 0.12) / 0.40);
+                        const eased = easeOutCubic(counterT);
+
+                        const minStart = Math.min(50, target);
+                        const value = minStart + ((target - minStart) * eased);
+                        const rounded = Math.round(value);
+                        const showSuffix = Boolean(suffix) && counterT >= 1;
+
+                        counterEl.textContent = formatRM(value, showSuffix ? suffix : '');
+                    });
+                }
+
+                steps.forEach((el, i) => {
+                    const [a, b] = segments[i];
+                    const t = (p - a) / (b - a || 1);
+                    const inWindow = t >= 0 && t <= 1;
+
+                    let opacity = 0;
+                    let y = 22;
+                    let scale = 0.985;
+                    let blur = 8;
+
+                    if (inWindow) {
+                        const enter = smoothstep(0, fadeEdge, t);
+                        const exit = smoothstep(1 - fadeEdge, 1, t);
+                        opacity = enter * (1 - exit);
+
+                        // Scroll-like motion: enter from below (+y), exit upwards (-y)
+                        y = (1 - enter) * 22 + (exit * -28);
+                        blur = (1 - opacity) * 8;
+                        scale = 0.985 + (opacity * 0.015);
+                    }
+
+                    el.style.opacity = String(opacity);
+                    el.style.transform = `translateY(${y}px) scale(${scale})`;
+                    el.style.filter = `blur(${blur}px)`;
+                    el.setAttribute('aria-hidden', opacity > 0.12 ? 'false' : 'true');
+                });
+            }
+
+            function schedule() {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(render);
+            }
+
+            window.addEventListener('scroll', schedule, { passive: true });
+            window.addEventListener('resize', schedule);
+            window.addEventListener('load', schedule);
+            schedule();
+        })();
 
         // About: scroll-driven 3D / parallax card + cursor hover tilt
         const aboutSection = document.getElementById('about');
