@@ -158,6 +158,179 @@
             }
         }
 
+        /* About: scroll-driven 3D card (premium depth + moving highlight) */
+        .about-3d-wrap {
+            perspective: 1200px;
+            perspective-origin: 50% 45%;
+        }
+
+        /* Hero: premium top-to-bottom reveal (not AOS) */
+        .hero-reveal {
+            --hero-reveal-dur: 900ms;
+            --hero-reveal-ease: cubic-bezier(0.16, 1, 0.3, 1);
+            --hero-reveal-radius: 1.5rem;
+
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(-10px);
+            filter: blur(10px);
+            clip-path: inset(0 0 100% 0 round var(--hero-reveal-radius));
+            will-change: transform, opacity, clip-path, filter;
+        }
+
+        /* Soft light sweep (plays once on reveal) */
+        .hero-reveal::after {
+            content: "";
+            position: absolute;
+            inset: -45% -55%;
+            pointer-events: none;
+            opacity: 0;
+            background: linear-gradient(115deg,
+                    transparent 42%,
+                    rgba(255, 255, 255, .18) 50%,
+                    transparent 58%);
+            transform: translateX(-55%) rotate(12deg);
+            mix-blend-mode: overlay;
+            filter: blur(0px);
+        }
+
+        .hero-reveal.is-revealed::after {
+            animation: heroSweep 1100ms var(--hero-reveal-ease) 220ms both;
+        }
+
+        .hero-reveal.is-revealed {
+            animation: heroPanelReveal var(--hero-reveal-dur) var(--hero-reveal-ease) forwards;
+        }
+
+        .hero-reveal .hero-reveal-item {
+            opacity: 0;
+            transform: translateY(10px);
+            filter: blur(6px);
+        }
+
+        .hero-reveal.is-revealed .hero-reveal-item {
+            animation: heroItemReveal 720ms var(--hero-reveal-ease) forwards;
+            animation-delay: var(--d, 0ms);
+        }
+
+        @keyframes heroPanelReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+                filter: blur(10px);
+                clip-path: inset(0 0 100% 0 round var(--hero-reveal-radius));
+            }
+
+            60% {
+                opacity: 1;
+                filter: blur(0);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+                clip-path: inset(0 0 0 0 round var(--hero-reveal-radius));
+            }
+        }
+
+        @keyframes heroItemReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+                filter: blur(6px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes heroSweep {
+            0% {
+                opacity: 0;
+                transform: translateX(-55%) rotate(12deg);
+            }
+
+            22% {
+                opacity: .85;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateX(55%) rotate(12deg);
+            }
+        }
+
+        .about-3d-card {
+            position: relative;
+            transform-style: preserve-3d;
+            transform-origin: 50% 50%;
+            backface-visibility: hidden;
+            touch-action: pan-y;
+            will-change: transform;
+            transition: transform 140ms cubic-bezier(0.16, 1, 0.3, 1);
+            transform: rotateX(0deg) rotateY(0deg) translateY(0px) translateZ(0px);
+
+            --glow-x: 50%;
+            --glow-y: 35%;
+            --shine-pos: 50%;
+        }
+
+        .about-3d-glow,
+        .about-3d-shine {
+            position: absolute;
+            inset: -40%;
+            pointer-events: none;
+            transform: translateZ(36px);
+        }
+
+        .about-3d-glow {
+            background:
+                radial-gradient(520px 360px at var(--glow-x) var(--glow-y), rgba(126, 247, 198, .26), transparent 65%),
+                radial-gradient(520px 360px at calc(var(--glow-x) + 6%) calc(var(--glow-y) + 18%), rgba(34, 211, 238, .18), transparent 68%);
+            mix-blend-mode: screen;
+            opacity: .95;
+            filter: blur(10px);
+        }
+
+        .about-3d-shine {
+            background: linear-gradient(115deg,
+                    transparent 40%,
+                    rgba(255, 255, 255, .20) 50%,
+                    transparent 60%);
+            background-size: 220% 100%;
+            background-position: var(--shine-pos) 0;
+            mix-blend-mode: overlay;
+            opacity: .55;
+        }
+
+        /* Mobile tuning (reduce harsh glare + keep it smooth) */
+        @media (max-width: 640px) {
+            .about-3d-wrap {
+                perspective: 950px;
+                perspective-origin: 50% 40%;
+            }
+
+            .about-3d-glow {
+                opacity: .75;
+                filter: blur(12px);
+            }
+
+            .about-3d-shine {
+                opacity: .42;
+            }
+        }
+
+        .about-3d-media {
+            transform: translateZ(18px) scale(1.02);
+            transform-origin: 50% 50%;
+            will-change: transform;
+        }
+
         .glass {
             background: var(--glass);
             border: 1px solid var(--stroke);
@@ -230,11 +403,26 @@
                 scroll-behavior: auto !important;
             }
 
+            .hero-reveal::after {
+                display: none !important;
+            }
+
             #ambientLights::before,
             #ambientLights::after {
                 animation: none !important;
                 opacity: .25;
                 filter: blur(42px);
+            }
+
+            .about-3d-card,
+            .about-3d-media {
+                transform: none !important;
+                transition: none !important;
+            }
+
+            .about-3d-glow,
+            .about-3d-shine {
+                display: none !important;
             }
         }
 
@@ -488,19 +676,19 @@
                 style="background: radial-gradient(circle at 30% 30%, rgba(33,114,30,.35), rgba(11,52,53,.0) 60%);"></div>
 
             <div class="mx-auto max-w-6xl px-4 sm:px-6">
-                <div class="glass rounded-3xl px-5 sm:px-10 py-10 sm:py-14 text-center" data-aos="fade-up" data-aos-duration="980">
-                    <p class="muted2 text-xs sm:text-sm tracking-[0.18em] uppercase" data-aos="fade-up" data-aos-delay="0">Modern • Fast • Clean</p>
+                <div id="heroPanel" class="hero-reveal glass rounded-3xl px-5 sm:px-10 py-10 sm:py-14 text-center">
+                    <p class="hero-reveal-item muted2 text-xs sm:text-sm tracking-[0.18em] uppercase" style="--d: 0ms">Modern • Fast • Clean</p>
 
-                    <h1 class="mt-4 text-3xl sm:text-5xl font-bold leading-tight" data-aos="fade-up" data-aos-delay="160">
+                    <h1 class="hero-reveal-item mt-4 text-3xl sm:text-5xl font-bold leading-tight" style="--d: 140ms">
                         <span id="typed" class="text-white"></span>
                     </h1>
 
-                    <p class="mt-4 mx-auto max-w-2xl muted2 text-base sm:text-lg" data-aos="fade-up" data-aos-delay="300">
+                    <p class="hero-reveal-item mt-4 mx-auto max-w-2xl muted2 text-base sm:text-lg" style="--d: 260ms">
                         I design and build high-quality websites that load fast, look premium, and convert.
                         From landing pages to full eCommerce systems, every detail is engineered for performance and clarity.
                     </p>
 
-                    <div class="mt-7 flex flex-col sm:flex-row gap-3 justify-center" data-aos="fade-up" data-aos-delay="420">
+                    <div class="hero-reveal-item mt-7 flex flex-col sm:flex-row gap-3 justify-center" style="--d: 380ms">
                         <a href="#portfolio"
                             class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition">
                             <i class="bi bi-grid-3x3-gap"></i>
@@ -513,8 +701,8 @@
                         </button>
                     </div>
 
-                    <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-                        <div class="glass rounded-2xl p-4 text-left" data-aos="fade-up" data-aos-delay="0" data-aos-duration="950">
+                    <div class="hero-reveal-item mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4" style="--d: 520ms">
+                        <div class="glass rounded-2xl p-4 text-left">
                             <div class="flex items-center gap-2">
                                 <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke">
                                     <i class="bi bi-speedometer2"></i>
@@ -526,7 +714,7 @@
                             </div>
                         </div>
 
-                        <div class="glass rounded-2xl p-4 text-left" data-aos="fade-up" data-aos-delay="90" data-aos-duration="880">
+                        <div class="glass rounded-2xl p-4 text-left">
                             <div class="flex items-center gap-2">
                                 <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke">
                                     <i class="bi bi-palette2"></i>
@@ -538,7 +726,7 @@
                             </div>
                         </div>
 
-                        <div class="glass rounded-2xl p-4 text-left" data-aos="fade-up" data-aos-delay="180" data-aos-duration="880">
+                        <div class="glass rounded-2xl p-4 text-left">
                             <div class="flex items-center gap-2">
                                 <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke">
                                     <i class="bi bi-shield-check"></i>
@@ -559,13 +747,17 @@
             <div class="mx-auto max-w-6xl px-4 sm:px-6">
                 <div class="grid lg:grid-cols-12 gap-6 lg:gap-8 items-center">
                     <div class="lg:col-span-5">
-                        <div class="glass rounded-3xl overflow-hidden" data-aos="fade-right" data-aos-duration="900">
-                            <img
-                                src="images/about-me.webp"
-                                alt="Faiz working on a web project"
-                                class="w-full h-[240px] sm:h-[320px] object-cover"
-                                loading="lazy"
-                                decoding="async" />
+                        <div class="about-3d-wrap" data-aos="fade-right" data-aos-duration="900">
+                            <div id="about3dCard" class="about-3d-card glass rounded-3xl overflow-hidden">
+                                <div class="about-3d-glow" aria-hidden="true"></div>
+                                <div class="about-3d-shine" aria-hidden="true"></div>
+                                <img
+                                    src="images/about-me.webp"
+                                    alt="Faiz working on a web project"
+                                    class="about-3d-media w-full h-[240px] sm:h-[320px] object-cover"
+                                    loading="lazy"
+                                    decoding="async" />
+                            </div>
                         </div>
                     </div>
 
@@ -714,7 +906,7 @@
                     <div class="flex items-end justify-between gap-4">
                         <div>
                             <h2 class="text-2xl sm:text-3xl font-bold">Portfolio</h2>
-                            <p class="mt-2 muted2">Selected projects that demonstrate strong UX, clean UI, and production-ready delivery. Tap a project to view details.</p>
+                            <p class="mt-2 muted2">Selected projects that demonstrate strong UX, clean UI, and production-ready delivery. <span class="text-white">Tap a project to view details.</span></p>
                         </div>
                         <span class="hidden sm:grid place-items-center w-12 h-12 rounded-2xl bg-white/5 stroke">
                             <i class="bi bi-grid-3x3-gap text-[1.15rem]"></i>
@@ -1429,6 +1621,155 @@
             });
         }
 
+        // About: scroll-driven 3D / parallax card + cursor hover tilt
+        const aboutSection = document.getElementById('about');
+        const about3dCard = document.getElementById('about3dCard');
+
+        const aboutPointer = {
+            active: false,
+            dragging: false,
+            x: 0,
+            y: 0,
+            pointerId: null
+        };
+
+        function clamp(min, value, max) {
+            return Math.min(max, Math.max(min, value));
+        }
+
+        function updateAbout3d() {
+            if (prefersReducedMotion) return;
+            if (!aboutSection || !about3dCard) return;
+
+            const rect = aboutSection.getBoundingClientRect();
+            const vh = window.innerHeight || 1;
+            if (rect.bottom < 0 || rect.top > vh) return;
+            const center = rect.top + rect.height / 2;
+            const norm = clamp(-1, (center - vh / 2) / (vh / 2), 1); // -1..1
+            const intensity = 1 - Math.min(1, Math.abs(norm)); // 0..1 (strongest at center)
+
+            // Baseline tilt so it still feels "3D" even when centered
+            const isSmallScreen = window.matchMedia('(max-width: 640px)').matches;
+            const baseX = isSmallScreen ? -1.6 : -2.2;
+            const baseY = isSmallScreen ? 2.2 : 3.0;
+
+            const scrollRotateX = baseX + norm * (isSmallScreen ? 6.2 : 7.5);
+            const scrollRotateY = baseY - norm * (isSmallScreen ? 11.5 : 14);
+            const liftY = -intensity * (isSmallScreen ? 10 : 12);
+            const popZ = intensity * (isSmallScreen ? 24 : 34);
+            const scale = 1 + intensity * (isSmallScreen ? 0.012 : 0.02);
+
+            // Cursor/touch tilt (adds to scroll tilt)
+            const pointerMaxX = isSmallScreen ? 5.5 : 9;
+            const pointerMaxY = isSmallScreen ? 7.5 : 12;
+            const pointerInfluence = aboutPointer.active ? 1 : 0;
+            const pointerRotateX = (-aboutPointer.y) * pointerMaxX * pointerInfluence;
+            const pointerRotateY = (aboutPointer.x) * pointerMaxY * pointerInfluence;
+
+            const rotateX = scrollRotateX + pointerRotateX;
+            const rotateY = scrollRotateY + pointerRotateY;
+
+            about3dCard.style.transform =
+                `rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(${liftY.toFixed(2)}px) translateZ(${popZ.toFixed(2)}px) scale(${scale.toFixed(3)})`;
+
+            // Move glow + shine horizontally as you scroll (left ↔ right)
+            const t = clamp(0, (vh - rect.top) / (vh + rect.height), 1); // 0..1
+            const scrollGlowX = 10 + t * 80; // 10%..90%
+            const scrollGlowY = 28 + (1 - intensity) * 10; // subtle vertical drift
+
+            // If hovering/dragging, let the glow follow the pointer a bit
+            const pointerGlowX = 50 + aboutPointer.x * 22;
+            const pointerGlowY = 35 + aboutPointer.y * 14;
+            const glowMix = aboutPointer.active ? 0.75 : 0;
+            const glowX = scrollGlowX * (1 - glowMix) + pointerGlowX * glowMix;
+            const glowY = scrollGlowY * (1 - glowMix) + pointerGlowY * glowMix;
+
+            about3dCard.style.setProperty('--glow-x', `${glowX.toFixed(1)}%`);
+            about3dCard.style.setProperty('--glow-y', `${glowY.toFixed(1)}%`);
+            about3dCard.style.setProperty('--shine-pos', `${((aboutPointer.active ? (50 + aboutPointer.x * 25) : (t * 100))).toFixed(0)}%`);
+        }
+
+        let aboutTicking = false;
+        function requestAboutUpdate() {
+            if (aboutTicking) return;
+            aboutTicking = true;
+            requestAnimationFrame(() => {
+                updateAbout3d();
+                aboutTicking = false;
+            });
+        }
+
+        window.addEventListener('scroll', requestAboutUpdate, { passive: true });
+        window.addEventListener('resize', requestAboutUpdate);
+        window.addEventListener('load', requestAboutUpdate);
+
+        function setAboutPointerFromEvent(ev) {
+            if (!about3dCard) return;
+            const r = about3dCard.getBoundingClientRect();
+            const px = clamp(0, (ev.clientX - r.left) / (r.width || 1), 1);
+            const py = clamp(0, (ev.clientY - r.top) / (r.height || 1), 1);
+            aboutPointer.x = (px - 0.5) * 2; // -1..1
+            aboutPointer.y = (py - 0.5) * 2; // -1..1
+        }
+
+        if (about3dCard) {
+            // Desktop/pen: hover tilt
+            about3dCard.addEventListener('pointerenter', (ev) => {
+                if (prefersReducedMotion) return;
+                if (ev.pointerType === 'touch') return;
+                aboutPointer.active = true;
+                setAboutPointerFromEvent(ev);
+                requestAboutUpdate();
+            });
+
+            about3dCard.addEventListener('pointermove', (ev) => {
+                if (prefersReducedMotion) return;
+                if (ev.pointerType === 'touch' && !aboutPointer.dragging) return; // don't fight scroll
+                if (ev.pointerType !== 'touch' && !aboutPointer.active) return;
+                setAboutPointerFromEvent(ev);
+                requestAboutUpdate();
+            });
+
+            about3dCard.addEventListener('pointerleave', (ev) => {
+                if (ev.pointerType === 'touch') return;
+                aboutPointer.active = false;
+                aboutPointer.x = 0;
+                aboutPointer.y = 0;
+                requestAboutUpdate();
+            });
+
+            // Mobile: touch-drag tilt (only while pressing on the card)
+            about3dCard.addEventListener('pointerdown', (ev) => {
+                if (prefersReducedMotion) return;
+                if (ev.pointerType !== 'touch') return;
+                aboutPointer.dragging = true;
+                aboutPointer.active = true;
+                aboutPointer.pointerId = ev.pointerId;
+                try { about3dCard.setPointerCapture(ev.pointerId); } catch { }
+                setAboutPointerFromEvent(ev);
+                requestAboutUpdate();
+            });
+
+            function endAboutTouchTilt() {
+                aboutPointer.dragging = false;
+                aboutPointer.active = false;
+                aboutPointer.pointerId = null;
+                aboutPointer.x = 0;
+                aboutPointer.y = 0;
+                requestAboutUpdate();
+            }
+
+            about3dCard.addEventListener('pointerup', (ev) => {
+                if (ev.pointerType !== 'touch') return;
+                endAboutTouchTilt();
+            });
+
+            about3dCard.addEventListener('pointercancel', (ev) => {
+                if (ev.pointerType !== 'touch') return;
+                endAboutTouchTilt();
+            });
+        }
+
         // Background music
         const MUSIC_PREF_KEY = 'bgMusicEnabled';
         const music = document.getElementById('bgMusic');
@@ -1465,23 +1806,23 @@
             setMusicUi(false);
         }
 
-        // Attempt autoplay on first visit; if blocked, ask once.
-        window.addEventListener('load', async () => {
-            const pref = localStorage.getItem(MUSIC_PREF_KEY);
-            if (pref === '0') {
-                setMusicUi(false);
-                return;
-            }
+        let musicNeedsPrompt = false;
+        let musicPromptShown = false;
+        let musicPromptTimer = null;
 
-            const started = await tryStartMusic();
-            if (started) {
-                localStorage.setItem(MUSIC_PREF_KEY, '1');
-                return;
-            }
-
-            // Autoplay blocked: ask permission (only when no explicit opt-out)
-            if (pref === '1') return;
+        async function maybePromptForMusic() {
+            if (musicPromptShown) return;
+            if (!musicNeedsPrompt) return;
             if (!window.Swal) return;
+
+            const pref = localStorage.getItem(MUSIC_PREF_KEY);
+            if (pref === '0' || pref === '1') return;
+
+            musicPromptShown = true;
+            if (musicPromptTimer) {
+                clearTimeout(musicPromptTimer);
+                musicPromptTimer = null;
+            }
 
             const result = await Swal.fire({
                 icon: 'question',
@@ -1502,11 +1843,48 @@
                 localStorage.setItem(MUSIC_PREF_KEY, '0');
                 stopMusic();
             }
+        }
+
+        function scheduleMusicPrompt({ delayMs } = {}) {
+            if (musicPromptShown) return;
+            if (!musicNeedsPrompt) return;
+            if (musicPromptTimer) return;
+            musicPromptTimer = setTimeout(() => {
+                musicPromptTimer = null;
+                maybePromptForMusic();
+            }, delayMs);
+        }
+
+        // Attempt autoplay on first visit.
+        // If blocked, show the SweetAlert prompt later (2s after typing completes, or 5s after load as fallback).
+        window.addEventListener('load', async () => {
+            const pref = localStorage.getItem(MUSIC_PREF_KEY);
+            if (pref === '0') {
+                setMusicUi(false);
+                return;
+            }
+
+            if (pref === '1') {
+                await tryStartMusic();
+                return;
+            }
+
+            const started = await tryStartMusic();
+            if (started) {
+                localStorage.setItem(MUSIC_PREF_KEY, '1');
+                musicNeedsPrompt = false;
+                return;
+            }
+
+            // Autoplay blocked and no explicit preference yet: schedule prompt
+            musicNeedsPrompt = true;
+            scheduleMusicPrompt({ delayMs: 5000 });
         });
 
         // Toggle button (always user-gesture safe)
         musicToggle?.addEventListener('click', async () => {
             if (!music) return;
+            musicNeedsPrompt = false;
             if (!music.paused) {
                 localStorage.setItem(MUSIC_PREF_KEY, '0');
                 stopMusic();
@@ -1515,21 +1893,45 @@
             await tryStartMusic({ fromUserGesture: true });
         });
 
-        // Preloader
-        const preloader = document.getElementById('preloader');
-        setTimeout(() => preloader.classList.add('hide'), 2500);
-        window.addEventListener('load', () => setTimeout(() => preloader.classList.add('hide'), 250));
+        // Hero reveal (runs after preloader hides so it doesn't animate behind it)
+        const heroPanel = document.getElementById('heroPanel');
+        let heroTypedInitialized = false;
 
-        // Typed.js
-        new Typed('#typed', {
+        function startHeroReveal() {
+            if (prefersReducedMotion) {
+                heroPanel?.classList.add('is-revealed');
+            } else {
+                heroPanel?.classList.add('is-revealed');
+            }
+
+            if (!heroTypedInitialized && window.Typed) {
+                heroTypedInitialized = true;
+                new Typed('#typed', {
             strings: [
                 "Hello, I'm <span style='color:#7ef7c6'>Faiz</span> — Web Developer & UI Engineer"
             ],
             typeSpeed: 42,
             backSpeed: 0,
             showCursor: true,
-            smartBackspace: false
-        });
+            smartBackspace: false,
+            onComplete: () => {
+                // Prompt 2s after the hero typing finishes (only if autoplay was blocked)
+                scheduleMusicPrompt({ delayMs: 2000 });
+            }
+                });
+            }
+        }
+
+        // Preloader
+        const preloader = document.getElementById('preloader');
+        setTimeout(() => {
+            preloader?.classList.add('hide');
+            startHeroReveal();
+        }, 2500);
+        window.addEventListener('load', () => setTimeout(() => {
+            preloader?.classList.add('hide');
+            startHeroReveal();
+        }, 250));
 
         // Back-to-top toggle
         const toTopBtn = document.getElementById('toTopBtn');
