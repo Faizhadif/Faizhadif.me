@@ -206,6 +206,7 @@
             --hero-reveal-dur: 900ms;
             --hero-reveal-ease: cubic-bezier(0.16, 1, 0.3, 1);
             --hero-reveal-radius: 1.5rem;
+            --hero-reveal-delay: 0ms;
 
             position: relative;
             overflow: hidden;
@@ -233,11 +234,11 @@
         }
 
         .hero-reveal.is-revealed::after {
-            animation: heroSweep 1100ms var(--hero-reveal-ease) 220ms both;
+            animation: heroSweep 1100ms var(--hero-reveal-ease) calc(var(--hero-reveal-delay) + 220ms) both;
         }
 
         .hero-reveal.is-revealed {
-            animation: heroPanelReveal var(--hero-reveal-dur) var(--hero-reveal-ease) forwards;
+            animation: heroPanelReveal var(--hero-reveal-dur) var(--hero-reveal-ease) var(--hero-reveal-delay) forwards;
         }
 
         .hero-reveal .hero-reveal-item {
@@ -248,7 +249,19 @@
 
         .hero-reveal.is-revealed .hero-reveal-item {
             animation: heroItemReveal 720ms var(--hero-reveal-ease) forwards;
-            animation-delay: var(--d, 0ms);
+            animation-delay: calc(var(--hero-reveal-delay) + var(--d, 0ms));
+        }
+
+        /* Desktop: slow down the premium reveal slightly so blur is more noticeable */
+        @media (min-width: 641px) and (pointer: fine) {
+            .hero-reveal {
+                --hero-reveal-dur: 1250ms;
+                --hero-reveal-delay: 140ms;
+            }
+
+            .hero-reveal.is-revealed .hero-reveal-item {
+                animation-duration: 860ms;
+            }
         }
 
         /* Mobile perf: avoid expensive blur + clip-path on the initial hero paint */
@@ -566,6 +579,21 @@
 
             #sceneBackdrop {
                 opacity: 0 !important;
+            }
+        }
+
+        /* Mobile AOS: keep it subtle + cheap */
+        @media (max-width: 640px), (pointer: coarse) {
+            body[data-aos-mobile="1"] [data-aos] {
+                transition-duration: 650ms !important;
+            }
+
+            body[data-aos-mobile="1"] [data-aos="fade-up"] {
+                transform: translate3d(0, 16px, 0);
+            }
+
+            body[data-aos-mobile="1"] [data-aos="zoom-in"] {
+                transform: scale(.96);
             }
         }
 
@@ -2040,15 +2068,58 @@
         const isSmallScreen = window.matchMedia('(max-width: 640px)').matches;
         const mobilePerfMode = isCoarsePointer || isSmallScreen;
         if (window.AOS) {
+            // Mobile: keep AOS, but make it lightweight (few elements only).
+            if (mobilePerfMode && !prefersReducedMotion) {
+                try {
+                    document.body.setAttribute('data-aos-mobile', '1');
+
+                    // Remove existing AOS attributes from many small elements
+                    // (reduces scroll work + layout calculations on phones).
+                    document.querySelectorAll('[data-aos]').forEach((el) => {
+                        el.removeAttribute('data-aos');
+                        el.removeAttribute('data-aos-delay');
+                        el.removeAttribute('data-aos-duration');
+                        el.removeAttribute('data-aos-easing');
+                        el.removeAttribute('data-aos-anchor');
+                        el.removeAttribute('data-aos-anchor-placement');
+                        el.removeAttribute('data-aos-offset');
+                        el.removeAttribute('data-aos-once');
+                        el.removeAttribute('data-aos-mirror');
+                    });
+
+                    // Apply simple, non-boring animations to key section containers.
+                    const mobileAosTargets = [
+                        ['#about .glass.rounded-3xl', 'fade-up'],
+                        ['#skills .glass.rounded-3xl', 'zoom-in'],
+                        ['#portfolio .glass.rounded-3xl', 'fade-up'],
+                        ['#services .glass.rounded-3xl', 'fade-up'],
+                        ['#education .glass.rounded-3xl', 'fade-up'],
+                        ['#certificates .glass.rounded-3xl', 'fade-up'],
+                        ['#contact .glass.rounded-3xl', 'fade-up']
+                    ];
+
+                    mobileAosTargets.forEach(([selector, anim], i) => {
+                        const el = document.querySelector(selector);
+                        if (!el) return;
+                        el.setAttribute('data-aos', anim);
+                        el.setAttribute('data-aos-delay', String(Math.min(220, i * 40)));
+                    });
+                } catch { }
+            }
+
             AOS.init({
-                duration: 1050,
-                delay: 60,
-                easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+                duration: mobilePerfMode ? 720 : 1050,
+                delay: mobilePerfMode ? 0 : 60,
+                easing: mobilePerfMode ? 'ease-out' : 'cubic-bezier(0.16, 1, 0.3, 1)',
                 once: true,
-                offset: 120,
+                offset: mobilePerfMode ? 90 : 120,
                 anchorPlacement: 'top-bottom',
-                // Mobile perf: AOS is nice-to-have, but disabling on phones reduces scroll work.
-                disable: prefersReducedMotion || mobilePerfMode
+                // Still respect reduced-motion.
+                disable: prefersReducedMotion,
+                // Reduce work on mobile.
+                disableMutationObserver: true,
+                throttleDelay: mobilePerfMode ? 140 : 99,
+                debounceDelay: mobilePerfMode ? 40 : 50
             });
 
             // Ensure correct positions after images/fonts load (prevents "snappy" feel)
