@@ -2102,12 +2102,54 @@
                         ['#contact .glass.rounded-3xl', 'fade-up']
                     ];
 
-                    mobileAosTargets.forEach(([selector, anim], i) => {
-                        const el = document.querySelector(selector);
-                        if (!el) return;
+                    // IMPORTANT: don't attach AOS to below-the-fold sections immediately on mobile.
+                    // With content-visibility/late layout, AOS can mistakenly mark them as "already animated".
+                    // Instead, attach AOS when each section is near the viewport.
+                    const attachAos = (el, anim, delay) => {
                         el.setAttribute('data-aos', anim);
-                        el.setAttribute('data-aos-delay', String(Math.min(220, i * 40)));
-                    });
+                        el.setAttribute('data-aos-delay', String(delay));
+                    };
+
+                    const items = mobileAosTargets
+                        .map(([selector, anim], i) => {
+                            const el = document.querySelector(selector);
+                            if (!el) return null;
+                            return {
+                                el,
+                                anim,
+                                delay: Math.min(220, i * 40)
+                            };
+                        })
+                        .filter(Boolean);
+
+                    if ('IntersectionObserver' in window) {
+                        const io = new IntersectionObserver((entries) => {
+                            entries.forEach((entry) => {
+                                if (!entry.isIntersecting) return;
+                                const el = entry.target;
+                                const item = items.find((x) => x.el === el);
+                                if (!item) return;
+                                attachAos(item.el, item.anim, item.delay);
+                                io.unobserve(el);
+
+                                // Refresh so AOS recalculates positions after attaching attributes.
+                                // Use rAF to avoid forcing sync layout in the IO callback.
+                                requestAnimationFrame(() => {
+                                    try { AOS.refreshHard(); } catch { AOS.refresh(); }
+                                });
+                            });
+                        }, {
+                            // Start preparing a bit before it's visible so the animation still feels timely.
+                            root: null,
+                            rootMargin: '220px 0px 220px 0px',
+                            threshold: 0.01
+                        });
+
+                        items.forEach((item) => io.observe(item.el));
+                    } else {
+                        // Fallback: attach immediately (older browsers).
+                        items.forEach((item) => attachAos(item.el, item.anim, item.delay));
+                    }
                 } catch { }
             }
 
