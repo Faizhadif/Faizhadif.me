@@ -207,6 +207,8 @@
             --hero-reveal-ease: cubic-bezier(0.16, 1, 0.3, 1);
             --hero-reveal-radius: 1.5rem;
             --hero-reveal-delay: 0ms;
+            --hero-sweep-dur: 1100ms;
+            --hero-sweep-delay: 220ms;
 
             position: relative;
             overflow: hidden;
@@ -234,7 +236,7 @@
         }
 
         .hero-reveal.is-revealed::after {
-            animation: heroSweep 1100ms var(--hero-reveal-ease) calc(var(--hero-reveal-delay) + 220ms) both;
+            animation: heroSweep var(--hero-sweep-dur) var(--hero-reveal-ease) calc(var(--hero-reveal-delay) + var(--hero-sweep-delay)) both;
         }
 
         .hero-reveal.is-revealed {
@@ -255,12 +257,14 @@
         /* Desktop: slow down the premium reveal slightly so blur is more noticeable */
         @media (min-width: 641px) and (pointer: fine) {
             .hero-reveal {
-                --hero-reveal-dur: 1250ms;
-                --hero-reveal-delay: 140ms;
+                --hero-reveal-dur: 1500ms;
+                --hero-reveal-delay: 240ms;
+                --hero-sweep-dur: 1600ms;
+                --hero-sweep-delay: 320ms;
             }
 
             .hero-reveal.is-revealed .hero-reveal-item {
-                animation-duration: 860ms;
+                animation-duration: 980ms;
             }
         }
 
