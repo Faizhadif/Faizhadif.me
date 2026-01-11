@@ -592,6 +592,53 @@
                 transition-duration: 650ms !important;
             }
 
+            /* Mobile premium (hero-like) reveal for the About image card */
+            body[data-aos-mobile="1"] [data-aos="hero-fade"] {
+                opacity: 0;
+                transform: translate3d(0, 18px, 0) scale(.985);
+                transition-property: opacity, transform;
+                overflow: hidden;
+            }
+
+            body[data-aos-mobile="1"] [data-aos="hero-fade"]::after {
+                content: "";
+                position: absolute;
+                inset: -30% -40%;
+                pointer-events: none;
+                opacity: 0;
+                background: linear-gradient(115deg,
+                        transparent 42%,
+                        rgba(255, 255, 255, .16) 50%,
+                        transparent 58%);
+                transform: translateX(-55%) rotate(12deg);
+                mix-blend-mode: overlay;
+            }
+
+            body[data-aos-mobile="1"] [data-aos="hero-fade"].aos-animate {
+                opacity: 1;
+                transform: translate3d(0, 0, 0) scale(1);
+            }
+
+            body[data-aos-mobile="1"] [data-aos="hero-fade"].aos-animate::after {
+                animation: heroLiteSweep 1000ms ease-out 140ms both;
+            }
+
+            @keyframes heroLiteSweep {
+                0% {
+                    opacity: 0;
+                    transform: translateX(-55%) rotate(12deg);
+                }
+
+                22% {
+                    opacity: .85;
+                }
+
+                100% {
+                    opacity: 0;
+                    transform: translateX(55%) rotate(12deg);
+                }
+            }
+
             body[data-aos-mobile="1"] [data-aos="fade-up"] {
                 transform: translate3d(0, 16px, 0);
             }
@@ -622,8 +669,8 @@
 
         /* Mobile perf: keep the About card static (no GPU-heavy glow/shine) */
         @media (max-width: 640px), (pointer: coarse) {
-            .about-3d-card,
-            .about-3d-media {
+            .about-3d-card:not([data-aos]),
+            .about-3d-media:not([data-aos]) {
                 transform: none !important;
                 transition: none !important;
             }
@@ -703,7 +750,7 @@
         }
 
         #pricingScene.is-scroll-driven {
-            height: 620vh;
+            height: 720vh;
         }
 
         #pricingScene .pricing-sticky {
@@ -799,6 +846,104 @@
             place-items: center;
         }
 
+        /* Scroll cue (between Portfolio -> Pricing): text-only, cinematic fade */
+        .scroll-more-cue {
+            display: grid;
+            place-items: center;
+            padding: 0;
+            min-height: 46vh;
+            pointer-events: none;
+        }
+
+        @media (max-width: 640px) {
+            .scroll-more-cue {
+                min-height: 52vh;
+            }
+        }
+
+        .scroll-more-cueText {
+            position: relative;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(16px) scale(.985);
+            filter: blur(10px);
+            will-change: opacity, transform, filter;
+            text-shadow: 0 18px 46px rgba(0, 0, 0, .55);
+        }
+
+        .scroll-more-cueText::after {
+            content: "";
+            position: absolute;
+            inset: -30% -40%;
+            pointer-events: none;
+            opacity: 0;
+            background: linear-gradient(115deg,
+                    transparent 42%,
+                    rgba(255, 255, 255, .16) 50%,
+                    transparent 58%);
+            transform: translateX(-55%) rotate(12deg);
+            mix-blend-mode: overlay;
+        }
+
+        .scroll-more-cue.is-visible .scroll-more-cueText {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+            transition: opacity 820ms cubic-bezier(0.16, 1, 0.3, 1), transform 820ms cubic-bezier(0.16, 1, 0.3, 1), filter 820ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .scroll-more-cue.is-visible .scroll-more-cueText::after {
+            animation: cueSweep 1000ms ease-out 140ms both;
+        }
+
+        .scroll-more-cueTitle {
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.05;
+            font-size: clamp(2rem, 5vw, 3.25rem);
+        }
+
+        .scroll-more-cueArrow {
+            display: grid;
+            place-items: center;
+            margin-top: .85rem;
+            opacity: .92;
+            animation: cueBounce 1100ms ease-in-out infinite;
+        }
+
+        @keyframes cueBounce {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(6px);
+            }
+        }
+
+        @keyframes cueSweep {
+            0% {
+                opacity: 0;
+                transform: translateX(-55%) rotate(12deg);
+            }
+
+            22% {
+                opacity: .85;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateX(55%) rotate(12deg);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .scroll-more-cueArrow {
+                animation: none;
+            }
+        }
+
         #pricingScene.is-scroll-driven .pricing-step {
             position: absolute;
             inset: 0;
@@ -869,7 +1014,7 @@
 
         @media (max-width: 640px) {
             #pricingScene.is-scroll-driven {
-                height: 760vh;
+                height: 620vh;
             }
 
             #pricingScene.is-scroll-driven .pricing-steps {
@@ -1396,6 +1541,15 @@
                 </div>
             </div>
         </section>
+
+        <!-- Scroll cue (under Portfolio, before Pricing scene) -->
+        <div id="scrollMoreToPricing" class="scroll-more-cue" aria-hidden="true">
+            <div class="scroll-more-cueText">
+                <div class="pricing-kicker">Next</div>
+                <div class="scroll-more-cueTitle mt-3">Scroll more</div>
+                <div class="scroll-more-cueArrow" aria-hidden="true"><i class="bi bi-arrow-down text-[1.25rem]"></i></div>
+            </div>
+        </div>
 
         <!-- Pricing Scroll Scene (between Portfolio and Services) -->
         <section id="pricingScene" aria-label="Pricing scroll scene">
@@ -2093,7 +2247,9 @@
 
                     // Apply simple, non-boring animations to key section containers.
                     const mobileAosTargets = [
-                        ['#about .glass.rounded-3xl', 'fade-up'],
+                        // About: image card gets the premium mobile reveal, text card stays simple.
+                        ['#about3dCard', 'hero-fade'],
+                        ['#about .glass.rounded-3xl.p-6', 'fade-up'],
                         ['#skills .glass.rounded-3xl', 'zoom-in'],
                         ['#portfolio .glass.rounded-3xl', 'fade-up'],
                         ['#services .glass.rounded-3xl', 'fade-up'],
@@ -2189,6 +2345,7 @@
             if (!steps.length) return;
 
             const stageEl = pricingScene.querySelector('.pricing-stage');
+            const cueEl = pricingScene.querySelector('[data-pricing-cue]');
             const counterEls = Array.from(pricingScene.querySelectorAll('[data-rm-target]'));
 
             const isMobilePerf = mobilePerfMode;
@@ -2208,8 +2365,9 @@
             };
 
             const segments = (() => {
-                const start = 0.10;
-                const end = 0.90;
+                // Start the content much earlier so users reach "Prices?" quickly.
+                const start = 0.02;
+                const end = 0.94;
                 // Weighted segments: give price steps a bit more dwell time.
                 // Order matches your DOM: 0=Prices?, 1=RM250, 2=RM400, 3=RM1000+, 4=CTA
                 const weights = steps.map((_, i) => {
@@ -2251,17 +2409,17 @@
 
                 // Backdrop: fade in to black, hold, then fade out back to theme.
                 let backdropOpacity = 0;
-                if (p > 0.02 && p < 0.98) {
-                    const fadeIn = smoothstep(0.02, 0.10, p);
-                    const fadeOut = 1 - smoothstep(0.90, 0.98, p);
+                if (p > 0.005 && p < 0.995) {
+                    const fadeIn = smoothstep(0.005, 0.03, p);
+                    const fadeOut = 1 - smoothstep(0.93, 0.995, p);
                     backdropOpacity = Math.min(1, fadeIn, fadeOut);
                 }
                 sceneBackdrop.style.opacity = String(backdropOpacity);
 
                 // Stage: hero-like reveal + exit (wipe + fade + blur)
                 if (stageEl) {
-                    const enter = smoothstep(0.04, 0.12, p);
-                    const exit = 1 - smoothstep(0.88, 0.96, p);
+                    const enter = smoothstep(0.008, 0.03, p);
+                    const exit = 1 - smoothstep(0.91, 0.975, p);
                     const vis = Math.min(1, enter, exit);
 
                     const y = (1 - vis) * -10;
@@ -2272,6 +2430,25 @@
                     stageEl.style.transform = `translateY(${y}px)`;
                     stageEl.style.filter = `blur(${blur}px)`;
                     stageEl.style.clipPath = `inset(0 0 ${clipBottom}% 0 round 1.5rem)`;
+                }
+
+                // Scroll cue: show briefly before the first pricing step starts.
+                if (cueEl) {
+                    const enter = smoothstep(0.02, 0.06, p);
+                    const exit = 1 - smoothstep(0.09, 0.14, p);
+                    const vis = Math.min(1, enter, exit);
+
+                    const y = (1 - vis) * 16;
+                    const blur = (1 - vis) * 10;
+
+                    const textEl = cueEl.querySelector('.pricing-cueText');
+                    if (textEl) {
+                        textEl.style.opacity = String(vis);
+                        textEl.style.transform = `translateY(${y}px) scale(${0.985 + vis * 0.015})`;
+                        textEl.style.filter = `blur(${blur}px)`;
+                    }
+
+                    cueEl.setAttribute('aria-hidden', vis > 0.12 ? 'false' : 'true');
                 }
 
                 const fadeEdge = 0.16;
@@ -2342,6 +2519,34 @@
             window.addEventListener('resize', schedule);
             window.addEventListener('load', schedule);
             schedule();
+        })();
+
+        // Scroll cue (between Portfolio -> Pricing): fade in once when visible
+        (() => {
+            const cue = document.getElementById('scrollMoreToPricing');
+            if (!cue) return;
+            if (prefersReducedMotion) {
+                cue.classList.add('is-visible');
+                cue.setAttribute('aria-hidden', 'false');
+                return;
+            }
+
+            if (!('IntersectionObserver' in window)) {
+                cue.classList.add('is-visible');
+                cue.setAttribute('aria-hidden', 'false');
+                return;
+            }
+
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    cue.classList.add('is-visible');
+                    cue.setAttribute('aria-hidden', 'false');
+                    io.disconnect();
+                });
+            }, { root: null, threshold: 0.35 });
+
+            io.observe(cue);
         })();
 
         // About: scroll-driven 3D / parallax card + cursor hover tilt
