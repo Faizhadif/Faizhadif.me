@@ -540,6 +540,45 @@
             }
         }
 
+        /* Portfolio project cards: idle floating cue to indicate clickable */
+        #portfolio button[data-modal-open] {
+            cursor: pointer;
+            animation: portfolioCardFloat 3.8s ease-in-out infinite;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, .22), inset 0 1px 0 rgba(255, 255, 255, .06);
+        }
+
+        #portfolio button[data-modal-open]:nth-of-type(2) {
+            animation-delay: .24s;
+        }
+
+        #portfolio button[data-modal-open]:nth-of-type(3) {
+            animation-delay: .48s;
+        }
+
+        #portfolio button[data-modal-open]:nth-of-type(4) {
+            animation-delay: .72s;
+        }
+
+        @keyframes portfolioCardFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+                box-shadow: 0 12px 30px rgba(0, 0, 0, .22), inset 0 1px 0 rgba(255, 255, 255, .06);
+            }
+
+            50% {
+                transform: translateY(-6px);
+                box-shadow: 0 20px 42px rgba(0, 0, 0, .30), inset 0 1px 0 rgba(255, 255, 255, .08);
+            }
+        }
+
+        #portfolio button[data-modal-open]:hover,
+        #portfolio button[data-modal-open]:focus-visible,
+        #portfolio button[data-modal-open]:active {
+            animation-play-state: paused;
+        }
+
         /* Reduce motion */
         @media (prefers-reduced-motion: reduce) {
             * {
@@ -1520,8 +1559,34 @@
                             </div>
                         </button>
 
+                        <!-- Project 4 -->
+                        <button
+                            data-micro3d="card"
+                            class="group text-left glass rounded-2xl overflow-hidden hover:bg-white/10 transition"
+                            data-modal-open="proj4"
+                            data-aos="zoom-in" data-aos-delay="270"
+                            aria-label="Open project details">
+                            <img src="images/tahfiz-mahir-jaya.webp" alt="Tahfiz Mahir Jaya Website" class="w-full h-44 object-cover" loading="lazy" decoding="async" />
+                            <div class="p-5">
+                                <div class="flex items-start justify-between gap-3">
+                                    <div class="font-semibold leading-snug">Tahfiz Mahir Jaya — Corporate Website</div>
+                                    <i class="bi bi-box-arrow-up-right muted2 group-hover:text-white transition"></i>
+                                </div>
+                                <p class="mt-2 muted2 text-sm">
+                                    Institutional profile website with clear information flow, student registration CTA, and mobile-first navigation.
+                                </p>
+                                <div class="mt-4 inline-flex items-center gap-2 text-sm font-semibold flex-wrap">
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-html"></i><span>HTML</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-css"></i><span>CSS</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-js"></i><span>JavaScript</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-bootstrap"></i><span>Bootstrap</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
+                                </div>
+                            </div>
+                        </button>
+
                         <!-- Coming Soon -->
-                        <div data-micro3d="card" class="glass rounded-2xl p-6 sm:p-7 text-center" data-aos="fade-up" data-aos-delay="270">
+                        <div data-micro3d="card" class="glass rounded-2xl p-6 sm:p-7 text-center" data-aos="fade-up" data-aos-delay="360">
                             <div class="mx-auto grid place-items-center w-14 h-14 rounded-2xl bg-white/5 stroke">
                                 <i class="bi bi-rocket-takeoff text-[1.4rem]"></i>
                             </div>
@@ -2198,6 +2263,49 @@
                     <div class="flex flex-col sm:flex-row gap-3">
                         <a data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition"
                             href="https://thedheducation.com" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-box-arrow-up-right"></i>
+                            <span>Visit Website</span>
+                        </a>
+                        <button data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition" data-modal-open="modalHire">
+                            <i class="bi bi-send"></i>
+                            <span>Start a Similar Project</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal (4) -->
+    <section id="proj4" class="modal fixed inset-0 hidden z-[60]" aria-hidden="true">
+        <div class="min-h-full grid place-items-center p-4">
+            <div class="modal-panel w-full max-w-3xl glass rounded-3xl overflow-hidden">
+                <div class="flex items-center justify-between p-5 border-b border-white/10">
+                    <h3 class="font-bold text-lg">Tahfiz Mahir Jaya — Corporate Website</h3>
+                    <button data-micro3d="btn" class="w-10 h-10 grid place-items-center rounded-xl bg-white/5 stroke hover:bg-white/10 transition" data-modal-close aria-label="Close">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+
+                <div class="p-5 sm:p-6 grid gap-4">
+                    <img src="images/tahfiz-mahir-jaya.webp" alt="Tahfiz Mahir Jaya website preview" class="w-full rounded-2xl stroke object-cover" loading="lazy" decoding="async">
+                    <p class="muted2 text-sm">
+                        A profile website for an Islamic education institution, focused on credibility, clear contact details, program highlights, and an accessible registration path.
+                    </p>
+                    <div class="muted2 text-sm">
+                        <span class="font-semibold text-white">Stack:</span> HTML, CSS, JavaScript, Bootstrap, Tailwind.
+                    </div>
+                    <div class="flex flex-wrap gap-2 text-sm font-semibold">
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-html"></i><span>HTML</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-css"></i><span>CSS</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-js"></i><span>JavaScript</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-bootstrap"></i><span>Bootstrap</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <a data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition"
+                            href="https://tahfizmahirjaya.com" target="_blank" rel="noopener noreferrer">
                             <i class="bi bi-box-arrow-up-right"></i>
                             <span>Visit Website</span>
                         </a>
