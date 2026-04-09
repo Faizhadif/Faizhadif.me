@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Faiz Hadif — Digital Experiences</title>
+    
+    <meta name="theme-color" content="#0e0e0e" />
+    <meta name="color-scheme" content="dark" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Compiled Tailwind -->
+    <link rel="stylesheet" href="assets/tailwind.css">
+</head>
+<body class="bg-[#0e0e0e] text-zinc-400 font-sans antialiased overflow-x-hidden selection:bg-[#00ff73]/30 selection:text-white">
+
+    <!-- Global Grid Overlay -->
+    <div class="fixed inset-0 pointer-events-none z-[1] select-none opacity-[0.03]" style="background-image: linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px); background-size: 100px 100px; mask-image: radial-gradient(circle at center, black, transparent 80%); -webkit-mask-image: radial-gradient(circle at center, black, transparent 80%);"></div>
+
+    <header class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full px-4 sm:px-6 md:w-[95%] max-w-[1400px]">
+        <nav class="glass-header rounded-full flex items-center justify-between px-2 py-2 sm:px-6 sm:py-3 transition-all duration-300">
+            <!-- Left: Logo & Links -->
+            <div class="flex items-center gap-6 xl:gap-8">
+                <a href="/" class="text-white text-xl tracking-tighter font-medium font-display translate-y-[1px] pl-3 sm:pl-0">
+                    faiz<span class="font-normal text-zinc-400">hadif</span>
+                </a>
+                
+                <div class="hidden lg:block h-6 w-px bg-white/10"></div>
+    
+                <div class="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium">
+                    <a href="#home" class="text-white hover:text-white transition">Home</a>
+                    <a href="#pages" class="hover:text-white transition flex items-center gap-1 group">Pages <i class="bi bi-chevron-down text-[10px] text-zinc-500 group-hover:text-white transition"></i></a>
+                    <a href="#works" class="hover:text-white transition flex items-center gap-[6px] group">
+                        <span class="flex items-center justify-center bg-white/10 rounded-full h-5 w-min px-2 text-[10px] text-zinc-300 pointer-events-none">32</span>
+                        Works <i class="bi bi-chevron-down text-[10px] text-zinc-500 group-hover:text-white transition"></i>
+                    </a>
+                    <a href="#blog" class="hover:text-white transition flex items-center gap-1 group">Blog <i class="bi bi-chevron-down text-[10px] text-zinc-500 group-hover:text-white transition"></i></a>
+                    <a href="#contact" class="hover:text-white transition flex items-center gap-1 group">Contact <i class="bi bi-chevron-down text-[10px] text-zinc-500 group-hover:text-white transition"></i></a>
+                </div>
+            </div>
+    
+            <!-- Right: Utility Controls -->
+            <div class="flex items-center gap-4 xl:gap-6 pr-1 sm:pr-0">
+                <!-- Language -->
+                <div class="hidden lg:flex items-center gap-2 text-sm font-medium cursor-pointer hover:text-white transition text-zinc-300 group">
+                    <img src="https://flagcdn.com/w20/us.png" alt="English" class="w-[18px] h-auto rounded-[2px] opacity-90">
+                    English <i class="bi bi-chevron-down text-[10px] text-zinc-600 group-hover:text-white transition"></i>
+                </div>
+    
+                <!-- Theme Toggle -->
+                <button class="hidden lg:flex items-center justify-center w-11 h-[26px] bg-white/10 rounded-full relative hover:bg-white/15 transition border border-white/5">
+                    <div class="absolute left-1 w-[18px] h-[18px] bg-zinc-200 rounded-full flex items-center justify-center shadow-sm">
+                        <!-- Abstract moon/switch indicator -->
+                        <div class="w-2.5 h-2.5 rounded-full border-[1.5px] border-zinc-900 border-l-transparent transform -rotate-45"></div>
+                    </div>
+                </button>
+    
+                <!-- CTA -->
+                <a href="#contact" class="hidden md:flex items-center gap-2 text-sm text-zinc-200 font-medium border border-white/10 rounded-full pl-5 pr-[6px] py-[6px] hover:border-white/30 hover:text-white transition bg-white/[0.02]">
+                    Hire me 
+                    <span class="w-[26px] h-[26px] flex items-center justify-center rounded-full bg-transparent text-[#00ff73]">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </span>
+                </a>
+    
+                <!-- Squiggly Divider -->
+                <div class="hidden lg:flex items-center text-zinc-500">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12c2.5-3 5 3 7.5 0s5-3 7.5 0"></path></svg>
+                </div>
+    
+                <!-- Search -->
+                <button class="text-zinc-400 hover:text-white transition p-2 xl:p-0">
+                    <i class="bi bi-search text-base"></i>
+                </button>
+    
+                <!-- Mobile Menu Toggle -->
+                <button class="lg:hidden text-zinc-300 hover:text-white transition text-2xl p-2 ml-2">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="w-full relative z-10">
+        
+        <!-- SECTION 1: HERO -->
+        <section id="home" class="min-h-screen relative flex flex-col justify-center px-6 md:px-12 xl:px-24 w-full pt-10">
+            <!-- Abstract background mesh inside hero -->
+            <div class="absolute right-[5%] top-1/2 -translate-y-1/2 h-[80vh] max-h-[800px] aspect-square pointer-events-none opacity-[0.2] hidden lg:block">
+                <svg viewBox="0 0 800 800" fill="none" stroke="#00ff73" stroke-width="0.5" class="w-full h-full object-contain">
+                    <circle cx="400" cy="400" r="300" />
+                    <ellipse cx="400" cy="400" rx="300" ry="100" />
+                    <ellipse cx="400" cy="400" rx="100" ry="300" />
+                    <circle cx="400" cy="400" r="220" stroke-dasharray="4 4"/>
+                </svg>
+            </div>
+
+            <!-- Right Sidebar Social Links -->
+            <aside class="absolute left-6 top-1/2 -translate-y-1/2 z-40 hidden 2xl:flex flex-col gap-6 text-zinc-500">
+                <div class="-rotate-90 origin-left mb-10 text-[10px] tracking-[0.2em] text-zinc-600 font-medium whitespace-nowrap uppercase">© 2026 Faiz Hadif</div>
+                <a href="#" class="hover:text-white transition transform hover:scale-110"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="hover:text-white transition transform hover:scale-110"><i class="bi bi-linkedin"></i></a>
+                <a href="#" class="w-8 h-8 flex items-center justify-center bg-white/5 rounded-sm hover:bg-white/10 text-white transition transform hover:scale-110">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </a>
+                <a href="#" class="hover:text-white transition transform hover:scale-110"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="hover:text-white transition transform hover:scale-110"><i class="bi bi-twitter-x"></i></a>
+            </aside>
+
+            <!-- Center Content -->
+            <div class="relative z-10 w-full max-w-[1300px] mx-auto mt-8 sm:mt-0 lg:ml-8">
+                <p class="text-[10px] sm:text-[11px] font-bold tracking-widest text-[#00ff73] uppercase mb-4 sm:mb-6 opacity-90">
+                    Open for: Long-term Partnerships
+                </p>
+
+                <h1 class="text-[2.5rem] sm:text-5xl md:text-[4.5rem] lg:text-[5.5rem] xl:text-[6rem] leading-[1] tracking-tight font-display text-white relative">
+                    <span class="font-bold block">I design Digital</span>
+                    <span class="font-bold block">Experiences <span class="text-zinc-500 font-normal">That Feel</span></span>
+                    <span class="text-zinc-500 font-normal block">Simple and Elegant</span>
+                </h1>
+
+                <div class="mt-8 sm:mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+                    <div class="flex -space-x-3">
+                        <div class="w-9 h-9 rounded-full border-2 border-[#0e0e0e] bg-zinc-800 overflow-hidden shadow-sm relative z-30">
+                            <img src="https://i.pravatar.cc/100?img=11" alt="Partner 1" class="w-full h-full object-cover">
+                        </div>
+                        <div class="w-9 h-9 rounded-full border-2 border-[#0e0e0e] bg-zinc-800 overflow-hidden shadow-sm relative z-20">
+                            <img src="https://i.pravatar.cc/100?img=12" alt="Partner 2" class="w-full h-full object-cover">
+                        </div>
+                        <div class="w-9 h-9 rounded-full border-2 border-[#0e0e0e] bg-zinc-800 overflow-hidden shadow-sm relative z-10">
+                            <img src="https://i.pravatar.cc/100?img=13" alt="Partner 3" class="w-full h-full object-cover">
+                        </div>
+                        <div class="w-9 h-9 rounded-full border-2 border-[#0e0e0e] bg-zinc-900 flex items-center justify-center text-[10px] text-white z-0">
+                            <i class="bi bi-plus"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col gap-[2px]">
+                        <div class="flex text-zinc-300 text-[9px] gap-1">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <span class="text-[11px] text-zinc-500 font-medium">trusted partners</span>
+                    </div>
+                </div>
+
+                <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                    <a href="#contact" class="flex items-center gap-3 bg-[#00ff73] text-black font-semibold rounded-[8px] px-6 py-[12px] hover:bg-[#00d660] transition-colors shadow-[0_0_20px_rgba(0,255,115,0.2)]">
+                        Book a Call 
+                        <span class="w-6 h-6 flex items-center justify-center rounded-[4px] border border-black/15 bg-black/5">
+                            <i class="bi bi-telephone text-[10px]"></i>
+                        </span>
+                    </a>
+                    
+                    <a href="#works" class="flex items-center gap-4 bg-[#111] border border-white/[0.08] text-white font-medium rounded-[8px] pl-6 pr-4 py-[12px] hover:border-white/20 transition group">
+                        Explore My Work 
+                        <i class="bi bi-arrow-up-right text-zinc-500 group-hover:text-white transition"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Floating Collaboration Card -->
+            <div class="absolute bottom-10 right-6 md:right-12 lg:right-24 xl:right-[10%] w-[320px] sm:w-[350px] rounded-[20px] bg-gradient-to-br from-[#1c1c1c] to-[#0a0a0a] border border-white/[0.08] p-8 hidden md:flex flex-col justify-between shadow-2xl z-30 transform hover:-translate-y-2 transition duration-500 group hover:shadow-[0_20px_40px_rgba(0,255,115,0.05)] overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-[200px] h-[200px] bg-[#00ff73]/[0.12] blur-[50px] rounded-full pointer-events-none"></div>
+                
+                <div class="relative z-10 flex flex-col gap-1">
+                    <h3 class="text-white font-semibold text-xl tracking-tight leading-tight">Let's work together</h3>
+                    <p class="text-zinc-400 text-sm">Tell me about your idea...</p>
+                </div>
+                
+                <div class="relative z-10 flex items-center justify-between mt-10">
+                    <span class="text-[10px] text-zinc-600 font-mono tracking-wider">© 2026</span>
+                    <a href="#contact" class="bg-[#00ff73] text-black text-xs font-bold px-5 py-2.5 rounded-[6px] hover:bg-[#00d660] transition shadow-[0_0_20px_rgba(0,255,115,0.2)]">
+                        Let's chat
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: TRUST STRIP -->
+        <section class="py-10 border-y border-white/[0.03] opacity-60 flex justify-center items-center overflow-hidden bg-black/50">
+            <div class="flex items-center gap-12 sm:gap-24 opacity-50 grayscale hover:grayscale-0 transition duration-700 w-full max-w-[1400px] px-6 lg:px-24">
+                <span class="text-white font-display text-lg tracking-tight font-medium">AWS</span>
+                <span class="text-white font-display text-lg tracking-tight font-medium hidden sm:block">Tailwind</span>
+                <span class="text-white font-display text-lg tracking-tight font-medium">React</span>
+                <span class="text-white font-display text-lg tracking-tight font-medium">Figma</span>
+                <span class="text-white font-display text-lg tracking-tight font-medium hidden md:block">Vercel</span>
+                <span class="text-white font-display text-lg tracking-tight font-medium">Node.js</span>
+            </div>
+        </section>
+
+        <!-- SECTION 3: SERVICES / PROCESS -->
+        <section id="services" class="py-24 sm:py-32 px-6 md:px-12 xl:px-24 max-w-[1400px] mx-auto">
+            <div class="mb-16">
+                <p class="text-[#00ff73] text-xs font-mono tracking-widest uppercase mb-4">01. Core Disciplines</p>
+                <h2 class="text-4xl sm:text-5xl font-display text-white tracking-tight">How I create value.</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-10">
+                <!-- Service 1 -->
+                <div class="p-8 rounded-[16px] bg-white/[0.02] border border-white/[0.05] hover:border-white/[0.15] transition duration-300 group">
+                    <div class="text-[#00ff73] font-mono text-xs mb-8 opacity-50">01 /</div>
+                    <h3 class="text-xl text-white font-medium mb-4">UI Architecture & Design</h3>
+                    <p class="text-sm text-zinc-400 leading-relaxed mb-6">Designing clean, conversion-focused user interfaces that establish trust and elevate your brand identity.</p>
+                    <ul class="text-xs text-zinc-500 space-y-2">
+                        <li class="flex gap-2"><i class="bi bi-check2 text-[#00ff73]"></i> Design Systems</li>
+                        <li class="flex gap-2"><i class="bi bi-check2 text-[#00ff73]"></i> Prototyping</li>
+                        <li class="flex gap-2"><i class="bi bi-check2 text-[#00ff73]"></i> Interaction Polish</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="p-8 rounded-[16px] bg-white/[0.02] border border-white/[0.05] hover:border-white/[0.15] transition duration-300 group">
+                    <div class="text-[#00ff73] font-mono text-xs mb-8 opacity-50">02 /</div>
+                    <h3 class="text-xl text-white font-medium mb-4">Frontend Engineering</h3>
+                    <p class="text-sm text-zinc-400 leading-relaxed mb-6">Building performant, accessible, and responsive applications with modern JavaScript frameworks.</p>
+                    <ul class="text-xs text-zinc-500 space-y-2">
+                        <li class="flex gap-2"><i class="bi bi-check2 text-[#00ff73]"></i> React & Vue</li>
+                        <li class="flex gap-2"><i class="bi bi-check2 text-[#00ff73]"></i> Advanced Animations</li>
+                        <li class="flex gap-2"><i class="bi bi-check2 text-[#00ff73]"></i> Performance Optimization</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="p-8 rounded-[16px] bg-white/[0.02] border border-white/[0.05] hover:border-white/[0.15] transition duration-300 group">
+                    <div class="text-[#00ff73] font-mono text-xs mb-8 opacity-50">03 /</div>
+                    <h3 class="text-xl text-white font-medium mb-4">Backend & Systems</h3>
+                    <p class="text-sm text-zinc-400 leading-relaxed mb-6">Architecting robust databases and APIs to power scalable digital products from the ground up.</p>
+                    <ul class="text-xs text-zinc-500 space-y-2">
+                        <li class="flex gap-2"><i class="bi bi-check2 text-[#00ff73]"></i> API Development</li>
+                        <li class="flex gap-2"><i class="bi bi-check2 text-[#00ff73]"></i> Database Architecture</li>
+                        <li class="flex gap-2"><i class="bi bi-check2 text-[#00ff73]"></i> Cloud Deployment</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: STORY & EXPERTISE -->
+        <section id="about" class="py-24 sm:py-32 bg-zinc-950 border-y border-white/[0.03]">
+            <div class="max-w-[1400px] mx-auto px-6 md:px-12 xl:px-24">
+                <div class="flex flex-col lg:flex-row gap-16 lg:gap-24">
+                    <!-- Text Side -->
+                    <div class="flex-1">
+                        <p class="text-[#00ff73] text-xs font-mono tracking-widest uppercase mb-6">02. The Story</p>
+                        <h2 class="text-4xl sm:text-5xl font-display text-white tracking-tight mb-8">Refining digital <br><span class="text-zinc-500">experiences through code and structure.</span></h2>
+                        
+                        <div class="space-y-6 text-zinc-400 text-sm leading-relaxed max-w-xl">
+                            <p>I am a web developer and UI engineer based in Malaysia. Over the past few years, I have helped businesses, agencies, and founders translate complex ideas into scalable, beautiful products.</p>
+                            <p>My approach bridges the gap between raw engineering and human-centered design. I believe that performance is a feature, and aesthetic discipline dictates trust.</p>
+                            <p>Currently, I focus on full-stack application development, premium portfolio creation, and custom SaaS interfaces.</p>
+                        </div>
+                        
+                        <a href="#contact" class="inline-flex items-center gap-2 mt-10 text-white font-medium border-b border-[#00ff73]/50 pb-1 hover:text-[#00ff73] transition">
+                            Read full resume <i class="bi bi-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Expertise Metric Side -->
+                    <div class="flex-1 lg:pl-12 border-l border-white/[0.05] flex flex-col justify-center">
+                        <div class="grid grid-cols-2 gap-x-8 gap-y-12">
+                            <div>
+                                <div class="text-4xl text-white font-display mb-2">5+</div>
+                                <div class="text-xs text-zinc-500 uppercase tracking-wider font-mono">Years Experience</div>
+                            </div>
+                            <div>
+                                <div class="text-4xl text-white font-display mb-2">60+</div>
+                                <div class="text-xs text-zinc-500 uppercase tracking-wider font-mono">Projects Delivered</div>
+                            </div>
+                            <div>
+                                <div class="text-4xl text-white font-display mb-2">100%</div>
+                                <div class="text-xs text-zinc-500 uppercase tracking-wider font-mono">Client Satisfaction</div>
+                            </div>
+                            <div>
+                                <div class="text-4xl text-white font-display mb-2">Dark Mode</div>
+                                <div class="text-xs text-zinc-500 uppercase tracking-wider font-mono">My Comfort Zone</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: PORTFOLIO -->
+        <section id="works" class="py-24 sm:py-32 px-6 md:px-12 xl:px-24 max-w-[1400px] mx-auto">
+            <div class="flex flex-col sm:flex-row justify-between items-end mb-16 gap-6">
+                <div>
+                    <p class="text-[#00ff73] text-xs font-mono tracking-widest uppercase mb-4">03. Selected Works</p>
+                    <h2 class="text-4xl sm:text-5xl font-display text-white tracking-tight">Case Studies.</h2>
+                </div>
+                <div class="flex gap-3">
+                    <button class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white/5 transition"><i class="bi bi-chevron-left"></i></button>
+                    <button class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white/5 transition"><i class="bi bi-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Portfolio Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16">
+                <!-- Project 1 -->
+                <div class="group cursor-pointer">
+                    <div class="w-full aspect-[4/3] rounded-[16px] overflow-hidden mb-6 bg-zinc-900 border border-white/[0.05] relative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition duration-500 flex items-end p-8">
+                            <span class="bg-[#00ff73] text-black text-xs font-bold px-4 py-2 rounded">View Case Study</span>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200" alt="Project 1" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl text-white font-medium mb-2">E-Commerce Architecture</h3>
+                            <p class="text-sm text-zinc-500">Frontend / Backend Integration</p>
+                        </div>
+                        <p class="text-xs font-mono text-zinc-600">2025</p>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="group cursor-pointer md:mt-24">
+                    <div class="w-full aspect-[4/3] rounded-[16px] overflow-hidden mb-6 bg-zinc-900 border border-white/[0.05] relative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition duration-500 flex items-end p-8">
+                            <span class="bg-[#00ff73] text-black text-xs font-bold px-4 py-2 rounded">View Case Study</span>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200" alt="Project 2" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700 grayscale group-hover:grayscale-0">
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl text-white font-medium mb-2">Fintech Dashboard UI</h3>
+                            <p class="text-sm text-zinc-500">UI/UX / Dashboard Design</p>
+                        </div>
+                        <p class="text-xs font-mono text-zinc-600">2024</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: FAQ -->
+        <section id="faq" class="py-24 sm:py-32 bg-zinc-950 border-t border-white/[0.03]">
+            <div class="max-w-[1000px] mx-auto px-6 md:px-12">
+                <div class="text-center mb-16">
+                    <p class="text-[#00ff73] text-xs font-mono tracking-widest uppercase mb-4">04. FAQ</p>
+                    <h2 class="text-4xl sm:text-5xl font-display text-white tracking-tight">Common Questions.</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- FAQ 1 -->
+                    <details class="bg-white/[0.02] border border-white/[0.05] p-6 rounded-[12px] group cursor-pointer" open>
+                        <summary class="list-none flex justify-between items-center text-white font-medium">
+                            What is your typical process?
+                            <i class="bi bi-plus-lg text-zinc-500 group-open:rotate-45 transition transform"></i>
+                        </summary>
+                        <div class="text-sm text-zinc-400 mt-4 leading-relaxed pl-2 border-l-2 border-[#00ff73]/50">
+                            I start with a discovery phase to understand your objectives. Then, I move onto wireframing, high-fidelity UI design, and finally development. Throughout the process, I maintain clear communication to ensure we align with your vision.
+                        </div>
+                    </details>
+
+                    <!-- FAQ 2 -->
+                    <details class="bg-white/[0.02] border border-white/[0.05] p-6 rounded-[12px] group cursor-pointer">
+                        <summary class="list-none flex justify-between items-center text-white font-medium">
+                            How long does a project usually take?
+                            <i class="bi bi-plus-lg text-zinc-500 group-open:rotate-45 transition transform"></i>
+                        </summary>
+                        <div class="text-sm text-zinc-400 mt-4 leading-relaxed pl-2 border-l-2 border-[#00ff73]/50">
+                            A landing page redesign typically takes 2-3 weeks, while a full-scale web application can take anywhere from 1 to 3 months depending on complexity. Timelines are finalized during our discovery stage.
+                        </div>
+                    </details>
+
+                     <!-- FAQ 3 -->
+                     <details class="bg-white/[0.02] border border-white/[0.05] p-6 rounded-[12px] group cursor-pointer">
+                        <summary class="list-none flex justify-between items-center text-white font-medium">
+                            Do you work with startups and agencies?
+                            <i class="bi bi-plus-lg text-zinc-500 group-open:rotate-45 transition transform"></i>
+                        </summary>
+                        <div class="text-sm text-zinc-400 mt-4 leading-relaxed pl-2 border-l-2 border-[#00ff73]/50">
+                            Yes, I often integrate with existing agency teams as a senior technical resource or partner directly with startup founders to build MVPs from scratch.
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: FINAL CTA & FOOTER -->
+        <section class="relative pt-40 pb-10 border-t border-white/[0.03] overflow-hidden flex flex-col items-center">
+            <!-- Massive glow background -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#00ff73]/10 blur-[100px] rounded-full pointer-events-none -z-10"></div>
+            
+            <div class="text-center z-10 px-6 max-w-2xl mx-auto mb-32">
+                <h2 class="text-5xl sm:text-6xl md:text-7xl font-display text-white tracking-tight mb-8">Ready to start?</h2>
+                <p class="text-zinc-400 mb-10 text-sm">Let's craft a digital experience that sets you apart. <br>I am currently accepting new projects.</p>
+                <a href="#contact" class="inline-flex items-center gap-3 bg-[#00ff73] text-black font-semibold rounded-[8px] px-8 py-4 hover:bg-[#00d660] transition-colors shadow-[0_0_30px_rgba(0,255,115,0.3)] text-lg">
+                    Book a Strategy Call <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <footer class="w-full max-w-[1400px] mx-auto px-6 lg:px-24 flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/[0.05] text-xs text-zinc-500">
+                <div class="flex items-center gap-2 mb-4 md:mb-0">
+                    <div class="w-2 h-2 rounded-full bg-[#00ff73] animate-pulse"></div>
+                    Available for work
+                </div>
+                <div class="flex gap-6 font-mono tracking-wider">
+                    <a href="#" class="hover:text-white transition">LINKEDIN</a>
+                    <a href="#" class="hover:text-white transition">TWITTER</a>
+                    <a href="#" class="hover:text-white transition">GITHUB</a>
+                </div>
+            </footer>
+        </section>
+
+    </main>
+
+<!-- Bottom Metadata Strip (Time/Location) -->
+<div class="fixed bottom-6 left-0 w-full px-6 xl:px-12 pointer-events-none flex justify-between items-center z-40 hidden md:flex">
+    <div class="flex items-center gap-3">
+        <i class="bi bi-plus-lg text-zinc-500"></i>
+        <div class="h-px w-24 bg-zinc-800"></div>
+        <span class="text-[10px] font-mono tracking-widest uppercase text-zinc-600">Kuala Lumpur, Malaysia</span>
+    </div>
+    <div class="flex items-center gap-3">
+        <div class="h-px w-24 bg-zinc-800"></div>
+        <span class="text-[10px] font-mono tracking-widest text-zinc-600">18:21:04 GMT+8</span>
+    </div>
+</div>
+<!-- GSAP and Lenis -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="assets/main.js"></script>
+</body>
+</html>

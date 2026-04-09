@@ -1,0 +1,3288 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Faiz Hadif — Web Developer & UI Engineer</title>
+
+    <!-- Primary Meta -->
+    <meta name="description" content="Faiz Hadif designs and builds fast, modern, and conversion-focused websites for businesses and personal brands—performance-first engineering with refined UI." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://faizhadif.me/" />
+    <meta name="author" content="Faiz Hadif" />
+    <meta name="keywords" content="Web Developer Malaysia, UI UX, PHP MySQL, Portfolio Web Developer, Professional Website" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_MY" />
+    <meta property="og:site_name" content="Faiz Hadif" />
+    <meta property="og:title" content="Faiz Hadif — Web Developer & UI Engineer" />
+    <meta property="og:description" content="Fast, modern, and conversion-focused websites—performance-first engineering with refined UI." />
+    <meta property="og:url" content="https://faizhadif.me/" />
+    <meta property="og:image" content="https://faizhadif.me/images/og-cover.webp" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Faiz Hadif — Web Developer Portfolio" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Faiz Hadif — Web Developer & UI Engineer" />
+    <meta name="twitter:description" content="Fast, modern, and conversion-focused websites—performance-first engineering with refined UI." />
+    <meta name="twitter:image" content="https://faizhadif.me/images/og-cover.webp" />
+    <meta name="twitter:image:alt" content="Faiz Hadif — Web Developer Portfolio" />
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#083636" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+
+    <!-- Google Sans + Inter (defer stylesheet to reduce render-blocking) -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+    </noscript>
+
+    <!-- Bootstrap Icons (defer stylesheet to reduce render-blocking) -->
+    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    </noscript>
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/faizhadif.ico" sizes="any">
+    <link rel="shortcut icon" href="images/faizhadif.ico">
+
+    <!-- Preload likely LCP image (About card can be above-the-fold on desktop) -->
+    <link rel="preload" as="image" href="images/about-me.webp" fetchpriority="high">
+
+    <!-- AOS (defer stylesheet; animations are non-critical for first paint) -->
+    <link rel="preload" as="style" href="https://unpkg.com/aos@2.3.1/dist/aos.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    </noscript>
+
+    <!-- Tailwind (built locally via CLI) -->
+    <link rel="stylesheet" href="assets/tailwind.css">
+
+    <!-- Typed.js (Hero typing effect) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+    <!-- Alpine.js (Mobile menu overlay) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+
+        :root {
+            --emerald: #128a3e;
+            --teal: #0b5f59;
+            --navy: #083636;
+            --glass: rgba(255, 255, 255, .10);
+            --stroke: rgba(255, 255, 255, .22);
+            --muted: rgba(234, 255, 251, .78);
+            --muted2: rgba(234, 255, 251, .62);
+            --accent: #7ef7c6;
+
+            --grad:
+                radial-gradient(1200px 700px at 18% 12%, rgba(126, 247, 198, .40), transparent 62%),
+                radial-gradient(1100px 640px at 85% 18%, rgba(34, 211, 238, .28), transparent 58%),
+                radial-gradient(900px 560px at 55% 92%, rgba(34, 197, 94, .30), transparent 62%),
+                linear-gradient(160deg, #083636 0%, #0b5f59 52%, #128a3e 120%);
+        }
+
+        body {
+            background: var(--grad);
+            color: #fff;
+            font-family: "Google Sans", Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+            position: relative;
+            z-index: 0;
+        }
+
+        /* Moving light sweep (visible left ↔ right loop) */
+        #ambientLights {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        /* Scroll scenes backdrop (fades to black during pricing scene) */
+        #sceneBackdrop {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            background: #000;
+            opacity: 0;
+            will-change: opacity;
+        }
+
+        #ambientLights::before,
+        #ambientLights::after {
+            content: "";
+            position: absolute;
+            inset: -30vmax;
+            filter: blur(60px);
+            opacity: .92;
+            transform: translate3d(-25%, 0, 0);
+            will-change: transform;
+        }
+
+        #ambientLights::before {
+            background:
+                radial-gradient(38vmax 26vmax at 20% 35%, rgba(126, 247, 198, .38), transparent 62%),
+                radial-gradient(44vmax 30vmax at 30% 70%, rgba(34, 211, 238, .22), transparent 64%);
+            mix-blend-mode: screen;
+            animation: lightSweepA 7.5s ease-in-out infinite;
+        }
+
+        #ambientLights::after {
+            background:
+                radial-gradient(44vmax 30vmax at 70% 30%, rgba(34, 197, 94, .26), transparent 62%),
+                radial-gradient(40vmax 28vmax at 85% 65%, rgba(126, 247, 198, .20), transparent 64%);
+            opacity: .78;
+            mix-blend-mode: screen;
+            animation: lightSweepB 10s ease-in-out infinite;
+        }
+
+        /* Mobile perf: stop animating huge blurred backdrops (reduces jank on phones) */
+        @media (max-width: 640px), (pointer: coarse) {
+            #ambientLights::before,
+            #ambientLights::after {
+                animation: none;
+                opacity: .32;
+                filter: blur(44px);
+                mix-blend-mode: normal;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes lightSweepA {
+            0% {
+                transform: translate3d(-26%, -2%, 0) scale(1);
+            }
+
+            50% {
+                transform: translate3d(26%, 2%, 0) scale(1.02);
+            }
+
+            100% {
+                transform: translate3d(-26%, -2%, 0) scale(1);
+            }
+        }
+
+        @keyframes lightSweepB {
+            0% {
+                transform: translate3d(22%, 2%, 0) scale(1);
+            }
+
+            50% {
+                transform: translate3d(-22%, -1.5%, 0) scale(1.03);
+            }
+
+            100% {
+                transform: translate3d(22%, 2%, 0) scale(1);
+            }
+        }
+
+        /* About: scroll-driven 3D card (premium depth + moving highlight) */
+        .about-3d-wrap {
+            perspective: 1200px;
+            perspective-origin: 50% 45%;
+        }
+
+        /* Hero: premium top-to-bottom reveal (not AOS) */
+        .hero-reveal {
+            --hero-reveal-dur: 900ms;
+            --hero-reveal-ease: cubic-bezier(0.16, 1, 0.3, 1);
+            --hero-reveal-radius: 1.5rem;
+            --hero-reveal-delay: 0ms;
+            --hero-sweep-dur: 1100ms;
+            --hero-sweep-delay: 220ms;
+
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(-10px);
+            filter: blur(10px);
+            clip-path: inset(0 0 100% 0 round var(--hero-reveal-radius));
+            will-change: transform, opacity, clip-path, filter;
+        }
+
+        /* Soft light sweep (plays once on reveal) */
+        .hero-reveal::after {
+            content: "";
+            position: absolute;
+            inset: -45% -55%;
+            pointer-events: none;
+            opacity: 0;
+            background: linear-gradient(115deg,
+                    transparent 42%,
+                    rgba(255, 255, 255, .18) 50%,
+                    transparent 58%);
+            transform: translateX(-55%) rotate(12deg);
+            mix-blend-mode: overlay;
+            filter: blur(0px);
+        }
+
+        .hero-reveal.is-revealed::after {
+            animation: heroSweep var(--hero-sweep-dur) var(--hero-reveal-ease) calc(var(--hero-reveal-delay) + var(--hero-sweep-delay)) both;
+        }
+
+        .hero-reveal.is-revealed {
+            animation: heroPanelReveal var(--hero-reveal-dur) var(--hero-reveal-ease) var(--hero-reveal-delay) forwards;
+        }
+
+        .hero-reveal .hero-reveal-item {
+            opacity: 0;
+            transform: translateY(10px);
+            filter: blur(6px);
+        }
+
+        .hero-reveal.is-revealed .hero-reveal-item {
+            animation: heroItemReveal 720ms var(--hero-reveal-ease) forwards;
+            animation-delay: calc(var(--hero-reveal-delay) + var(--d, 0ms));
+        }
+
+        /* Desktop: slow down the premium reveal slightly so blur is more noticeable */
+        @media (min-width: 641px) and (pointer: fine) {
+            .hero-reveal {
+                --hero-reveal-dur: 1500ms;
+                --hero-reveal-delay: 240ms;
+                --hero-sweep-dur: 1600ms;
+                --hero-sweep-delay: 320ms;
+            }
+
+            .hero-reveal.is-revealed .hero-reveal-item {
+                animation-duration: 980ms;
+            }
+        }
+
+        /* Mobile perf: avoid expensive blur + clip-path on the initial hero paint */
+        @media (max-width: 640px) {
+            .hero-reveal {
+                filter: none;
+                clip-path: none;
+            }
+
+            .hero-reveal::after {
+                display: none;
+            }
+
+            .hero-reveal .hero-reveal-item {
+                filter: none;
+            }
+
+            @keyframes heroPanelReveal {
+                0% {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+
+                100% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        }
+
+        @keyframes heroPanelReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+                filter: blur(10px);
+                clip-path: inset(0 0 100% 0 round var(--hero-reveal-radius));
+            }
+
+            60% {
+                opacity: 1;
+                filter: blur(0);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+                clip-path: inset(0 0 0 0 round var(--hero-reveal-radius));
+            }
+        }
+
+        @keyframes heroItemReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+                filter: blur(6px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes heroSweep {
+            0% {
+                opacity: 0;
+                transform: translateX(-55%) rotate(12deg);
+            }
+
+            22% {
+                opacity: .85;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateX(55%) rotate(12deg);
+            }
+        }
+
+        .about-3d-card {
+            position: relative;
+            transform-style: preserve-3d;
+            transform-origin: 50% 50%;
+            backface-visibility: hidden;
+            touch-action: pan-y;
+            will-change: transform;
+            transition: transform 140ms cubic-bezier(0.16, 1, 0.3, 1);
+            transform: rotateX(0deg) rotateY(0deg) translateY(0px) translateZ(0px);
+
+            --glow-x: 50%;
+            --glow-y: 35%;
+            --shine-pos: 50%;
+        }
+
+        .about-3d-glow,
+        .about-3d-shine {
+            position: absolute;
+            inset: -40%;
+            pointer-events: none;
+            transform: translateZ(36px);
+        }
+
+        .about-3d-glow {
+            background:
+                radial-gradient(520px 360px at var(--glow-x) var(--glow-y), rgba(126, 247, 198, .26), transparent 65%),
+                radial-gradient(520px 360px at calc(var(--glow-x) + 6%) calc(var(--glow-y) + 18%), rgba(34, 211, 238, .18), transparent 68%);
+            mix-blend-mode: screen;
+            opacity: .95;
+            filter: blur(10px);
+        }
+
+        .about-3d-shine {
+            background: linear-gradient(115deg,
+                    transparent 40%,
+                    rgba(255, 255, 255, .20) 50%,
+                    transparent 60%);
+            background-size: 220% 100%;
+            background-position: var(--shine-pos) 0;
+            mix-blend-mode: overlay;
+            opacity: .55;
+        }
+
+        /* Mobile tuning (reduce harsh glare + keep it smooth) */
+        @media (max-width: 640px) {
+            .about-3d-wrap {
+                perspective: 950px;
+                perspective-origin: 50% 40%;
+            }
+
+            .about-3d-glow {
+                opacity: .75;
+                filter: blur(12px);
+            }
+
+            .about-3d-shine {
+                opacity: .42;
+            }
+        }
+
+        .about-3d-media {
+            transform: translateZ(18px) scale(1.02);
+            transform-origin: 50% 50%;
+            will-change: transform;
+        }
+
+        .glass {
+            background: var(--glass);
+            border: 1px solid var(--stroke);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .25), inset 0 1px 0 rgba(255, 255, 255, .07);
+        }
+
+        .stroke {
+            border: 1px solid var(--stroke);
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        .muted2 {
+            color: var(--muted2);
+        }
+
+        /* Prevent horizontal scroll caused by blobs */
+        html,
+        body {
+            overflow-x: hidden;
+        }
+
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            background: #082827;
+            z-index: 60;
+            transition: opacity .35s ease, visibility .35s ease;
+        }
+
+        #preloader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border-radius: 999px;
+            border: 4px solid rgba(255, 255, 255, .14);
+            border-top-color: var(--accent);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Focus style */
+        :focus-visible {
+            outline: 2px solid rgba(126, 247, 198, .65);
+            outline-offset: 3px;
+        }
+
+        /* Micro-interactions: subtle 3D lift + highlight (CSS-only) */
+        [data-micro3d] {
+            position: relative;
+            transform: translateZ(0);
+            will-change: transform, box-shadow, filter;
+            transition:
+                transform 160ms cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 160ms cubic-bezier(0.16, 1, 0.3, 1),
+                filter 160ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        [data-micro3d]::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            opacity: 0;
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, .18),
+                    rgba(255, 255, 255, 0) 46%,
+                    rgba(126, 247, 198, .12));
+            mix-blend-mode: overlay;
+            transition: opacity 160ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            [data-micro3d]:hover {
+                transform: perspective(900px) translateY(-2px) rotateX(2.25deg) rotateY(-2.5deg);
+                box-shadow: 0 18px 38px rgba(0, 0, 0, .28), inset 0 1px 0 rgba(255, 255, 255, .07);
+                filter: saturate(1.05);
+            }
+
+            [data-micro3d]:hover::before {
+                opacity: .75;
+            }
+
+            [data-micro3d]:active {
+                transform: perspective(900px) translateY(0px) rotateX(0deg) rotateY(0deg) scale(.99);
+                transition-duration: 80ms;
+            }
+
+            [data-micro3d="card"]:hover {
+                transform: perspective(1000px) translateY(-3px) rotateX(3.25deg) rotateY(-3.5deg);
+            }
+
+            [data-micro3d="btn"]:hover {
+                transform: perspective(900px) translateY(-2px) rotateX(2deg) rotateY(-2deg);
+            }
+
+            [data-micro3d="chip"]:hover {
+                transform: perspective(700px) translateY(-1px) rotateX(1.2deg) rotateY(-1.2deg);
+                box-shadow: 0 10px 22px rgba(0, 0, 0, .22);
+                filter: saturate(1.04);
+            }
+        }
+
+        @media (hover: none) {
+            [data-micro3d]:active {
+                transform: translateY(1px) scale(.99);
+                transition-duration: 80ms;
+            }
+        }
+
+        /* Portfolio project cards: idle floating cue to indicate clickable */
+        #portfolio button[data-modal-open] {
+            cursor: pointer;
+            animation: portfolioCardFloat 3.8s ease-in-out infinite;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, .22), inset 0 1px 0 rgba(255, 255, 255, .06);
+        }
+
+        #portfolio button[data-modal-open]:nth-of-type(2) {
+            animation-delay: .24s;
+        }
+
+        #portfolio button[data-modal-open]:nth-of-type(3) {
+            animation-delay: .48s;
+        }
+
+        #portfolio button[data-modal-open]:nth-of-type(4) {
+            animation-delay: .72s;
+        }
+
+        #portfolio button[data-modal-open]:nth-of-type(5) {
+            animation-delay: .96s;
+        }
+
+        @keyframes portfolioCardFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+                box-shadow: 0 12px 30px rgba(0, 0, 0, .22), inset 0 1px 0 rgba(255, 255, 255, .06);
+            }
+
+            50% {
+                transform: translateY(-6px);
+                box-shadow: 0 20px 42px rgba(0, 0, 0, .30), inset 0 1px 0 rgba(255, 255, 255, .08);
+            }
+        }
+
+        #portfolio button[data-modal-open]:hover,
+        #portfolio button[data-modal-open]:focus-visible,
+        #portfolio button[data-modal-open]:active {
+            animation-play-state: paused;
+        }
+
+        /* Reduce motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            [data-micro3d] {
+                transform: none !important;
+                transition: none !important;
+                filter: none !important;
+            }
+
+            [data-micro3d]::before {
+                display: none !important;
+            }
+
+            .hero-reveal::after {
+                display: none !important;
+            }
+
+            #ambientLights::before,
+            #ambientLights::after {
+                animation: none !important;
+                opacity: .25;
+                filter: blur(42px);
+            }
+
+            .about-3d-card,
+            .about-3d-media {
+                transform: none !important;
+                transition: none !important;
+            }
+
+            .about-3d-glow,
+            .about-3d-shine {
+                display: none !important;
+            }
+
+            #sceneBackdrop {
+                opacity: 0 !important;
+            }
+        }
+
+        /* Mobile AOS: keep it subtle + cheap */
+        @media (max-width: 640px), (pointer: coarse) {
+            body[data-aos-mobile="1"] [data-aos] {
+                transition-duration: 650ms !important;
+            }
+
+            /* Mobile premium (hero-like) reveal for the About image card */
+            body[data-aos-mobile="1"] [data-aos="hero-fade"] {
+                opacity: 0;
+                transform: translate3d(0, 18px, 0) scale(.985);
+                transition-property: opacity, transform;
+                overflow: hidden;
+            }
+
+            body[data-aos-mobile="1"] [data-aos="hero-fade"]::after {
+                content: "";
+                position: absolute;
+                inset: -30% -40%;
+                pointer-events: none;
+                opacity: 0;
+                background: linear-gradient(115deg,
+                        transparent 42%,
+                        rgba(255, 255, 255, .16) 50%,
+                        transparent 58%);
+                transform: translateX(-55%) rotate(12deg);
+                mix-blend-mode: overlay;
+            }
+
+            body[data-aos-mobile="1"] [data-aos="hero-fade"].aos-animate {
+                opacity: 1;
+                transform: translate3d(0, 0, 0) scale(1);
+            }
+
+            body[data-aos-mobile="1"] [data-aos="hero-fade"].aos-animate::after {
+                animation: heroLiteSweep 1000ms ease-out 140ms both;
+            }
+
+            @keyframes heroLiteSweep {
+                0% {
+                    opacity: 0;
+                    transform: translateX(-55%) rotate(12deg);
+                }
+
+                22% {
+                    opacity: .85;
+                }
+
+                100% {
+                    opacity: 0;
+                    transform: translateX(55%) rotate(12deg);
+                }
+            }
+
+            body[data-aos-mobile="1"] [data-aos="fade-up"] {
+                transform: translate3d(0, 16px, 0);
+            }
+
+            body[data-aos-mobile="1"] [data-aos="zoom-in"] {
+                transform: scale(.96);
+            }
+        }
+
+        /* Mobile perf: don't render below-the-fold sections until needed.
+           NOTE: keep this mobile-only to avoid desktop layout shifts that can make
+           scroll scenes feel like they "start late". */
+        @media (max-width: 640px), (pointer: coarse) {
+            @supports (content-visibility: auto) {
+                #about,
+                #skills,
+                #portfolio,
+                #services,
+                #education,
+                #certificates,
+                #contact,
+                footer {
+                    content-visibility: auto;
+                    contain-intrinsic-size: 1px 1000px;
+                }
+            }
+        }
+
+        /* Mobile perf: keep the About card static (no GPU-heavy glow/shine) */
+        @media (max-width: 640px), (pointer: coarse) {
+            .about-3d-card:not([data-aos]),
+            .about-3d-media:not([data-aos]) {
+                transform: none !important;
+                transition: none !important;
+            }
+
+            .about-3d-glow,
+            .about-3d-shine {
+                display: none !important;
+            }
+        }
+
+        /* Modal animations */
+        #backdrop {
+            opacity: 0;
+            transition: opacity .2s ease;
+        }
+
+        #backdrop.is-visible {
+            opacity: 1;
+        }
+
+        .modal .modal-panel {
+            opacity: 0;
+            transform: translateY(14px) scale(.985);
+            transition: transform .22s ease, opacity .22s ease;
+            will-change: transform, opacity;
+        }
+
+        .modal.is-open .modal-panel {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .modal.is-closing .modal-panel {
+            opacity: 0;
+            transform: translateY(14px) scale(.985);
+        }
+
+        /* Back-to-top button (appears after scroll) */
+        .to-top {
+            opacity: 0;
+            transform: translateY(10px) scale(.98);
+            pointer-events: none;
+            transition: opacity 220ms ease, transform 220ms ease;
+            will-change: opacity, transform;
+        }
+
+        .to-top.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        /* Music toggle docking (moves down when back-to-top is hidden) */
+        :root {
+            --music-shift: 4.5rem;
+        }
+
+        @media (min-width: 640px) {
+            :root {
+                --music-shift: 4.75rem;
+            }
+        }
+
+        #musicToggle {
+            transform: translateY(0);
+            transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+
+        #musicToggle.is-lowered {
+            transform: translateY(var(--music-shift));
+        }
+
+        /* Pricing scroll scene (between Portfolio and Services) */
+        #pricingScene {
+            position: relative;
+        }
+
+        #pricingScene.is-scroll-driven {
+            height: 720vh;
+        }
+
+        #pricingScene .pricing-sticky {
+            display: flex;
+            align-items: center;
+        }
+
+        #pricingScene.is-scroll-driven .pricing-sticky {
+            height: 100vh;
+            width: 100%;
+            padding-top: 5.75rem;
+            padding-bottom: 2rem;
+            box-sizing: border-box;
+        }
+
+        /* Pinning: keep the whole stage centered while scrolling the scene */
+        #pricingScene.is-scroll-driven.is-pinned .pricing-sticky {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1;
+        }
+
+        /* After the scene ends, park it at the bottom to avoid jump */
+        #pricingScene.is-scroll-driven.is-after .pricing-sticky {
+            position: absolute;
+            top: auto;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 0;
+        }
+
+        #pricingScene .pricing-stage {
+            position: relative;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, .14);
+            background: rgba(0, 0, 0, .38);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 18px 46px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .08);
+            overflow: hidden;
+            will-change: opacity, transform, filter, clip-path;
+        }
+
+        /* Stage reveal (controlled by JS during scroll-driven mode) */
+        #pricingScene.is-scroll-driven .pricing-stage {
+            opacity: 0;
+            transform: translateY(-10px);
+            filter: blur(10px);
+            clip-path: inset(0 0 100% 0 round 1.5rem);
+        }
+
+        #pricingScene .pricing-stage::before {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background:
+                radial-gradient(520px 360px at 20% 30%, rgba(126, 247, 198, .22), transparent 60%),
+                radial-gradient(560px 380px at 80% 60%, rgba(34, 211, 238, .18), transparent 62%);
+            filter: blur(34px);
+            opacity: .85;
+            pointer-events: none;
+        }
+
+        #pricingScene .pricing-stage::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .10), rgba(255, 255, 255, 0));
+            opacity: .35;
+            pointer-events: none;
+        }
+
+        #pricingScene .pricing-steps {
+            padding: 2.25rem 1.25rem;
+        }
+
+        #pricingScene .pricing-step {
+            text-align: center;
+            padding: 2.1rem 0;
+        }
+
+        #pricingScene .pricing-step:not(:last-child) {
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        #pricingScene.is-scroll-driven .pricing-steps {
+            position: relative;
+            min-height: 56vh;
+            display: grid;
+            place-items: center;
+        }
+
+        /* Scroll cue (between Portfolio -> Pricing): text-only, cinematic fade */
+        .scroll-more-cue {
+            display: grid;
+            place-items: center;
+            padding: 0;
+            min-height: 46vh;
+            pointer-events: none;
+        }
+
+        @media (max-width: 640px) {
+            .scroll-more-cue {
+                min-height: 52vh;
+            }
+        }
+
+        .scroll-more-cueText {
+            position: relative;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(16px) scale(.985);
+            filter: blur(10px);
+            will-change: opacity, transform, filter;
+            text-shadow: 0 18px 46px rgba(0, 0, 0, .55);
+        }
+
+        .scroll-more-cueText::after {
+            content: "";
+            position: absolute;
+            inset: -30% -40%;
+            pointer-events: none;
+            opacity: 0;
+            background: linear-gradient(115deg,
+                    transparent 42%,
+                    rgba(255, 255, 255, .16) 50%,
+                    transparent 58%);
+            transform: translateX(-55%) rotate(12deg);
+            mix-blend-mode: overlay;
+        }
+
+        .scroll-more-cue.is-visible .scroll-more-cueText {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+            transition: opacity 820ms cubic-bezier(0.16, 1, 0.3, 1), transform 820ms cubic-bezier(0.16, 1, 0.3, 1), filter 820ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .scroll-more-cue.is-visible .scroll-more-cueText::after {
+            animation: cueSweep 1000ms ease-out 140ms both;
+        }
+
+        .scroll-more-cueTitle {
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.05;
+            font-size: clamp(2rem, 5vw, 3.25rem);
+        }
+
+        .scroll-more-cueArrow {
+            display: grid;
+            place-items: center;
+            margin-top: .85rem;
+            opacity: .92;
+            animation: cueBounce 1100ms ease-in-out infinite;
+        }
+
+        @keyframes cueBounce {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(6px);
+            }
+        }
+
+        @keyframes cueSweep {
+            0% {
+                opacity: 0;
+                transform: translateX(-55%) rotate(12deg);
+            }
+
+            22% {
+                opacity: .85;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateX(55%) rotate(12deg);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .scroll-more-cueArrow {
+                animation: none;
+            }
+        }
+
+        #pricingScene.is-scroll-driven .pricing-step {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            border-bottom: none;
+            padding: 0;
+            opacity: 0;
+            transform: translateY(14px) scale(.98);
+            filter: blur(10px);
+            will-change: opacity, transform, filter;
+        }
+
+        #pricingScene .pricing-kicker {
+            color: rgba(234, 255, 251, .72);
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            font-size: .75rem;
+        }
+
+        #pricingScene .pricing-title {
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.05;
+            font-size: clamp(2rem, 5vw, 3.25rem);
+        }
+
+        #pricingScene .pricing-amount {
+            display: inline-block;
+            font-variant-numeric: tabular-nums;
+            min-width: 6ch;
+        }
+
+        #pricingScene .pricing-sub {
+            color: rgba(234, 255, 251, .70);
+            margin-top: .85rem;
+            max-width: 56ch;
+            font-size: 1rem;
+        }
+
+        #pricingScene .pricing-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .55rem .9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .18);
+            background: rgba(255, 255, 255, .06);
+            color: rgba(234, 255, 251, .78);
+            font-weight: 700;
+            margin-top: 1.1rem;
+        }
+
+        #pricingScene .pricing-ctaRow {
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1.2rem;
+        }
+
+        @media (min-width: 640px) {
+            #pricingScene .pricing-ctaRow {
+                flex-direction: row;
+            }
+        }
+
+        @media (max-width: 640px) {
+            #pricingScene.is-scroll-driven {
+                height: 620vh;
+            }
+
+            #pricingScene.is-scroll-driven .pricing-steps {
+                min-height: 66vh;
+            }
+        }
+
+        /* AOS performance hint (smooth transforms) */
+        [data-aos] {
+            will-change: transform, opacity;
+        }
+    </style>
+</head>
+
+<body class="font-sans">
+    <div id="top" aria-hidden="true"></div>
+    <div id="sceneBackdrop" aria-hidden="true"></div>
+    <div id="ambientLights" aria-hidden="true"></div>
+    <!-- Preloader -->
+    <div id="preloader" aria-label="Loading">
+        <div class="loader" aria-hidden="true"></div>
+    </div>
+
+    <!-- Sticky Navbar -->
+    <header class="fixed top-0 inset-x-0 z-50" x-data="{ open: false }"
+        x-effect="document.documentElement.style.overflow = open ? 'hidden' : ''; document.body.style.overflow = open ? 'hidden' : ''"
+        @keydown.escape.window="open=false">
+        <nav id="mainNav" class="transition-all">
+            <div class="mx-auto max-w-6xl px-4 sm:px-6">
+                <div class="glass mt-3 rounded-2xl px-4 py-3">
+                    <div class="flex items-center justify-between gap-3">
+                        <a href="#top" class="flex items-center gap-2 font-semibold tracking-wide">
+                            <span class="grid place-items-center w-9 h-9 rounded-xl stroke bg-white/5">
+                                <i class="bi bi-code-slash text-[1.05rem] text-white"></i>
+                            </span>
+                            <span class="text-white">Faiz</span>
+                            <span class="hidden sm:inline muted2">• Web Developer</span>
+                        </a>
+
+                        <button id="navBtn" class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl stroke bg-white/5 hover:bg-white/10 transition"
+                            aria-label="Open menu" :aria-expanded="open.toString()" aria-controls="mobileNav" @click="open = !open">
+                            <i class="bi bi-list text-[1.35rem]"></i>
+                        </button>
+
+                        <div id="navMenu" class="hidden lg:flex items-center gap-2">
+                            <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#about">About</a>
+                            <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#skills">Skills</a>
+                            <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#portfolio">Portfolio</a>
+                            <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#services">Services</a>
+                            <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#education">Education</a>
+                            <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#certificates">Certificates</a>
+                            <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#contact">Contact</a>
+
+                            <button id="hireBtn" class="ml-1 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold stroke bg-white/5 hover:bg-white/10 transition">
+                                <i class="bi bi-send"></i>
+                                <span>Start a Project</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile overlay -->
+        <div x-show="open" x-cloak x-transition.opacity.duration.200ms
+            class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm lg:hidden" @click="open=false" aria-hidden="true"></div>
+
+        <!-- Mobile menu (overlay card) -->
+        <div id="mobileNav" x-show="open" x-cloak
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="transform translate-y-3 opacity-0"
+            x-transition:enter-end="transform translate-y-0 opacity-100"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="transform translate-y-0 opacity-100"
+            x-transition:leave-end="transform translate-y-3 opacity-0"
+            class="fixed left-0 right-0 top-0 z-[60] mx-auto max-w-6xl px-4 sm:px-6 pt-4 lg:hidden">
+            <div class="glass rounded-[2rem] shadow-soft">
+                <div class="flex items-center justify-between p-4">
+                    <div class="flex items-center gap-3 font-bold tracking-tight">
+                        <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl stroke bg-white/5 text-white">
+                            <i class="bi bi-code-slash"></i>
+                        </span>
+                        <span class="text-white">Menu</span>
+                    </div>
+                    <button type="button" @click="open=false"
+                        class="inline-flex items-center justify-center rounded-2xl stroke bg-white/5 px-3 py-2 text-white hover:bg-white/10 transition"
+                        aria-label="Close menu">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+
+                <div class="px-4 pb-4 max-h-[calc(100dvh-92px)] overflow-y-auto">
+                    <nav class="grid gap-2" aria-label="Mobile navigation">
+                        <a href="#top" @click.prevent="open=false; $nextTick(() => window.scrollTo({ top: 0, behavior: 'smooth' }))"
+                            class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 hover:bg-white/10 transition">
+                            <span class="inline-flex items-center gap-3"><i class="bi bi-house-door"></i> Home</span>
+                            <i class="bi bi-chevron-right text-white/50"></i>
+                        </a>
+
+                        <a href="#about" @click="open=false"
+                            class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 hover:bg-white/10 transition">
+                            <span class="inline-flex items-center gap-3"><i class="bi bi-info-circle"></i> About</span>
+                            <i class="bi bi-chevron-right text-white/50"></i>
+                        </a>
+
+                        <a href="#skills" @click="open=false"
+                            class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 hover:bg-white/10 transition">
+                            <span class="inline-flex items-center gap-3"><i class="bi bi-stars"></i> Skills</span>
+                            <i class="bi bi-chevron-right text-white/50"></i>
+                        </a>
+
+                        <a href="#portfolio" @click="open=false"
+                            class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 hover:bg-white/10 transition">
+                            <span class="inline-flex items-center gap-3"><i class="bi bi-grid-3x3-gap"></i> Portfolio</span>
+                            <i class="bi bi-chevron-right text-white/50"></i>
+                        </a>
+
+                        <a href="#services" @click="open=false"
+                            class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 hover:bg-white/10 transition">
+                            <span class="inline-flex items-center gap-3"><i class="bi bi-pc-display"></i> Services</span>
+                            <i class="bi bi-chevron-right text-white/50"></i>
+                        </a>
+
+                        <a href="#education" @click="open=false"
+                            class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 hover:bg-white/10 transition">
+                            <span class="inline-flex items-center gap-3"><i class="bi bi-mortarboard"></i> Education</span>
+                            <i class="bi bi-chevron-right text-white/50"></i>
+                        </a>
+
+                        <a href="#certificates" @click="open=false"
+                            class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 hover:bg-white/10 transition">
+                            <span class="inline-flex items-center gap-3"><i class="bi bi-patch-check"></i> Certificates</span>
+                            <i class="bi bi-chevron-right text-white/50"></i>
+                        </a>
+
+                        <a href="#contact" @click="open=false"
+                            class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 hover:bg-white/10 transition">
+                            <span class="inline-flex items-center gap-3"><i class="bi bi-envelope"></i> Contact</span>
+                            <i class="bi bi-chevron-right text-white/50"></i>
+                        </a>
+                    </nav>
+
+                    <div class="mt-4 grid gap-2 sm:grid-cols-2">
+                        <button id="hireBtnMobile" @click="open=false"
+                            class="inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500/90 px-5 py-3 text-sm font-semibold text-white shadow-soft hover:bg-emerald-500 transition">
+                            <i class="bi bi-chat-dots"></i> Start a Project
+                        </button>
+                        <a href="#portfolio" @click="open=false"
+                            class="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white/90 hover:bg-white/10 transition">
+                            <i class="bi bi-grid-3x3-gap"></i> View Portfolio
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Back to top (shows after scroll) -->
+    <button id="toTopBtn"
+        class="to-top fixed right-4 bottom-[5.25rem] sm:bottom-[6rem] z-40 grid place-items-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl glass hover:bg-white/10 transition"
+        type="button" aria-label="Back to top">
+        <i class="bi bi-arrow-up text-[1.2rem]"></i>
+    </button>
+
+    <!-- Background music (autoplay attempt + user prompt fallback) -->
+    <audio id="bgMusic" preload="auto" loop playsinline>
+        <source src="assets/background.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="musicToggle"
+        class="fixed right-4 bottom-[9.75rem] sm:bottom-[10.75rem] z-40 hidden grid place-items-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl glass hover:bg-white/10 transition"
+        type="button" aria-label="Toggle background music" title="Background music">
+        <i id="musicIcon" class="bi bi-music-note-beamed text-[1.15rem]"></i>
+    </button>
+
+    <!-- Floating WhatsApp -->
+    <a
+        href="https://wa.me/60138280843?text=Hi%20Faiz%2C%20I%27d%20like%20to%20discuss%20a%20website%20project."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="fixed right-4 bottom-4 z-40 grid place-items-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl glass hover:bg-white/10 transition"
+        aria-label="WhatsApp">
+        <i class="bi bi-whatsapp text-[1.35rem]"></i>
+    </a>
+
+    <!-- Hero -->
+    <main class="pt-28 sm:pt-32">
+        <section class="relative">
+            <!-- glow blobs -->
+            <div aria-hidden="true" class="pointer-events-none absolute -top-24 -left-24 w-[520px] h-[520px] rounded-full blur-3xl opacity-40"
+                style="background: radial-gradient(circle at 30% 30%, rgba(126,247,198,.35), rgba(11,52,53,.0) 60%);"></div>
+            <div aria-hidden="true" class="pointer-events-none absolute -top-28 -right-20 w-[520px] h-[520px] rounded-full blur-3xl opacity-35"
+                style="background: radial-gradient(circle at 30% 30%, rgba(33,114,30,.35), rgba(11,52,53,.0) 60%);"></div>
+
+            <div class="mx-auto max-w-6xl px-4 sm:px-6">
+                <div id="heroPanel" class="hero-reveal glass rounded-3xl px-5 sm:px-10 py-10 sm:py-14 text-center">
+                    <p class="hero-reveal-item muted2 text-xs sm:text-sm tracking-[0.18em] uppercase" style="--d: 0ms">Modern • Fast • Clean</p>
+
+                    <h1 class="hero-reveal-item mt-4 text-3xl sm:text-5xl font-bold leading-tight" style="--d: 140ms">
+                        <span id="typed" class="text-white"></span>
+                    </h1>
+
+                    <p class="hero-reveal-item mt-4 mx-auto max-w-2xl muted2 text-base sm:text-lg" style="--d: 260ms">
+                        I design and build high-quality websites that load fast, look premium, and convert.
+                        From landing pages to full eCommerce systems, every detail is engineered for performance and clarity.
+                    </p>
+
+                    <div class="hero-reveal-item mt-7 flex flex-col sm:flex-row gap-3 justify-center" style="--d: 380ms">
+                        <a href="#portfolio"
+                            data-micro3d="btn"
+                            class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition">
+                            <i class="bi bi-grid-3x3-gap"></i>
+                            <span>View Portfolio</span>
+                        </a>
+                        <button id="hireBtnHero"
+                            data-micro3d="btn"
+                            class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition shadow-soft">
+                            <i class="bi bi-lightning-charge"></i>
+                            <span>Start a Project</span>
+                        </button>
+                    </div>
+
+                    <div class="hero-reveal-item mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4" style="--d: 520ms">
+                        <div data-micro3d="card" class="glass rounded-2xl p-4 text-left">
+                            <div class="flex items-center gap-2">
+                                <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke">
+                                    <i class="bi bi-speedometer2"></i>
+                                </span>
+                                <div class="font-semibold">Performance-first</div>
+                            </div>
+                            <div class="mt-2 muted2 text-sm">
+                                Optimized assets, clean structure, and fast interactions for real users.
+                            </div>
+                        </div>
+
+                        <div data-micro3d="card" class="glass rounded-2xl p-4 text-left">
+                            <div class="flex items-center gap-2">
+                                <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke">
+                                    <i class="bi bi-palette2"></i>
+                                </span>
+                                <div class="font-semibold">Refined UI</div>
+                            </div>
+                            <div class="mt-2 muted2 text-sm">
+                                A premium visual system that feels consistent across every screen size.
+                            </div>
+                        </div>
+
+                        <div data-micro3d="card" class="glass rounded-2xl p-4 text-left">
+                            <div class="flex items-center gap-2">
+                                <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke">
+                                    <i class="bi bi-shield-check"></i>
+                                </span>
+                                <div class="font-semibold">Production-ready</div>
+                            </div>
+                            <div class="mt-2 muted2 text-sm">
+                                Clear UX, maintainable code, and a delivery approach designed for business outcomes.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section id="about" class="mt-10 sm:mt-14">
+            <div class="mx-auto max-w-6xl px-4 sm:px-6">
+                <div class="grid lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+                    <div class="lg:col-span-5">
+                        <div class="about-3d-wrap" data-aos="fade-right" data-aos-duration="900">
+                            <div id="about3dCard" class="about-3d-card glass rounded-3xl overflow-hidden">
+                                <div class="about-3d-glow" aria-hidden="true"></div>
+                                <div class="about-3d-shine" aria-hidden="true"></div>
+                                <img
+                                    src="images/about-me.webp"
+                                    alt="Faiz working on a web project"
+                                    class="about-3d-media w-full h-[240px] sm:h-[320px] object-cover"
+                                    loading="eager"
+                                    fetchpriority="high"
+                                    decoding="async" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7">
+                        <div class="glass rounded-3xl p-6 sm:p-8" data-aos="fade-left" data-aos-duration="900">
+                            <div class="flex items-start justify-between gap-4">
+                                <div>
+                                    <h2 class="text-2xl sm:text-3xl font-bold">About</h2>
+                                    <p class="mt-2 muted2">
+                                        I am a developer who combines engineering discipline with a design-driven approach.
+                                        My goal is simple: deliver websites that look premium, load fast, and communicate value clearly.
+                                    </p>
+                                </div>
+                                <span class="hidden sm:grid place-items-center w-28 h-12 rounded-2xl bg-white/5 stroke">
+                                    <i class="bi bi-stars text-[1.15rem]"></i>
+                                </span>
+                            </div>
+
+                            <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <div class="glass rounded-2xl p-4 text-center" data-aos="zoom-in" data-aos-delay="0">
+                                    <div class="text-2xl font-bold">5+</div>
+                                    <div class="muted2 text-sm mt-1">Projects Delivered</div>
+                                </div>
+                                <div class="glass rounded-2xl p-4 text-center" data-aos="zoom-in" data-aos-delay="90">
+                                    <div class="text-2xl font-bold">1+ Year</div>
+                                    <div class="muted2 text-sm mt-1">Hands-on Experience</div>
+                                </div>
+                                <div class="glass rounded-2xl p-4 text-center" data-aos="zoom-in" data-aos-delay="180">
+                                    <div class="text-base font-semibold">HTML • PHP</div>
+                                    <div class="muted2 text-sm mt-1">Tailwind • MySQL</div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 flex flex-col sm:flex-row gap-3" data-aos="fade-up" data-aos-delay="220">
+                                <a href="#portfolio" data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition">
+                                    <i class="bi bi-eye"></i>
+                                    <span>Explore Work</span>
+                                </a>
+                                <a href="#contact" data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition">
+                                    <i class="bi bi-envelope-paper"></i>
+                                    <span>Contact</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section id="skills" class="mt-10 sm:mt-14">
+            <div class="mx-auto max-w-6xl px-4 sm:px-6">
+                <div class="glass rounded-3xl p-6 sm:p-8" data-aos="fade-up">
+                    <div class="flex items-end justify-between gap-4">
+                        <div>
+                            <h2 class="text-2xl sm:text-3xl font-bold">Skills</h2>
+                            <p class="mt-2 muted2 max-w-2xl">
+                                A practical toolkit for building responsive interfaces, backend logic, and production-ready workflows.
+                            </p>
+                        </div>
+                        <span class="hidden sm:grid place-items-center w-12 h-12 rounded-2xl bg-white/5 stroke">
+                            <i class="bi bi-tools text-[1.15rem]"></i>
+                        </span>
+                    </div>
+
+                    <!-- Quick Tech Icons -->
+                    <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
+                        <div data-micro3d="card" class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="0">
+                            <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke"><i class="bi bi-filetype-html"></i></span>
+                            <div class="text-sm font-semibold">HTML</div>
+                        </div>
+                        <div data-micro3d="card" class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="60">
+                            <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke"><i class="bi bi-filetype-css"></i></span>
+                            <div class="text-sm font-semibold">CSS</div>
+                        </div>
+                        <div data-micro3d="card" class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="120">
+                            <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke"><i class="bi bi-filetype-js"></i></span>
+                            <div class="text-sm font-semibold">JavaScript</div>
+                        </div>
+                        <div data-micro3d="card" class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="180">
+                            <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke"><i class="bi bi-filetype-php"></i></span>
+                            <div class="text-sm font-semibold">PHP</div>
+                        </div>
+                        <div data-micro3d="card" class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="240">
+                            <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke"><i class="bi bi-database"></i></span>
+                            <div class="text-sm font-semibold">MySQL</div>
+                        </div>
+                        <div data-micro3d="card" class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="300">
+                            <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke"><i class="bi bi-lightning-charge"></i></span>
+                            <div class="text-sm font-semibold">Tailwind</div>
+                        </div>
+                        <div data-micro3d="card" class="glass rounded-2xl px-4 py-3 flex items-center gap-3" data-aos="zoom-in" data-aos-delay="360">
+                            <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke"><i class="bi bi-bootstrap"></i></span>
+                            <div class="text-sm font-semibold">Bootstrap</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 grid md:grid-cols-3 gap-4">
+                        <div class="glass rounded-2xl p-5" data-aos="fade-up" data-aos-delay="0">
+                            <div class="flex items-center gap-2 font-semibold">
+                                <i class="bi bi-palette2"></i>
+                                <span>Frontend</span>
+                            </div>
+                            <div class="mt-3 flex flex-wrap gap-2">
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-filetype-html"></i><span>HTML</span></span>
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-filetype-css"></i><span>CSS</span></span>
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-filetype-js"></i><span>JavaScript</span></span>
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-bootstrap"></i><span>Bootstrap</span></span>
+                            </div>
+                        </div>
+
+                        <div class="glass rounded-2xl p-5" data-aos="fade-up" data-aos-delay="90">
+                            <div class="flex items-center gap-2 font-semibold">
+                                <i class="bi bi-database"></i>
+                                <span>Backend</span>
+                            </div>
+                            <div class="mt-3 flex flex-wrap gap-2">
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-filetype-php"></i><span>PHP</span></span>
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-database"></i><span>MySQL</span></span>
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-diagram-3"></i><span>REST Basics</span></span>
+                            </div>
+                        </div>
+
+                        <div class="glass rounded-2xl p-5" data-aos="fade-up" data-aos-delay="180">
+                            <div class="flex items-center gap-2 font-semibold">
+                                <i class="bi bi-gear"></i>
+                                <span>Tools</span>
+                            </div>
+                            <div class="mt-3 flex flex-wrap gap-2">
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-github"></i><span>GitHub</span></span>
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-code-slash"></i><span>VS Code</span></span>
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-figma"></i><span>Figma</span></span>
+                                <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5 text-sm"><i class="bi bi-palette"></i><span>Canva</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio -->
+        <section id="portfolio" class="mt-10 sm:mt-14">
+            <div class="mx-auto max-w-6xl px-4 sm:px-6">
+                <div class="glass rounded-3xl p-6 sm:p-8" data-aos="fade-up">
+                    <div class="flex items-end justify-between gap-4">
+                        <div>
+                            <h2 class="text-2xl sm:text-3xl font-bold">Portfolio</h2>
+                            <p class="mt-2 muted2">Selected projects that demonstrate strong UX, clean UI, and production-ready delivery. <span class="text-white">Tap a project to view details.</span></p>
+                        </div>
+                        <span class="hidden sm:grid place-items-center w-12 h-12 rounded-2xl bg-white/5 stroke">
+                            <i class="bi bi-grid-3x3-gap text-[1.15rem]"></i>
+                        </span>
+                    </div>
+
+                    <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Project 1 -->
+                        <button
+                            data-micro3d="card"
+                            class="group text-left glass rounded-2xl overflow-hidden hover:bg-white/10 transition"
+                            data-modal-open="proj1"
+                            data-aos="zoom-in" data-aos-delay="0"
+                            aria-label="Open project details">
+                            <img src="images/bannerkangaq-ecommerce.webp" alt="Banner Kangaq Printing eCommerce" class="w-full h-44 object-cover" loading="lazy" decoding="async" />
+                            <div class="p-5">
+                                <div class="flex items-start justify-between gap-3">
+                                    <div class="font-semibold leading-snug">Banner Kangaq Printing Order — eCommerce</div>
+                                    <i class="bi bi-box-arrow-up-right muted2 group-hover:text-white transition"></i>
+                                </div>
+                                <p class="mt-2 muted2 text-sm">
+                                    End-to-end printing workflow: design upload, pricing logic, cart, and checkout.
+                                </p>
+                                <div class="mt-4 flex flex-wrap items-center gap-2 text-sm font-semibold">
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-php"></i><span>PHP</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-html"></i><span>HTML</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-database"></i><span>MySQL</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
+                                </div>
+                            </div>
+                        </button>
+
+                        <!-- Project 2 -->
+                        <button
+                            data-micro3d="card"
+                            class="group text-left glass rounded-2xl overflow-hidden hover:bg-white/10 transition"
+                            data-modal-open="proj2"
+                            data-aos="zoom-in" data-aos-delay="90"
+                            aria-label="Open project details">
+                            <img src="images/medigreen-ecommerce.webp" alt="MEDIgreen eCommerce" class="w-full h-44 object-cover" loading="lazy" decoding="async" />
+                            <div class="p-5">
+                                <div class="flex items-start justify-between gap-3">
+                                    <div class="font-semibold leading-snug">MEDIgreen — Online Product Ordering</div>
+                                    <i class="bi bi-box-arrow-up-right muted2 group-hover:text-white transition"></i>
+                                </div>
+                                <p class="mt-2 muted2 text-sm">
+                                    Product catalog, cart flow, checkout, and payment-ready structure.
+                                </p>
+                                <div class="mt-4 flex flex-wrap items-center gap-2 text-sm font-semibold">
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-php"></i><span>PHP</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-html"></i><span>HTML</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-database"></i><span>MySQL</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-bootstrap"></i><span>Bootstrap</span></span>
+                                </div>
+                            </div>
+                        </button>
+
+                        <!-- Project 3 -->
+                        <button
+                            data-micro3d="card"
+                            class="group text-left glass rounded-2xl overflow-hidden hover:bg-white/10 transition"
+                            data-modal-open="proj3"
+                            data-aos="zoom-in" data-aos-delay="180"
+                            aria-label="Open project details">
+                            <img src="images/dheducation.webp" alt="DH Education Website" class="w-full h-44 object-cover" loading="lazy" decoding="async" />
+                            <div class="p-5">
+                                <div class="flex items-start justify-between gap-3">
+                                    <div class="font-semibold leading-snug">DH Education — Educational Website</div>
+                                    <i class="bi bi-box-arrow-up-right muted2 group-hover:text-white transition"></i>
+                                </div>
+                                <p class="mt-2 muted2 text-sm">
+                                    Structured learning content with clear hierarchy and clean reading experience.
+                                </p>
+                                <div class="mt-4 flex flex-wrap items-center gap-2 text-sm font-semibold">
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-php"></i><span>PHP</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-html"></i><span>HTML</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-database"></i><span>MySQL</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
+                                </div>
+                            </div>
+                        </button>
+
+                        <!-- Project 4 -->
+                        <button
+                            data-micro3d="card"
+                            class="group text-left glass rounded-2xl overflow-hidden hover:bg-white/10 transition"
+                            data-modal-open="proj4"
+                            data-aos="zoom-in" data-aos-delay="270"
+                            aria-label="Open project details">
+                            <img src="images/tahfiz-mahir-jaya.webp" alt="Tahfiz Mahir Jaya Website" class="w-full h-44 object-cover" loading="lazy" decoding="async" />
+                            <div class="p-5">
+                                <div class="flex items-start justify-between gap-3">
+                                    <div class="font-semibold leading-snug">Tahfiz Mahir Jaya — Corporate Website</div>
+                                    <i class="bi bi-box-arrow-up-right muted2 group-hover:text-white transition"></i>
+                                </div>
+                                <p class="mt-2 muted2 text-sm">
+                                    Institutional profile website with clear information flow, student registration CTA, and mobile-first navigation.
+                                </p>
+                                <div class="mt-4 flex flex-wrap items-center gap-2 text-sm font-semibold">
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-html"></i><span>HTML</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-css"></i><span>CSS</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-js"></i><span>JavaScript</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-bootstrap"></i><span>Bootstrap</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
+                                </div>
+                            </div>
+                        </button>
+
+                        <!-- Project 5 -->
+                        <button
+                            data-micro3d="card"
+                            class="group text-left glass rounded-2xl overflow-hidden hover:bg-white/10 transition"
+                            data-modal-open="proj5"
+                            data-aos="zoom-in" data-aos-delay="360"
+                            aria-label="Open project details">
+                            <img src="images/glombang-og.webp" alt="GLOMBANG content studio website" class="w-full h-44 object-cover" loading="lazy" decoding="async" />
+                            <div class="p-5">
+                                <div class="flex items-start justify-between gap-3">
+                                    <div class="font-semibold leading-snug">GLOMBANG - Content &amp; Social Media Studio</div>
+                                    <i class="bi bi-box-arrow-up-right muted2 group-hover:text-white transition"></i>
+                                </div>
+                                <p class="mt-2 muted2 text-sm">
+                                    Brand-forward studio website with strong positioning, service clarity, and a more human, culture-aware voice.
+                                </p>
+                                <div class="mt-4 flex flex-wrap items-center gap-2 text-sm font-semibold">
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-html"></i><span>HTML</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-css"></i><span>CSS</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-js"></i><span>JavaScript</span></span>
+                                </div>
+                            </div>
+                        </button>
+
+                        <!-- Coming Soon -->
+                        <div data-micro3d="card" class="glass rounded-2xl p-6 sm:p-7 text-center" data-aos="fade-up" data-aos-delay="450">
+                            <div class="mx-auto grid place-items-center w-14 h-14 rounded-2xl bg-white/5 stroke">
+                                <i class="bi bi-rocket-takeoff text-[1.4rem]"></i>
+                            </div>
+                            <div class="mt-4 font-semibold">Upcoming Project</div>
+                            <p class="mt-2 muted2 text-sm">
+                                A new build is currently in progress. This slot will be updated with a full case study soon.
+                            </p>
+                            <div class="mt-4 inline-block px-3 py-1 rounded-full stroke bg-white/5 text-xs tracking-[0.14em] uppercase muted">
+                                Coming Soon
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="mt-6 muted2 text-sm">
+                        If you would like a similar system tailored to your business model, I can propose an implementation plan and deliver a clean, scalable build.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scroll cue (under Portfolio, before Pricing scene) -->
+        <div id="scrollMoreToPricing" class="scroll-more-cue" aria-hidden="true">
+            <div class="scroll-more-cueText">
+                <div class="pricing-kicker">Next</div>
+                <div class="scroll-more-cueTitle mt-3">Scroll more</div>
+                <div class="scroll-more-cueArrow" aria-hidden="true"><i class="bi bi-arrow-down text-[1.25rem]"></i></div>
+            </div>
+        </div>
+
+        <!-- Pricing Scroll Scene (between Portfolio and Services) -->
+        <section id="pricingScene" aria-label="Pricing scroll scene">
+            <div class="pricing-sticky">
+                <div class="mx-auto max-w-6xl w-full px-4 sm:px-6">
+                    <div class="pricing-stage rounded-3xl">
+                        <div class="pricing-steps">
+                            <div class="pricing-step" data-pricing-step="0">
+                                <div>
+                                    <div class="pricing-kicker">Transparent starting points</div>
+                                    <div class="pricing-title mt-4">Prices?</div>
+                                    <div class="pricing-sub">
+                                        Scroll to explore common ranges. Final quotes depend on scope, pages, and features.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pricing-step" data-pricing-step="1">
+                                <div>
+                                    <div class="pricing-kicker">Starter landing</div>
+                                    <div class="pricing-title mt-4">Starting from <span class="pricing-amount" data-rm-target="250">RM250</span></div>
+                                    <div class="pricing-sub">A clean, fast landing page with strong layout, CTA, and mobile-first polish.</div>
+                                    <div class="pricing-pill"><i class="bi bi-lightning-charge"></i> Fast delivery • Clean UI</div>
+                                </div>
+                            </div>
+
+                            <div class="pricing-step" data-pricing-step="2">
+                                <div>
+                                    <div class="pricing-kicker">Business site</div>
+                                    <div class="pricing-title mt-4"><span class="pricing-amount" data-rm-target="600">RM600</span></div>
+                                    <div class="pricing-sub">More pages, clearer information architecture, and a stronger conversion flow.</div>
+                                    <div class="pricing-pill"><i class="bi bi-grid-3x3-gap"></i> Multiple pages • Better UX</div>
+                                </div>
+                            </div>
+
+                            <div class="pricing-step" data-pricing-step="3">
+                                <div>
+                                    <div class="pricing-kicker">Custom builds</div>
+                                    <div class="pricing-title mt-4">Flexible until <span class="pricing-amount" data-rm-target="1000" data-rm-suffix="+">RM1000+</span></div>
+                                    <div class="pricing-sub">For advanced UI, systems, or database-driven workflows (PHP + MySQL), built for scale.</div>
+                                    <div class="pricing-pill"><i class="bi bi-database"></i> Custom logic • Integrations</div>
+                                </div>
+                            </div>
+
+                            <div class="pricing-step" data-pricing-step="4">
+                                <div>
+                                    <div class="pricing-kicker">Ready when you are</div>
+                                    <div class="pricing-title mt-4">Let’s build something premium.</div>
+                                    <div class="pricing-sub">Share your goals and timeline — I’ll propose a clear scope and next steps.</div>
+
+                                    <div class="pricing-ctaRow">
+                                        <button data-micro3d="btn" data-modal-open="modalHire"
+                                            class="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition">
+                                            <i class="bi bi-send"></i>
+                                            <span>Start a Project</span>
+                                        </button>
+                                        <a data-micro3d="btn" href="#contact"
+                                            class="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition">
+                                            <i class="bi bi-chat-square-text"></i>
+                                            <span>Contact</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services -->
+        <section id="services" class="mt-10 sm:mt-14">
+            <div class="mx-auto max-w-6xl px-4 sm:px-6">
+                <div class="glass rounded-3xl p-6 sm:p-8" data-aos="fade-up">
+                    <div class="flex items-end justify-between gap-4">
+                        <div>
+                            <h2 class="text-2xl sm:text-3xl font-bold">Services</h2>
+                            <p class="mt-2 muted2 max-w-2xl">
+                                Clear deliverables, professional communication, and a build process aligned with business goals.
+                            </p>
+                        </div>
+                        <span class="hidden sm:grid place-items-center w-12 h-12 rounded-2xl bg-white/5 stroke">
+                            <i class="bi bi-briefcase text-[1.15rem]"></i>
+                        </span>
+                    </div>
+
+                    <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div data-micro3d="card" class="glass rounded-2xl p-5 hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="0">
+                            <div class="flex items-center gap-2 font-semibold">
+                                <i class="bi bi-laptop"></i>
+                                <span>Website Design</span>
+                            </div>
+                            <p class="mt-2 muted2 text-sm">
+                                Premium landing pages and business websites designed to communicate value clearly and convert.
+                            </p>
+                        </div>
+
+                        <div data-micro3d="card" class="glass rounded-2xl p-5 hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="90">
+                            <div class="flex items-center gap-2 font-semibold">
+                                <i class="bi bi-layout-text-window-reverse"></i>
+                                <span>UI/UX Revamp</span>
+                            </div>
+                            <p class="mt-2 muted2 text-sm">
+                                Interface refinement, flow simplification, and UX improvements that reduce friction and increase trust.
+                            </p>
+                        </div>
+
+                        <div data-micro3d="card" class="glass rounded-2xl p-5 hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="180">
+                            <div class="flex items-center gap-2 font-semibold">
+                                <i class="bi bi-wrench-adjustable"></i>
+                                <span>Maintenance</span>
+                            </div>
+                            <p class="mt-2 muted2 text-sm">
+                                Updates, bug fixes, backups, and stability improvements to keep your site reliable and secure.
+                            </p>
+                        </div>
+
+                        <div data-micro3d="card" class="glass rounded-2xl p-5 hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="270">
+                            <div class="flex items-center gap-2 font-semibold">
+                                <i class="bi bi-database-check"></i>
+                                <span>Database Integration</span>
+                            </div>
+                            <p class="mt-2 muted2 text-sm">
+                                PHP + MySQL architecture for scalable workflows, clean data modeling, and operational clarity.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex flex-col sm:flex-row gap-3" data-aos="fade-up" data-aos-delay="220">
+                        <button id="servicesCta" data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition">
+                            <i class="bi bi-chat-dots"></i>
+                            <span>Request a Quote</span>
+                        </button>
+                        <a href="#contact" data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition">
+                            <i class="bi bi-envelope"></i>
+                            <span>Send Project Details</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section id="education" class="mt-10 sm:mt-14">
+            <div class="mx-auto max-w-6xl px-4 sm:px-6">
+                <div class="glass rounded-3xl p-6 sm:p-8" data-aos="fade-up">
+                    <div class="text-center">
+                        <h2 class="text-2xl sm:text-3xl font-bold">Education</h2>
+                        <p class="mt-2 muted2 max-w-2xl mx-auto">
+                            Formal training that strengthened system thinking, software fundamentals, and practical delivery.
+                        </p>
+                    </div>
+
+                    <div class="mt-6 grid lg:grid-cols-12 gap-4">
+                        <div class="lg:col-span-5 glass rounded-2xl p-6" data-aos="fade-right" data-aos-delay="0">
+                            <div class="flex items-center gap-2 font-semibold">
+                                <i class="bi bi-mortarboard"></i>
+                                <span>Summary</span>
+                            </div>
+                            <ul class="mt-3 muted2 text-sm space-y-2 list-disc list-inside">
+                                <li>Programming foundations, web development, and database systems</li>
+                                <li>Structured approach to requirements, analysis, and implementation</li>
+                                <li>Hands-on work through business-oriented web projects</li>
+                                <li>Deployment knowledge and practical hosting setup</li>
+                            </ul>
+                        </div>
+
+                        <div class="lg:col-span-7 glass rounded-2xl p-5 sm:p-6" data-aos="fade-left" data-aos-delay="60">
+                            <div class="grid gap-3">
+                                <article data-micro3d="card" class="relative glass rounded-2xl p-5 overflow-hidden hover:bg-white/10 transition">
+                                    <div class="absolute left-4 top-5 bottom-5 w-1 rounded-full bg-emerald-300/35"></div>
+
+                                    <div class="pl-5">
+                                        <div class="flex flex-wrap items-center justify-between gap-2">
+                                            <div class="text-xs tracking-[0.14em] uppercase muted2">Oct 2022 – Sept 2025</div>
+                                            <span class="px-3 py-1 rounded-full text-[11px] tracking-[0.14em] uppercase stroke bg-white/5 text-white/80">Diploma</span>
+                                        </div>
+
+                                        <div class="mt-3 flex items-start gap-3">
+                                            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl overflow-hidden stroke bg-white/5 grid place-items-center shrink-0">
+                                                <img src="images/politeknik.webp" alt="PTSS logo" class="w-full h-full object-contain" loading="lazy" decoding="async">
+                                            </div>
+                                            <div>
+                                                <div class="font-semibold">Diploma in Information Technology</div>
+                                                <div class="muted2 text-sm">Politeknik Tuanku Syed Sirajuddin</div>
+                                                <p class="mt-2 muted2 text-sm">
+                                                    Focused on programming, object-oriented development, web fundamentals, and database administration.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article data-micro3d="card" class="relative glass rounded-2xl p-5 overflow-hidden hover:bg-white/10 transition">
+                                    <div class="absolute left-4 top-5 bottom-5 w-1 rounded-full bg-emerald-300/35"></div>
+
+                                    <div class="pl-5">
+                                        <div class="flex flex-wrap items-center justify-between gap-2">
+                                            <div class="text-xs tracking-[0.14em] uppercase muted2">Oct 2025 – Sept 2028</div>
+                                            <span class="px-3 py-1 rounded-full text-[11px] tracking-[0.14em] uppercase stroke bg-white/5 text-white/80">Degree</span>
+                                        </div>
+
+                                        <div class="mt-3 flex items-start gap-3">
+                                            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl overflow-hidden stroke bg-white/5 grid place-items-center shrink-0">
+                                                <img src="images/utem.webp" alt="UTeM logo" class="w-full h-full object-contain" loading="lazy" decoding="async">
+                                            </div>
+                                            <div>
+                                                <div class="font-semibold">BSc (Hons) Computer Science (Software Engineering)</div>
+                                                <div class="muted2 text-sm">Universiti Teknikal Malaysia Melaka</div>
+                                                <p class="mt-2 muted2 text-sm">
+                                                    Deepening software engineering practice: development methodologies, database design, and structured project delivery.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates -->
+        <section id="certificates" class="mt-10 sm:mt-14">
+            <div class="mx-auto max-w-6xl px-4 sm:px-6">
+                <div class="glass rounded-3xl p-6 sm:p-8" data-aos="fade-up">
+                    <div class="flex items-end justify-between gap-4">
+                        <div>
+                            <h2 class="text-2xl sm:text-3xl font-bold">Certificates</h2>
+                            <p class="mt-2 muted2">
+                                Professional training and recognition that support real-world delivery and credibility.
+                            </p>
+                        </div>
+                        <span class="hidden sm:grid place-items-center w-12 h-12 rounded-2xl bg-white/5 stroke">
+                            <i class="bi bi-award text-[1.15rem]"></i>
+                        </span>
+                    </div>
+
+                    <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Card template -->
+                        <article data-micro3d="card" class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="50">
+                            <div class="relative">
+                                <span class="absolute left-3 top-3 px-3 py-1 rounded-full text-xs tracking-[0.14em] uppercase stroke bg-black/40">2025</span>
+                                <img src="images/sijil1.jpg" alt="Microsoft Certified: Security, Compliance, and Identity Fundamentals" class="w-full h-44 object-cover" loading="lazy" decoding="async">
+                            </div>
+                            <div class="p-5">
+                                <div class="font-semibold">Microsoft Certified: SCI Fundamentals</div>
+                                <div class="muted2 text-sm mt-1">Microsoft</div>
+                                <p class="mt-2 muted2 text-sm">
+                                    Validates foundational knowledge in security, compliance, and identity concepts within Microsoft ecosystems.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article data-micro3d="card" class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="100">
+                            <div class="relative">
+                                <span class="absolute left-3 top-3 px-3 py-1 rounded-full text-xs tracking-[0.14em] uppercase stroke bg-black/40">2024</span>
+                                <img src="images/sijil5.jpg" alt="AWS Flash – Introduction to Responsible AI" class="w-full h-44 object-cover" loading="lazy" decoding="async">
+                            </div>
+                            <div class="p-5">
+                                <div class="font-semibold">AWS Flash — Responsible AI</div>
+                                <div class="muted2 text-sm mt-1">AWS Training and Certification</div>
+                                <p class="mt-2 muted2 text-sm">
+                                    Covers principles and practices for responsible development and usage of AI systems.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article data-micro3d="card" class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="150">
+                            <div class="relative">
+                                <span class="absolute left-3 top-3 px-3 py-1 rounded-full text-xs tracking-[0.14em] uppercase stroke bg-black/40">2024</span>
+                                <img src="images/sijil6.jpg" alt="POLYCC Large Language Model League 2024" class="w-full h-44 object-cover" loading="lazy" decoding="async">
+                            </div>
+                            <div class="p-5">
+                                <div class="font-semibold">POLYCC LLM League 2024</div>
+                                <div class="muted2 text-sm mt-1">AWS Malaysia &amp; POLYCC</div>
+                                <p class="mt-2 muted2 text-sm">
+                                    Participation recognition in a program focused on large language model awareness and application.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article data-micro3d="card" class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="200">
+                            <div class="relative">
+                                <span class="absolute left-3 top-3 px-3 py-1 rounded-full text-xs tracking-[0.14em] uppercase stroke bg-black/40">2023</span>
+                                <img src="images/sijil4.jpg" alt="IRISE 2023 Gold Medal" class="w-full h-44 object-cover" loading="lazy" decoding="async">
+                            </div>
+                            <div class="p-5">
+                                <div class="font-semibold">Gold Medal — IRISE 2023</div>
+                                <div class="muted2 text-sm mt-1">UiTM Kelantan &amp; DIGIT360</div>
+                                <p class="mt-2 muted2 text-sm">
+                                    Awarded for a technology project presented at an international research and innovation expo.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article data-micro3d="card" class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="250">
+                            <div class="relative">
+                                <span class="absolute left-3 top-3 px-3 py-1 rounded-full text-xs tracking-[0.14em] uppercase stroke bg-black/40">2024</span>
+                                <img src="images/sijil3.jpg" alt="Mobile Application Development with MySQL" class="w-full h-44 object-cover" loading="lazy" decoding="async">
+                            </div>
+                            <div class="p-5">
+                                <div class="font-semibold">Mobile Development with MySQL</div>
+                                <div class="muted2 text-sm mt-1">PTSS</div>
+                                <p class="mt-2 muted2 text-sm">
+                                    Workshop completion covering practical integration between mobile development workflows and MySQL.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article data-micro3d="card" class="glass rounded-2xl overflow-hidden hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="300">
+                            <div class="relative">
+                                <span class="absolute left-3 top-3 px-3 py-1 rounded-full text-xs tracking-[0.14em] uppercase stroke bg-black/40">2024</span>
+                                <img src="images/sijil2.jpg" alt="Web Development Using Laravel Framework" class="w-full h-44 object-cover" loading="lazy" decoding="async">
+                            </div>
+                            <div class="p-5">
+                                <div class="font-semibold">Web Development Using Laravel</div>
+                                <div class="muted2 text-sm mt-1">PTSS</div>
+                                <p class="mt-2 muted2 text-sm">
+                                    Training focused on Laravel fundamentals and structured web development practices.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="mt-10 sm:mt-14 pb-14 sm:pb-20">
+            <div class="mx-auto max-w-6xl px-4 sm:px-6">
+                <div class="glass rounded-3xl p-6 sm:p-8" data-aos="fade-up">
+                    <div class="flex items-end justify-between gap-4">
+                        <div>
+                            <h2 class="text-2xl sm:text-3xl font-bold">Contact</h2>
+                            <p class="mt-2 muted2">
+                                Share your goals, timeline, and constraints. I will respond with a clear scope and next steps.
+                            </p>
+                        </div>
+                        <span class="hidden sm:grid place-items-center w-12 h-12 rounded-2xl bg-white/5 stroke">
+                            <i class="bi bi-chat-square-text text-[1.15rem]"></i>
+                        </span>
+                    </div>
+
+                    <div class="mt-6 grid lg:grid-cols-12 gap-4">
+                        <form id="contactForm" class="lg:col-span-7 glass rounded-2xl p-5 sm:p-6" data-aos="fade-right" data-aos-delay="0">
+                            <div class="grid sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label class="text-sm font-semibold">Full Name</label>
+                                    <input name="name" type="text" required
+                                        class="mt-2 w-full rounded-xl bg-white/5 stroke px-4 py-3 placeholder:text-white/50"
+                                        placeholder="Your full name">
+                                </div>
+                                <div>
+                                    <label class="text-sm font-semibold">Email</label>
+                                    <input name="email" type="email" required
+                                        class="mt-2 w-full rounded-xl bg-white/5 stroke px-4 py-3 placeholder:text-white/50"
+                                        placeholder="you@mail.com">
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+                                <label class="text-sm font-semibold">Subject</label>
+                                <input name="subject" type="text" required
+                                    class="mt-2 w-full rounded-xl bg-white/5 stroke px-4 py-3 placeholder:text-white/50"
+                                    placeholder="What would you like to build?">
+                            </div>
+
+                            <div class="mt-3">
+                                <label class="text-sm font-semibold">Message</label>
+                                <textarea name="message" rows="5" required
+                                    class="mt-2 w-full rounded-xl bg-white/5 stroke px-4 py-3 placeholder:text-white/50"
+                                    placeholder="Briefly describe your scope, timeline, and any reference links."></textarea>
+                            </div>
+
+                            <div class="mt-4 flex flex-col sm:flex-row gap-3">
+                                <button type="submit" data-micro3d="btn"
+                                    class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition">
+                                    <i class="bi bi-whatsapp"></i>
+                                    <span>Send via WhatsApp</span>
+                                </button>
+                                <button type="button" id="openHireFromContact" data-micro3d="btn"
+                                    class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition">
+                                    <i class="bi bi-send"></i>
+                                    <span>Open Project Form</span>
+                                </button>
+                            </div>
+
+                            <p class="mt-4 muted2 text-xs">
+                                By sending a message, you agree to share your details for project discussion purposes only.
+                            </p>
+                        </form>
+
+                        <aside class="lg:col-span-5 glass rounded-2xl p-5 sm:p-6" data-aos="fade-left" data-aos-delay="80">
+                            <div class="font-semibold flex items-center gap-2">
+                                <i class="bi bi-person-badge"></i>
+                                <span>Contact Details</span>
+                            </div>
+
+                            <div class="mt-4 grid gap-3 text-sm">
+                                <div class="flex gap-3 items-start">
+                                    <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke">
+                                        <i class="bi bi-envelope"></i>
+                                    </span>
+                                    <div>
+                                        <div class="font-semibold">Email</div>
+                                        <div class="muted2">faizhadif3@gmail.com</div>
+                                    </div>
+                                </div>
+
+                                <div class="flex gap-3 items-start">
+                                    <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke">
+                                        <i class="bi bi-telephone"></i>
+                                    </span>
+                                    <div>
+                                        <div class="font-semibold">Phone</div>
+                                        <div class="muted2">+60 13-828 0843</div>
+                                    </div>
+                                </div>
+
+                                <div class="flex gap-3 items-start">
+                                    <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke">
+                                        <i class="bi bi-geo-alt"></i>
+                                    </span>
+                                    <div>
+                                        <div class="font-semibold">Location</div>
+                                        <div class="muted2">Kangar, Perlis, Malaysia</div>
+                                    </div>
+                                </div>
+
+                                <div class="flex gap-3 items-start">
+                                    <span class="grid place-items-center w-9 h-9 rounded-xl bg-white/5 stroke">
+                                        <i class="bi bi-clock"></i>
+                                    </span>
+                                    <div>
+                                        <div class="font-semibold">Availability</div>
+                                        <div class="muted2">Monday–Saturday, 9:00 AM–6:00 PM</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 glass rounded-2xl p-4">
+                                <div class="font-semibold">What to include</div>
+                                <ul class="mt-2 muted2 text-sm space-y-1 list-disc list-inside">
+                                    <li>Business goal and target audience</li>
+                                    <li>Reference sites or design direction</li>
+                                    <li>Required pages and functionality</li>
+                                    <li>Timeline and budget range</li>
+                                </ul>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="pb-10">
+            <div class="mx-auto max-w-6xl px-4 sm:px-6">
+                <div class="glass rounded-3xl px-6 py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                    <div class="muted2 text-sm">© <span id="currentYear"></span> Faiz Hadif. All rights reserved.</div>
+
+                    <div class="flex flex-wrap gap-2 text-sm">
+                        <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#top">Home</a>
+                        <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#about">About</a>
+                        <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#services">Services</a>
+                        <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#portfolio">Portfolio</a>
+                        <a class="px-3 py-2 rounded-xl hover:bg-white/10 muted" href="#contact">Contact</a>
+                    </div>
+
+                    <a data-micro3d="btn"
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 stroke transition text-sm font-semibold"
+                        href="https://wa.me/60138280843?text=Hi%20Faiz%2C%20I%27d%20like%20to%20discuss%20a%20website%20project."
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        <i class="bi bi-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- MODALS (Projects + Hire) -->
+    <!-- Backdrop -->
+    <div id="backdrop" class="fixed inset-0 bg-black/60 hidden z-50" aria-hidden="true"></div>
+
+    <!-- Hire Modal -->
+    <section id="modalHire" class="modal fixed inset-0 hidden z-[60]" aria-hidden="true">
+        <div class="min-h-full grid place-items-center p-4">
+            <div class="modal-panel w-full max-w-lg glass rounded-3xl p-5 sm:p-6">
+                <div class="flex items-start justify-between gap-3">
+                    <div>
+                        <h3 class="text-xl font-bold">Start a Project</h3>
+                        <p class="mt-1 muted2 text-sm">
+                            Share a brief overview. I will respond with suggested scope and next steps.
+                        </p>
+                    </div>
+                    <button data-micro3d="btn" class="w-10 h-10 grid place-items-center rounded-xl bg-white/5 stroke hover:bg-white/10 transition" data-modal-close aria-label="Close">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+
+                <form id="hireForm" class="mt-4 grid gap-3">
+                    <div>
+                        <label class="text-sm font-semibold">Name</label>
+                        <input id="hName" type="text" class="mt-2 w-full rounded-xl bg-white/5 stroke px-4 py-3 placeholder:text-white/50" placeholder="Your name" required>
+                    </div>
+                    <div>
+                        <label class="text-sm font-semibold">Email</label>
+                        <input id="hEmail" type="email" class="mt-2 w-full rounded-xl bg-white/5 stroke px-4 py-3 placeholder:text-white/50" placeholder="you@mail.com" required>
+                    </div>
+                    <div>
+                        <label class="text-sm font-semibold">Project Brief</label>
+                        <textarea id="hMsg" rows="5" class="mt-2 w-full rounded-xl bg-white/5 stroke px-4 py-3 placeholder:text-white/50" placeholder="Goals, timeline, and key requirements" required></textarea>
+                    </div>
+
+                    <div class="mt-1 flex flex-col sm:flex-row gap-3">
+                        <button type="submit" data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition">
+                            <i class="bi bi-whatsapp"></i>
+                            <span>Send via WhatsApp</span>
+                        </button>
+                        <button type="button" data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition" data-modal-close>
+                            <i class="bi bi-x-circle"></i>
+                            <span>Close</span>
+                        </button>
+                    </div>
+
+                    <p id="hireError" class="hidden text-sm text-red-200"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal Template (1) -->
+    <section id="proj1" class="modal fixed inset-0 hidden z-[60]" aria-hidden="true">
+        <div class="min-h-full grid place-items-center p-4">
+            <div class="modal-panel w-full max-w-3xl glass rounded-3xl overflow-hidden">
+                <div class="flex items-center justify-between p-5 border-b border-white/10">
+                    <h3 class="font-bold text-lg">Banner Kangaq Printing Order — eCommerce</h3>
+                    <button data-micro3d="btn" class="w-10 h-10 grid place-items-center rounded-xl bg-white/5 stroke hover:bg-white/10 transition" data-modal-close aria-label="Close">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+
+                <div class="p-5 sm:p-6 grid gap-4">
+                    <img src="images/bannerkangaq-ecommerce.webp" alt="Banner Kangaq project preview" class="w-full rounded-2xl stroke object-cover" loading="lazy" decoding="async">
+                    <p class="muted2 text-sm">
+                        A complete printing order workflow: design upload (PDF/image/link), page selection, pricing by size and options, cart logic, and checkout-ready structure.
+                    </p>
+                    <div class="muted2 text-sm">
+                        <span class="font-semibold text-white">Stack:</span> PHP, MySQL, Tailwind/Bootstrap utilities, JavaScript.
+                    </div>
+                    <div class="flex flex-wrap gap-2 text-sm font-semibold">
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-php"></i><span>PHP</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-database"></i><span>MySQL</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-bootstrap"></i><span>Bootstrap</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-js"></i><span>JavaScript</span></span>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <a data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition"
+                            href="https://bannerkangaq.com" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-box-arrow-up-right"></i>
+                            <span>Visit Website</span>
+                        </a>
+                        <button data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition" data-modal-open="modalHire">
+                            <i class="bi bi-send"></i>
+                            <span>Start a Similar Project</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal (2) -->
+    <section id="proj2" class="modal fixed inset-0 hidden z-[60]" aria-hidden="true">
+        <div class="min-h-full grid place-items-center p-4">
+            <div class="modal-panel w-full max-w-3xl glass rounded-3xl overflow-hidden">
+                <div class="flex items-center justify-between p-5 border-b border-white/10">
+                    <h3 class="font-bold text-lg">MEDIgreen — Online Product Ordering</h3>
+                    <button data-micro3d="btn" class="w-10 h-10 grid place-items-center rounded-xl bg-white/5 stroke hover:bg-white/10 transition" data-modal-close aria-label="Close">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+
+                <div class="p-5 sm:p-6 grid gap-4">
+                    <img src="images/medigreen-ecommerce.webp" alt="MEDIgreen project preview" class="w-full rounded-2xl stroke object-cover" loading="lazy" decoding="async">
+                    <p class="muted2 text-sm">
+                        Product catalog, add-to-cart experience, checkout flow, and payment-ready structure designed for clarity and conversion.
+                    </p>
+                    <div class="muted2 text-sm">
+                        <span class="font-semibold text-white">Stack:</span> PHP, MySQL, Tailwind, JavaScript.
+                    </div>
+                    <div class="flex flex-wrap gap-2 text-sm font-semibold">
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-php"></i><span>PHP</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-database"></i><span>MySQL</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-js"></i><span>JavaScript</span></span>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <a data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition"
+                            href="https://medigreen.my" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-box-arrow-up-right"></i>
+                            <span>Visit Website</span>
+                        </a>
+                        <button data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition" data-modal-open="modalHire">
+                            <i class="bi bi-send"></i>
+                            <span>Start a Similar Project</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal (3) -->
+    <section id="proj3" class="modal fixed inset-0 hidden z-[60]" aria-hidden="true">
+        <div class="min-h-full grid place-items-center p-4">
+            <div class="modal-panel w-full max-w-3xl glass rounded-3xl overflow-hidden">
+                <div class="flex items-center justify-between p-5 border-b border-white/10">
+                    <h3 class="font-bold text-lg">DH Education — Educational Website</h3>
+                    <button data-micro3d="btn" class="w-10 h-10 grid place-items-center rounded-xl bg-white/5 stroke hover:bg-white/10 transition" data-modal-close aria-label="Close">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+
+                <div class="p-5 sm:p-6 grid gap-4">
+                    <img src="images/dheducation.webp" alt="DH Education project preview" class="w-full rounded-2xl stroke object-cover" loading="lazy" decoding="async">
+                    <p class="muted2 text-sm">
+                        A structured educational website with clear information architecture, optimized readability, and a consistent layout system.
+                    </p>
+                    <div class="muted2 text-sm">
+                        <span class="font-semibold text-white">Stack:</span> HTML, Tailwind, JavaScript.
+                    </div>
+                    <div class="flex flex-wrap gap-2 text-sm font-semibold">
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-html"></i><span>HTML</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-js"></i><span>JavaScript</span></span>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <a data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition"
+                            href="https://thedheducation.com" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-box-arrow-up-right"></i>
+                            <span>Visit Website</span>
+                        </a>
+                        <button data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition" data-modal-open="modalHire">
+                            <i class="bi bi-send"></i>
+                            <span>Start a Similar Project</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal (4) -->
+    <section id="proj4" class="modal fixed inset-0 hidden z-[60]" aria-hidden="true">
+        <div class="min-h-full grid place-items-center p-4">
+            <div class="modal-panel w-full max-w-3xl glass rounded-3xl overflow-hidden">
+                <div class="flex items-center justify-between p-5 border-b border-white/10">
+                    <h3 class="font-bold text-lg">Tahfiz Mahir Jaya — Corporate Website</h3>
+                    <button data-micro3d="btn" class="w-10 h-10 grid place-items-center rounded-xl bg-white/5 stroke hover:bg-white/10 transition" data-modal-close aria-label="Close">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+
+                <div class="p-5 sm:p-6 grid gap-4">
+                    <img src="images/tahfiz-mahir-jaya.webp" alt="Tahfiz Mahir Jaya website preview" class="w-full rounded-2xl stroke object-cover" loading="lazy" decoding="async">
+                    <p class="muted2 text-sm">
+                        A profile website for an Islamic education institution, focused on credibility, clear contact details, program highlights, and an accessible registration path.
+                    </p>
+                    <div class="muted2 text-sm">
+                        <span class="font-semibold text-white">Stack:</span> HTML, CSS, JavaScript, Bootstrap, Tailwind.
+                    </div>
+                    <div class="flex flex-wrap gap-2 text-sm font-semibold">
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-html"></i><span>HTML</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-css"></i><span>CSS</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-js"></i><span>JavaScript</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-bootstrap"></i><span>Bootstrap</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <a data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition"
+                            href="https://tahfizmahirjaya.com" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-box-arrow-up-right"></i>
+                            <span>Visit Website</span>
+                        </a>
+                        <button data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition" data-modal-open="modalHire">
+                            <i class="bi bi-send"></i>
+                            <span>Start a Similar Project</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal (5) -->
+    <section id="proj5" class="modal fixed inset-0 hidden z-[60]" aria-hidden="true">
+        <div class="min-h-full grid place-items-center p-4">
+            <div class="modal-panel w-full max-w-3xl glass rounded-3xl overflow-hidden">
+                <div class="flex items-center justify-between p-5 border-b border-white/10">
+                    <h3 class="font-bold text-lg">GLOMBANG - Content &amp; Social Media Studio</h3>
+                    <button data-micro3d="btn" class="w-10 h-10 grid place-items-center rounded-xl bg-white/5 stroke hover:bg-white/10 transition" data-modal-close aria-label="Close">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+
+                <div class="p-5 sm:p-6 grid gap-4">
+                    <img src="images/glombang-og.webp" alt="GLOMBANG website preview" class="w-full rounded-2xl stroke object-cover" loading="lazy" decoding="async">
+                    <p class="muted2 text-sm">
+                        A studio website built to make the brand feel immediate and memorable, with sharp positioning, service-led structure, and messaging tailored to Malaysian businesses that want scroll-stopping content.
+                    </p>
+                    <div class="muted2 text-sm">
+                        <span class="font-semibold text-white">Highlights:</span> Clear hero messaging, trust-building brand strip, focused service breakdown, and a conversational bilingual tone that feels human instead of corporate.
+                    </div>
+                    <div class="muted2 text-sm">
+                        <span class="font-semibold text-white">Stack:</span> HTML, CSS, Tailwind CSS, JavaScript, AOS.
+                    </div>
+                    <div class="flex flex-wrap gap-2 text-sm font-semibold">
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-html"></i><span>HTML</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-css"></i><span>CSS</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-lightning-charge"></i><span>Tailwind</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-filetype-js"></i><span>JavaScript</span></span>
+                        <span data-micro3d="chip" class="inline-flex items-center gap-2 px-3 py-1 rounded-full stroke bg-white/5"><i class="bi bi-stars"></i><span>AOS</span></span>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <a data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 stroke transition"
+                            href="https://glombang.com" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-box-arrow-up-right"></i>
+                            <span>Visit Website</span>
+                        </a>
+                        <button data-micro3d="btn" class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition" data-modal-open="modalHire">
+                            <i class="bi bi-send"></i>
+                            <span>Start a Similar Project</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AOS + SweetAlert2 -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        // Current year (footer)
+        const currentYearEl = document.getElementById('currentYear');
+        if (currentYearEl) currentYearEl.textContent = String(new Date().getFullYear());
+
+        // AOS
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+        const isSmallScreen = window.matchMedia('(max-width: 640px)').matches;
+        const mobilePerfMode = isCoarsePointer || isSmallScreen;
+        if (window.AOS) {
+            // Mobile: keep AOS, but make it lightweight (few elements only).
+            if (mobilePerfMode && !prefersReducedMotion) {
+                try {
+                    document.body.setAttribute('data-aos-mobile', '1');
+
+                    // Remove existing AOS attributes from many small elements
+                    // (reduces scroll work + layout calculations on phones).
+                    document.querySelectorAll('[data-aos]').forEach((el) => {
+                        el.removeAttribute('data-aos');
+                        el.removeAttribute('data-aos-delay');
+                        el.removeAttribute('data-aos-duration');
+                        el.removeAttribute('data-aos-easing');
+                        el.removeAttribute('data-aos-anchor');
+                        el.removeAttribute('data-aos-anchor-placement');
+                        el.removeAttribute('data-aos-offset');
+                        el.removeAttribute('data-aos-once');
+                        el.removeAttribute('data-aos-mirror');
+                    });
+
+                    // Apply simple, non-boring animations to key section containers.
+                    const mobileAosTargets = [
+                        // About: image card gets the premium mobile reveal, text card stays simple.
+                        ['#about3dCard', 'hero-fade'],
+                        ['#about .glass.rounded-3xl.p-6', 'fade-up'],
+                        ['#skills .glass.rounded-3xl', 'zoom-in'],
+                        ['#portfolio .glass.rounded-3xl', 'fade-up'],
+                        ['#services .glass.rounded-3xl', 'fade-up'],
+                        ['#education .glass.rounded-3xl', 'fade-up'],
+                        ['#certificates .glass.rounded-3xl', 'fade-up'],
+                        ['#contact .glass.rounded-3xl', 'fade-up']
+                    ];
+
+                    // IMPORTANT: don't attach AOS to below-the-fold sections immediately on mobile.
+                    // With content-visibility/late layout, AOS can mistakenly mark them as "already animated".
+                    // Instead, attach AOS when each section is near the viewport.
+                    const attachAos = (el, anim, delay) => {
+                        el.setAttribute('data-aos', anim);
+                        el.setAttribute('data-aos-delay', String(delay));
+                    };
+
+                    const items = mobileAosTargets
+                        .map(([selector, anim], i) => {
+                            const el = document.querySelector(selector);
+                            if (!el) return null;
+                            return {
+                                el,
+                                anim,
+                                delay: Math.min(220, i * 40)
+                            };
+                        })
+                        .filter(Boolean);
+
+                    if ('IntersectionObserver' in window) {
+                        const io = new IntersectionObserver((entries) => {
+                            entries.forEach((entry) => {
+                                if (!entry.isIntersecting) return;
+                                const el = entry.target;
+                                const item = items.find((x) => x.el === el);
+                                if (!item) return;
+                                attachAos(item.el, item.anim, item.delay);
+                                io.unobserve(el);
+
+                                // Refresh so AOS recalculates positions after attaching attributes.
+                                // Use rAF to avoid forcing sync layout in the IO callback.
+                                requestAnimationFrame(() => {
+                                    try { AOS.refreshHard(); } catch { AOS.refresh(); }
+                                });
+                            });
+                        }, {
+                            // Start preparing a bit before it's visible so the animation still feels timely.
+                            root: null,
+                            rootMargin: '220px 0px 220px 0px',
+                            threshold: 0.01
+                        });
+
+                        items.forEach((item) => io.observe(item.el));
+                    } else {
+                        // Fallback: attach immediately (older browsers).
+                        items.forEach((item) => attachAos(item.el, item.anim, item.delay));
+                    }
+                } catch { }
+            }
+
+            AOS.init({
+                duration: mobilePerfMode ? 720 : 1050,
+                delay: mobilePerfMode ? 0 : 60,
+                easing: mobilePerfMode ? 'ease-out' : 'cubic-bezier(0.16, 1, 0.3, 1)',
+                once: true,
+                offset: mobilePerfMode ? 90 : 120,
+                anchorPlacement: 'top-bottom',
+                // Still respect reduced-motion.
+                disable: prefersReducedMotion,
+                // Reduce work on mobile.
+                disableMutationObserver: true,
+                throttleDelay: mobilePerfMode ? 140 : 99,
+                debounceDelay: mobilePerfMode ? 40 : 50
+            });
+
+            // Ensure correct positions after images/fonts load (prevents "snappy" feel)
+            window.addEventListener('load', () => {
+                try { AOS.refreshHard(); } catch { AOS.refresh(); }
+            });
+        }
+
+        // Pricing: scroll-driven scene (between Portfolio and Services)
+        (() => {
+            const pricingScene = document.getElementById('pricingScene');
+            const sceneBackdrop = document.getElementById('sceneBackdrop');
+            if (!pricingScene || !sceneBackdrop) return;
+
+            if (prefersReducedMotion) {
+                sceneBackdrop.style.opacity = '0';
+                return;
+            }
+
+            const steps = Array.from(pricingScene.querySelectorAll('[data-pricing-step]'));
+            if (!steps.length) return;
+
+            const stageEl = pricingScene.querySelector('.pricing-stage');
+            const cueEl = pricingScene.querySelector('[data-pricing-cue]');
+            const counterEls = Array.from(pricingScene.querySelectorAll('[data-rm-target]'));
+
+            const isMobilePerf = mobilePerfMode;
+
+            pricingScene.classList.add('is-scroll-driven');
+
+            const clamp01 = (v) => Math.min(1, Math.max(0, v));
+            const smoothstep = (edge0, edge1, x) => {
+                const t = clamp01((x - edge0) / (edge1 - edge0 || 1));
+                return t * t * (3 - 2 * t);
+            };
+
+            const easeOutCubic = (t) => 1 - Math.pow(1 - clamp01(t), 3);
+            const formatRM = (n, suffix = '') => {
+                const rounded = Math.max(0, Math.round(n));
+                return `RM${rounded.toLocaleString('en-MY')}${suffix}`;
+            };
+
+            const segments = (() => {
+                // Start the content much earlier so users reach "Prices?" quickly.
+                const start = 0.02;
+                const end = 0.94;
+                // Weighted segments: give price steps a bit more dwell time.
+                // Order matches your DOM: 0=Prices?, 1=RM250, 2=RM400, 3=RM1000+, 4=CTA
+                const weights = steps.map((_, i) => {
+                    if (i === 1 || i === 2) return 1.45;
+                    if (i === 3) return 2.20;
+                    return 1.0;
+                });
+                const total = weights.reduce((sum, w) => sum + w, 0) || 1;
+                const spanTotal = (end - start);
+
+                let cursor = start;
+                return steps.map((_, i) => {
+                    const span = spanTotal * (weights[i] / total);
+                    const a = cursor;
+                    const b = cursor + span;
+                    cursor = b;
+                    return [a, b];
+                });
+            })();
+
+            let ticking = false;
+
+            function render() {
+                ticking = false;
+
+                const rect = pricingScene.getBoundingClientRect();
+                const vh = window.innerHeight || 1;
+                const docY = window.scrollY || window.pageYOffset || 0;
+
+                const startY = docY + rect.top;
+                const endY = startY + pricingScene.offsetHeight - vh;
+                const denom = Math.max(1, endY - startY);
+                const p = clamp01((docY - startY) / denom);
+
+                const isPinned = docY >= startY && docY <= endY;
+                const isAfter = docY > endY;
+                pricingScene.classList.toggle('is-pinned', isPinned);
+                pricingScene.classList.toggle('is-after', isAfter);
+
+                // Backdrop: fade in to black, hold, then fade out back to theme.
+                let backdropOpacity = 0;
+                if (p > 0.005 && p < 0.995) {
+                    const fadeIn = smoothstep(0.005, 0.03, p);
+                    const fadeOut = 1 - smoothstep(0.93, 0.995, p);
+                    backdropOpacity = Math.min(1, fadeIn, fadeOut);
+                }
+                sceneBackdrop.style.opacity = String(backdropOpacity);
+
+                // Stage: hero-like reveal + exit (wipe + fade + blur)
+                if (stageEl) {
+                    const enter = smoothstep(0.008, 0.03, p);
+                    const exit = 1 - smoothstep(0.91, 0.975, p);
+                    const vis = Math.min(1, enter, exit);
+
+                    const y = (1 - vis) * -10;
+                    const blur = (1 - vis) * 10;
+                    const clipBottom = (1 - vis) * 100;
+
+                    stageEl.style.opacity = String(vis);
+                    stageEl.style.transform = `translateY(${y}px)`;
+                    stageEl.style.filter = `blur(${blur}px)`;
+                    stageEl.style.clipPath = `inset(0 0 ${clipBottom}% 0 round 1.5rem)`;
+                }
+
+                // Scroll cue: show briefly before the first pricing step starts.
+                if (cueEl) {
+                    const enter = smoothstep(0.02, 0.06, p);
+                    const exit = 1 - smoothstep(0.09, 0.14, p);
+                    const vis = Math.min(1, enter, exit);
+
+                    const y = (1 - vis) * 16;
+                    const blur = (1 - vis) * 10;
+
+                    const textEl = cueEl.querySelector('.pricing-cueText');
+                    if (textEl) {
+                        textEl.style.opacity = String(vis);
+                        textEl.style.transform = `translateY(${y}px) scale(${0.985 + vis * 0.015})`;
+                        textEl.style.filter = `blur(${blur}px)`;
+                    }
+
+                    cueEl.setAttribute('aria-hidden', vis > 0.12 ? 'false' : 'true');
+                }
+
+                const fadeEdge = 0.16;
+
+                // RM counters: min -> target (scroll-scrubbed within each step segment)
+                if (counterEls.length) {
+                    steps.forEach((stepEl, i) => {
+                        const counterEl = stepEl.querySelector('[data-rm-target]');
+                        if (!counterEl) return;
+
+                        const target = Number(counterEl.getAttribute('data-rm-target') || '0') || 0;
+                        const suffix = counterEl.getAttribute('data-rm-suffix') || '';
+
+                        const [a, b] = segments[i];
+                        const t = clamp01((p - a) / (b - a || 1));
+
+                        // Counter timing within the step:
+                        // - delay a bit at the start (avoid tiny values)
+                        // - finish earlier
+                        // - then HOLD the final value for a longer portion of the segment
+                        const counterT = clamp01((t - 0.12) / 0.40);
+                        const eased = easeOutCubic(counterT);
+
+                        const minStart = Math.min(50, target);
+                        const value = minStart + ((target - minStart) * eased);
+                        const rounded = Math.round(value);
+                        const showSuffix = Boolean(suffix) && counterT >= 1;
+
+                        counterEl.textContent = formatRM(value, showSuffix ? suffix : '');
+                    });
+                }
+
+                steps.forEach((el, i) => {
+                    const [a, b] = segments[i];
+                    const t = (p - a) / (b - a || 1);
+                    const inWindow = t >= 0 && t <= 1;
+
+                    let opacity = 0;
+                    let y = 22;
+                    let scale = 0.985;
+                    let blur = isMobilePerf ? 6 : 8;
+
+                    if (inWindow) {
+                        const enter = smoothstep(0, fadeEdge, t);
+                        const exit = smoothstep(1 - fadeEdge, 1, t);
+                        opacity = enter * (1 - exit);
+
+                        // Scroll-like motion: enter from below (+y), exit upwards (-y)
+                        y = (1 - enter) * 22 + (exit * -28);
+                        blur = (1 - opacity) * (isMobilePerf ? 6 : 8);
+                        scale = 0.985 + (opacity * 0.015);
+                    }
+
+                    el.style.opacity = String(opacity);
+                    el.style.transform = `translateY(${y}px) scale(${scale})`;
+                    el.style.filter = `blur(${blur}px)`;
+                    el.setAttribute('aria-hidden', opacity > 0.12 ? 'false' : 'true');
+                });
+            }
+
+            function schedule() {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(render);
+            }
+
+            window.addEventListener('scroll', schedule, { passive: true });
+            window.addEventListener('resize', schedule);
+            window.addEventListener('load', schedule);
+            schedule();
+        })();
+
+        // Scroll cue (between Portfolio -> Pricing): fade in once when visible
+        (() => {
+            const cue = document.getElementById('scrollMoreToPricing');
+            if (!cue) return;
+            if (prefersReducedMotion) {
+                cue.classList.add('is-visible');
+                cue.setAttribute('aria-hidden', 'false');
+                return;
+            }
+
+            if (!('IntersectionObserver' in window)) {
+                cue.classList.add('is-visible');
+                cue.setAttribute('aria-hidden', 'false');
+                return;
+            }
+
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    cue.classList.add('is-visible');
+                    cue.setAttribute('aria-hidden', 'false');
+                    io.disconnect();
+                });
+            }, { root: null, threshold: 0.35 });
+
+            io.observe(cue);
+        })();
+
+        // About: scroll-driven 3D / parallax card + cursor hover tilt
+        const aboutSection = document.getElementById('about');
+        const about3dCard = document.getElementById('about3dCard');
+
+        const aboutPointer = {
+            active: false,
+            dragging: false,
+            x: 0,
+            y: 0,
+            pointerId: null
+        };
+
+        function clamp(min, value, max) {
+            return Math.min(max, Math.max(min, value));
+        }
+
+        function updateAbout3d() {
+            if (prefersReducedMotion) return;
+            if (mobilePerfMode) return;
+            if (!aboutSection || !about3dCard) return;
+
+            const rect = aboutSection.getBoundingClientRect();
+            const vh = window.innerHeight || 1;
+            if (rect.bottom < 0 || rect.top > vh) return;
+            const center = rect.top + rect.height / 2;
+            const norm = clamp(-1, (center - vh / 2) / (vh / 2), 1); // -1..1
+            const intensity = 1 - Math.min(1, Math.abs(norm)); // 0..1 (strongest at center)
+
+            // Baseline tilt so it still feels "3D" even when centered
+            const isSmallScreen = window.matchMedia('(max-width: 640px)').matches;
+            const baseX = isSmallScreen ? -1.6 : -2.2;
+            const baseY = isSmallScreen ? 2.2 : 3.0;
+
+            const scrollRotateX = baseX + norm * (isSmallScreen ? 6.2 : 7.5);
+            const scrollRotateY = baseY - norm * (isSmallScreen ? 11.5 : 14);
+            const liftY = -intensity * (isSmallScreen ? 10 : 12);
+            const popZ = intensity * (isSmallScreen ? 24 : 34);
+            const scale = 1 + intensity * (isSmallScreen ? 0.012 : 0.02);
+
+            // Cursor/touch tilt (adds to scroll tilt)
+            const pointerMaxX = isSmallScreen ? 5.5 : 9;
+            const pointerMaxY = isSmallScreen ? 7.5 : 12;
+            const pointerInfluence = aboutPointer.active ? 1 : 0;
+            const pointerRotateX = (-aboutPointer.y) * pointerMaxX * pointerInfluence;
+            const pointerRotateY = (aboutPointer.x) * pointerMaxY * pointerInfluence;
+
+            const rotateX = scrollRotateX + pointerRotateX;
+            const rotateY = scrollRotateY + pointerRotateY;
+
+            about3dCard.style.transform =
+                `rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(${liftY.toFixed(2)}px) translateZ(${popZ.toFixed(2)}px) scale(${scale.toFixed(3)})`;
+
+            // Move glow + shine horizontally as you scroll (left ↔ right)
+            const t = clamp(0, (vh - rect.top) / (vh + rect.height), 1); // 0..1
+            const scrollGlowX = 10 + t * 80; // 10%..90%
+            const scrollGlowY = 28 + (1 - intensity) * 10; // subtle vertical drift
+
+            // If hovering/dragging, let the glow follow the pointer a bit
+            const pointerGlowX = 50 + aboutPointer.x * 22;
+            const pointerGlowY = 35 + aboutPointer.y * 14;
+            const glowMix = aboutPointer.active ? 0.75 : 0;
+            const glowX = scrollGlowX * (1 - glowMix) + pointerGlowX * glowMix;
+            const glowY = scrollGlowY * (1 - glowMix) + pointerGlowY * glowMix;
+
+            about3dCard.style.setProperty('--glow-x', `${glowX.toFixed(1)}%`);
+            about3dCard.style.setProperty('--glow-y', `${glowY.toFixed(1)}%`);
+            about3dCard.style.setProperty('--shine-pos', `${((aboutPointer.active ? (50 + aboutPointer.x * 25) : (t * 100))).toFixed(0)}%`);
+        }
+
+        let aboutTicking = false;
+        function requestAboutUpdate() {
+            if (aboutTicking) return;
+            aboutTicking = true;
+            requestAnimationFrame(() => {
+                updateAbout3d();
+                aboutTicking = false;
+            });
+        }
+
+        window.addEventListener('scroll', requestAboutUpdate, { passive: true });
+        window.addEventListener('resize', requestAboutUpdate);
+        window.addEventListener('load', requestAboutUpdate);
+
+        function setAboutPointerFromEvent(ev) {
+            if (!about3dCard) return;
+            const r = about3dCard.getBoundingClientRect();
+            const px = clamp(0, (ev.clientX - r.left) / (r.width || 1), 1);
+            const py = clamp(0, (ev.clientY - r.top) / (r.height || 1), 1);
+            aboutPointer.x = (px - 0.5) * 2; // -1..1
+            aboutPointer.y = (py - 0.5) * 2; // -1..1
+        }
+
+        if (about3dCard && !mobilePerfMode) {
+            // Desktop/pen: hover tilt
+            about3dCard.addEventListener('pointerenter', (ev) => {
+                if (prefersReducedMotion) return;
+                if (ev.pointerType === 'touch') return;
+                aboutPointer.active = true;
+                setAboutPointerFromEvent(ev);
+                requestAboutUpdate();
+            });
+
+            about3dCard.addEventListener('pointermove', (ev) => {
+                if (prefersReducedMotion) return;
+                if (ev.pointerType === 'touch' && !aboutPointer.dragging) return; // don't fight scroll
+                if (ev.pointerType !== 'touch' && !aboutPointer.active) return;
+                setAboutPointerFromEvent(ev);
+                requestAboutUpdate();
+            });
+
+            about3dCard.addEventListener('pointerleave', (ev) => {
+                if (ev.pointerType === 'touch') return;
+                aboutPointer.active = false;
+                aboutPointer.x = 0;
+                aboutPointer.y = 0;
+                requestAboutUpdate();
+            });
+
+            // Mobile: touch-drag tilt (only while pressing on the card)
+            about3dCard.addEventListener('pointerdown', (ev) => {
+                if (prefersReducedMotion) return;
+                if (ev.pointerType !== 'touch') return;
+                aboutPointer.dragging = true;
+                aboutPointer.active = true;
+                aboutPointer.pointerId = ev.pointerId;
+                try { about3dCard.setPointerCapture(ev.pointerId); } catch { }
+                setAboutPointerFromEvent(ev);
+                requestAboutUpdate();
+            });
+
+            function endAboutTouchTilt() {
+                aboutPointer.dragging = false;
+                aboutPointer.active = false;
+                aboutPointer.pointerId = null;
+                aboutPointer.x = 0;
+                aboutPointer.y = 0;
+                requestAboutUpdate();
+            }
+
+            about3dCard.addEventListener('pointerup', (ev) => {
+                if (ev.pointerType !== 'touch') return;
+                endAboutTouchTilt();
+            });
+
+            about3dCard.addEventListener('pointercancel', (ev) => {
+                if (ev.pointerType !== 'touch') return;
+                endAboutTouchTilt();
+            });
+        }
+
+        // Background music
+        const MUSIC_PREF_KEY = 'bgMusicEnabled';
+        const music = document.getElementById('bgMusic');
+        const musicToggle = document.getElementById('musicToggle');
+        const musicIcon = document.getElementById('musicIcon');
+
+        function setMusicUi(isOn) {
+            if (!musicToggle || !musicIcon) return;
+            musicToggle.classList.remove('hidden');
+            musicIcon.className = isOn
+                ? 'bi bi-volume-up text-[1.15rem]'
+                : 'bi bi-volume-mute text-[1.15rem]';
+        }
+
+        async function tryStartMusic({ fromUserGesture = false } = {}) {
+            if (!music) return false;
+            try {
+                music.volume = 0.22;
+                await music.play();
+                setMusicUi(true);
+                if (fromUserGesture) localStorage.setItem(MUSIC_PREF_KEY, '1');
+                return true;
+            } catch {
+                setMusicUi(false);
+                if (fromUserGesture) localStorage.setItem(MUSIC_PREF_KEY, '0');
+                return false;
+            }
+        }
+
+        function stopMusic() {
+            if (!music) return;
+            try { music.pause(); } catch {}
+            music.currentTime = 0;
+            setMusicUi(false);
+        }
+
+        let musicNeedsPrompt = false;
+        let musicPromptShown = false;
+        let musicPromptTimer = null;
+
+        async function maybePromptForMusic() {
+            if (musicPromptShown) return;
+            if (!musicNeedsPrompt) return;
+            if (!window.Swal) return;
+
+            const pref = localStorage.getItem(MUSIC_PREF_KEY);
+            if (pref === '0' || pref === '1') return;
+
+            musicPromptShown = true;
+            if (musicPromptTimer) {
+                clearTimeout(musicPromptTimer);
+                musicPromptTimer = null;
+            }
+
+            const result = await Swal.fire({
+                icon: 'question',
+                title: 'Enable background music?',
+                text: 'Some browsers require a tap to start audio. You can turn it off anytime.',
+                confirmButtonText: 'Enable',
+                cancelButtonText: 'No thanks',
+                showCancelButton: true,
+                reverseButtons: true
+            });
+
+            if (result.isConfirmed) {
+                const ok = await tryStartMusic({ fromUserGesture: true });
+                if (!ok) {
+                    localStorage.setItem(MUSIC_PREF_KEY, '0');
+                }
+            } else {
+                localStorage.setItem(MUSIC_PREF_KEY, '0');
+                stopMusic();
+            }
+        }
+
+        function scheduleMusicPrompt({ delayMs } = {}) {
+            if (musicPromptShown) return;
+            if (!musicNeedsPrompt) return;
+            if (musicPromptTimer) return;
+            musicPromptTimer = setTimeout(() => {
+                musicPromptTimer = null;
+                maybePromptForMusic();
+            }, delayMs);
+        }
+
+        // Attempt autoplay on first visit.
+        // If blocked, show the SweetAlert prompt later (2s after typing completes, or 5s after load as fallback).
+        window.addEventListener('load', async () => {
+            const pref = localStorage.getItem(MUSIC_PREF_KEY);
+            if (pref === '0') {
+                setMusicUi(false);
+                return;
+            }
+
+            if (pref === '1') {
+                await tryStartMusic();
+                return;
+            }
+
+            const started = await tryStartMusic();
+            if (started) {
+                localStorage.setItem(MUSIC_PREF_KEY, '1');
+                musicNeedsPrompt = false;
+                return;
+            }
+
+            // Autoplay blocked and no explicit preference yet: schedule prompt
+            musicNeedsPrompt = true;
+            scheduleMusicPrompt({ delayMs: 5000 });
+        });
+
+        // Toggle button (always user-gesture safe)
+        musicToggle?.addEventListener('click', async () => {
+            if (!music) return;
+            musicNeedsPrompt = false;
+            if (!music.paused) {
+                localStorage.setItem(MUSIC_PREF_KEY, '0');
+                stopMusic();
+                return;
+            }
+            await tryStartMusic({ fromUserGesture: true });
+        });
+
+        // Hero reveal (runs after preloader hides so it doesn't animate behind it)
+        const heroPanel = document.getElementById('heroPanel');
+        let heroTypedInitialized = false;
+
+        function startHeroReveal() {
+            if (prefersReducedMotion) {
+                heroPanel?.classList.add('is-revealed');
+            } else {
+                heroPanel?.classList.add('is-revealed');
+            }
+
+            if (!heroTypedInitialized && window.Typed) {
+                heroTypedInitialized = true;
+                new Typed('#typed', {
+            strings: [
+                "Hello, I'm <span style='color:#7ef7c6'>Faiz</span> — Web Developer & UI Engineer"
+            ],
+            typeSpeed: 42,
+            backSpeed: 0,
+            showCursor: true,
+            smartBackspace: false,
+            onComplete: () => {
+                // Prompt 2s after the hero typing finishes (only if autoplay was blocked)
+                scheduleMusicPrompt({ delayMs: 2000 });
+            }
+                });
+            }
+        }
+
+        // Preloader
+        // IMPORTANT for LCP: don't gate the hero reveal on full window.load or long fixed delays.
+        // Hide as soon as DOM is ready, with a short fallback timer.
+        const preloader = document.getElementById('preloader');
+        let preloaderHidden = false;
+
+        function hidePreloaderAndStartHero() {
+            if (preloaderHidden) return;
+            preloaderHidden = true;
+            preloader?.classList.add('hide');
+            startHeroReveal();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => setTimeout(hidePreloaderAndStartHero, 120));
+        window.addEventListener('load', () => setTimeout(hidePreloaderAndStartHero, 60));
+        setTimeout(hidePreloaderAndStartHero, 1200);
+
+        // Back-to-top toggle
+        const toTopBtn = document.getElementById('toTopBtn');
+        let toTopTicking = false;
+
+        function updateToTopVisibility() {
+            const show = window.scrollY > 140;
+            toTopBtn?.classList.toggle('is-visible', show);
+            musicToggle?.classList.toggle('is-lowered', !show);
+            toTopTicking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (toTopTicking) return;
+            toTopTicking = true;
+            requestAnimationFrame(updateToTopVisibility);
+        }, { passive: true });
+
+        window.addEventListener('load', updateToTopVisibility);
+
+        toTopBtn?.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        });
+
+        // Modal helpers
+        const backdrop = document.getElementById('backdrop');
+        let openModalId = null;
+
+        const MODAL_ANIM_MS = prefersReducedMotion ? 0 : 220;
+
+        function showBackdrop() {
+            backdrop.classList.remove('hidden');
+            requestAnimationFrame(() => backdrop.classList.add('is-visible'));
+        }
+
+        function hideBackdrop(immediate = false) {
+            backdrop.classList.remove('is-visible');
+            if (immediate || MODAL_ANIM_MS === 0) {
+                backdrop.classList.add('hidden');
+                return;
+            }
+            setTimeout(() => backdrop.classList.add('hidden'), MODAL_ANIM_MS);
+        }
+
+        function openModal(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+
+            if (openModalId && openModalId !== id) {
+                closeModal({ immediate: true });
+            }
+
+            openModalId = id;
+            showBackdrop();
+            el.classList.remove('hidden');
+            el.setAttribute('aria-hidden', 'false');
+            el.classList.remove('is-closing');
+            requestAnimationFrame(() => el.classList.add('is-open'));
+
+            // prevent background scroll
+            document.documentElement.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden';
+
+            // focus first input if exists
+            const focusable = el.querySelector('input, textarea, button');
+            focusable?.focus();
+        }
+
+        function closeModal({ immediate = false } = {}) {
+            if (!openModalId) return;
+            const el = document.getElementById(openModalId);
+
+            if (immediate || MODAL_ANIM_MS === 0) {
+                hideBackdrop(true);
+                el?.classList.add('hidden');
+                el?.classList.remove('is-open', 'is-closing');
+                el?.setAttribute('aria-hidden', 'true');
+            } else {
+                el?.classList.add('is-closing');
+                el?.classList.remove('is-open');
+                hideBackdrop(false);
+
+                setTimeout(() => {
+                    el?.classList.add('hidden');
+                    el?.classList.remove('is-closing');
+                    el?.setAttribute('aria-hidden', 'true');
+                }, MODAL_ANIM_MS);
+            }
+
+            openModalId = null;
+            document.documentElement.style.overflow = '';
+            document.body.style.overflow = '';
+        }
+
+        // Open modal buttons
+        document.querySelectorAll('[data-modal-open]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = btn.getAttribute('data-modal-open');
+                if (!id) return;
+                openModal(id);
+            });
+        });
+
+        // Close modal buttons
+        document.querySelectorAll('[data-modal-close]').forEach(btn => {
+            btn.addEventListener('click', closeModal);
+        });
+
+        // Backdrop click to close
+        backdrop.addEventListener('click', closeModal);
+
+        // ESC to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Wire Hire buttons
+        const hireBtn = document.getElementById('hireBtn');
+        const hireBtnMobile = document.getElementById('hireBtnMobile');
+        const hireBtnHero = document.getElementById('hireBtnHero');
+        const servicesCta = document.getElementById('servicesCta');
+        const openHireFromContact = document.getElementById('openHireFromContact');
+
+        [hireBtn, hireBtnMobile, hireBtnHero, servicesCta, openHireFromContact].forEach(b => {
+            b?.addEventListener('click', () => openModal('modalHire'));
+        });
+
+        // Hire form -> WhatsApp
+        const hireForm = document.getElementById('hireForm');
+        const hireError = document.getElementById('hireError');
+
+        hireForm?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            hireError.classList.add('hidden');
+            hireError.textContent = '';
+
+            const name = document.getElementById('hName').value.trim();
+            const email = document.getElementById('hEmail').value.trim();
+            const msg = document.getElementById('hMsg').value.trim();
+
+            if (!name || !email || !msg) {
+                if (window.Swal) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Incomplete details',
+                        text: 'Please complete all fields before sending.'
+                    });
+                } else {
+                    hireError.textContent = 'Please complete all fields before sending.';
+                    hireError.classList.remove('hidden');
+                }
+                return;
+            }
+
+            const base = 'https://wa.me/60138280843';
+            const safeName = encodeURIComponent(name);
+            const safeEmail = encodeURIComponent(email);
+            const safeMsg = encodeURIComponent(msg);
+            const text =
+                `Hi Faiz, this is ${safeName} (${safeEmail}).%0A%0A` +
+                `Project brief:%0A${safeMsg}`;
+
+            window.open(`${base}?text=${text}`, '_blank', 'noopener,noreferrer');
+            closeModal();
+            hireForm.reset();
+
+            if (window.Swal) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Opening WhatsApp…',
+                    showConfirmButton: false,
+                    timer: 1800,
+                    timerProgressBar: true
+                });
+            }
+        });
+
+        // Contact form -> WhatsApp
+        const contactForm = document.getElementById('contactForm');
+        contactForm?.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const fd = new FormData(contactForm);
+            const name = String(fd.get('name') || '').trim();
+            const email = String(fd.get('email') || '').trim();
+            const subject = String(fd.get('subject') || '').trim();
+            const message = String(fd.get('message') || '').trim();
+
+            if (!name || !email || !subject || !message) {
+                if (window.Swal) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Incomplete details',
+                        text: 'Please fill in your name, email, subject, and message.'
+                    });
+                }
+                return;
+            }
+
+            const base = 'https://wa.me/60138280843';
+            const safeName = encodeURIComponent(name);
+            const safeEmail = encodeURIComponent(email);
+            const safeSubject = encodeURIComponent(subject);
+            const safeMessage = encodeURIComponent(message);
+            const text =
+                `Hi Faiz, this is ${safeName} (${safeEmail}).%0A` +
+                `Subject: ${safeSubject}%0A%0A` +
+                `${safeMessage}`;
+
+            window.open(`${base}?text=${text}`, '_blank', 'noopener,noreferrer');
+            contactForm.reset();
+
+            if (window.Swal) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Opening WhatsApp…',
+                    showConfirmButton: false,
+                    timer: 1800,
+                    timerProgressBar: true
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
