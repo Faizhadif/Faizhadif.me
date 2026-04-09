@@ -1992,11 +1992,23 @@
         <div class="flex items-center gap-3">
             <i class="bi bi-plus-lg text-zinc-500"></i>
             <div class="h-px w-24 bg-zinc-800"></div>
-            <span id="userLocation" class="text-[10px] font-mono tracking-widest uppercase text-zinc-600">Detecting location...</span>
+            <span data-user-location class="text-[10px] font-mono tracking-widest uppercase text-zinc-600">Detecting location...</span>
         </div>
         <div class="flex items-center gap-3">
             <div class="h-px w-24 bg-zinc-800"></div>
-            <span id="userClock" class="text-[10px] font-mono tracking-widest text-zinc-600">--:--:-- GMT+0</span>
+            <span data-user-clock class="text-[10px] font-mono tracking-widest text-zinc-600">--:--:-- GMT+0</span>
+        </div>
+    </div>
+
+    <div class="fixed bottom-5 left-4 right-20 z-40 pointer-events-none md:hidden">
+        <div class="flex items-center gap-2">
+            <i class="bi bi-plus-lg text-zinc-500 text-[10px]"></i>
+            <div class="h-px w-16 bg-zinc-800"></div>
+            <span data-user-location class="text-[10px] font-mono tracking-widest uppercase text-zinc-600 truncate">Detecting location...</span>
+        </div>
+        <div class="mt-1 flex items-center gap-2">
+            <div class="h-px w-16 bg-zinc-800"></div>
+            <span data-user-clock class="text-[10px] font-mono tracking-widest text-zinc-600">--:--:-- GMT+0</span>
         </div>
     </div>
 
@@ -2431,9 +2443,9 @@
         }
 
         function initUserRealtimeMeta() {
-            const locationEl = document.getElementById('userLocation');
-            const clockEl = document.getElementById('userClock');
-            if (!locationEl && !clockEl) return;
+            const locationEls = Array.from(document.querySelectorAll('[data-user-location]'));
+            const clockEls = Array.from(document.querySelectorAll('[data-user-clock]'));
+            if (!locationEls.length && !clockEls.length) return;
 
             const locale = navigator.language || 'en-GB';
             const timeFormatter = new Intl.DateTimeFormat(locale, {
@@ -2443,18 +2455,30 @@
                 hour12: false
             });
 
-            if (locationEl) {
-                locationEl.textContent = resolveUserLocationLabel();
+            const setLocation = (value) => {
+                locationEls.forEach((el) => {
+                    el.textContent = value;
+                });
+            };
+
+            const setClock = (value) => {
+                clockEls.forEach((el) => {
+                    el.textContent = value;
+                });
+            };
+
+            if (locationEls.length) {
+                setLocation(resolveUserLocationLabel());
                 resolveIpLocationLabel().then((ipLabel) => {
                     if (!ipLabel) return;
-                    locationEl.textContent = ipLabel;
+                    setLocation(ipLabel);
                 });
             }
 
             const tick = () => {
                 const now = new Date();
-                if (clockEl) {
-                    clockEl.textContent = `${timeFormatter.format(now)} ${formatGmtOffset(now)}`;
+                if (clockEls.length) {
+                    setClock(`${timeFormatter.format(now)} ${formatGmtOffset(now)}`);
                 }
             };
 
