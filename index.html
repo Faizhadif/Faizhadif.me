@@ -1992,11 +1992,11 @@
         <div class="flex items-center gap-3">
             <i class="bi bi-plus-lg text-zinc-500"></i>
             <div class="h-px w-24 bg-zinc-800"></div>
-            <span class="text-[10px] font-mono tracking-widest uppercase text-zinc-600">Kuala Lumpur, Malaysia</span>
+            <span id="userLocation" class="text-[10px] font-mono tracking-widest uppercase text-zinc-600">Detecting location...</span>
         </div>
         <div class="flex items-center gap-3">
             <div class="h-px w-24 bg-zinc-800"></div>
-            <span class="text-[10px] font-mono tracking-widest text-zinc-600">15:39:40 GMT+8</span>
+            <span id="userClock" class="text-[10px] font-mono tracking-widest text-zinc-600">--:--:-- GMT+0</span>
         </div>
     </div>
 
@@ -2342,6 +2342,127 @@
             event.currentTarget.reset();
             closeModal();
         });
+
+        function formatGmtOffset(date) {
+            const offsetMinutes = -date.getTimezoneOffset();
+            const sign = offsetMinutes >= 0 ? '+' : '-';
+            const abs = Math.abs(offsetMinutes);
+            const hours = Math.floor(abs / 60);
+            const minutes = abs % 60;
+            if (minutes === 0) {
+                return `GMT${sign}${hours}`;
+            }
+            return `GMT${sign}${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+        }
+
+        function resolveUserLocationLabel() {
+            const fallback = 'Local timezone';
+            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            if (!timezone) return fallback;
+
+            const timezoneParts = timezone.split('/');
+            const cityRaw = timezoneParts[timezoneParts.length - 1] || '';
+            const city = cityRaw.replace(/_/g, ' ').replace(/\b\w/g, (ch) => ch.toUpperCase());
+
+            const timezoneCountryByZone = {
+                'Asia/Kuala_Lumpur': 'Malaysia',
+                'Asia/Singapore': 'Singapore',
+                'Asia/Jakarta': 'Indonesia',
+                'Asia/Bangkok': 'Thailand',
+                'Asia/Manila': 'Philippines',
+                'Asia/Tokyo': 'Japan',
+                'Asia/Seoul': 'South Korea',
+                'Europe/London': 'United Kingdom',
+                'Europe/Paris': 'France',
+                'Europe/Berlin': 'Germany',
+                'America/New_York': 'United States',
+                'America/Chicago': 'United States',
+                'America/Denver': 'United States',
+                'America/Los_Angeles': 'United States',
+                'Australia/Sydney': 'Australia'
+            };
+
+            const country = timezoneCountryByZone[timezone];
+            if (city && country) {
+                return `${city}, ${country}`;
+            }
+
+            return city || fallback;
+        }
+
+        function sanitizeLocationToken(value) {
+            return String(value || '')
+                .trim()
+                .replace(/[_-]+/g, ' ')
+                .replace(/\s+/g, ' ')
+                .replace(/\b\w/g, (ch) => ch.toUpperCase());
+        }
+
+        async function resolveIpLocationLabel(timeoutMs = 2200) {
+            const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+            let timeoutId = null;
+
+            try {
+                if (controller) {
+                    timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+                }
+
+                const response = await fetch('https://ipwho.is/', {
+                    method: 'GET',
+                    signal: controller ? controller.signal : undefined,
+                    cache: 'no-store'
+                });
+
+                if (!response.ok) return '';
+
+                const data = await response.json();
+                if (!data || data.success === false) return '';
+
+                const city = sanitizeLocationToken(data.city);
+                const country = sanitizeLocationToken(data.country);
+
+                if (city && country) return `${city}, ${country}`;
+                return city || country || '';
+            } catch (_) {
+                return '';
+            } finally {
+                if (timeoutId) clearTimeout(timeoutId);
+            }
+        }
+
+        function initUserRealtimeMeta() {
+            const locationEl = document.getElementById('userLocation');
+            const clockEl = document.getElementById('userClock');
+            if (!locationEl && !clockEl) return;
+
+            const locale = navigator.language || 'en-GB';
+            const timeFormatter = new Intl.DateTimeFormat(locale, {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+
+            if (locationEl) {
+                locationEl.textContent = resolveUserLocationLabel();
+                resolveIpLocationLabel().then((ipLabel) => {
+                    if (!ipLabel) return;
+                    locationEl.textContent = ipLabel;
+                });
+            }
+
+            const tick = () => {
+                const now = new Date();
+                if (clockEl) {
+                    clockEl.textContent = `${timeFormatter.format(now)} ${formatGmtOffset(now)}`;
+                }
+            };
+
+            tick();
+            setInterval(tick, 1000);
+        }
+
+        initUserRealtimeMeta();
     </script>
 
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
