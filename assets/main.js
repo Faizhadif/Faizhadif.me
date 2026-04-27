@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
             smoothTouch: false,
         });
 
+        window.lenis = lenis;
+
         const raf = (time) => {
             lenis.raf(time);
             lenisRafId = requestAnimationFrame(raf);

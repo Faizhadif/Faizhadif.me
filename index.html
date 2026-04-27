@@ -172,6 +172,15 @@
         }
 
         .modal-panel {
+            display: flex;
+            flex-direction: column;
+            max-height: 94vh;
+            width: 100%;
+            background: #121212;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            
             transform: translate3d(0, 8px, 0) scale(0.985);
             opacity: 0;
             will-change: transform, opacity;
@@ -181,6 +190,32 @@
         .modal-shell.is-open .modal-panel {
             transform: translate3d(0, 0, 0) scale(1);
             opacity: 1;
+        }
+
+        .modal-body {
+            flex: 1;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            /* Custom scrollbar */
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+        }
+
+        .modal-body::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .modal-body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .modal-body::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+        }
+
+        .modal-body::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.22);
         }
 
         .reveal-init {
@@ -206,6 +241,92 @@
         .price-card-reveal.is-visible {
             opacity: 1;
             transform: translate3d(0, 0, 0) scale(1);
+        }
+
+        .portfolio-more-shell {
+            position: relative;
+            overflow: hidden;
+            --portfolio-collapsed-height: 700px;
+            height: var(--portfolio-collapsed-height);
+            transition: height 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: height;
+        }
+
+        @media (min-width: 768px) {
+            .portfolio-more-shell {
+                --portfolio-collapsed-height: 560px;
+            }
+        }
+
+        .portfolio-more-panel {
+            position: relative;
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-origin: top center;
+        }
+
+        .portfolio-more-shell.is-collapsed .portfolio-more-panel {
+            transform: translate3d(0, 6px, 0);
+            -webkit-mask-image: linear-gradient(to bottom, 
+                    rgba(0, 0, 0, 1) 0%, 
+                    rgba(0, 0, 0, 1) 40%, 
+                    rgba(0, 0, 0, 0.05) 85%, 
+                    rgba(0, 0, 0, 0) 100%);
+            mask-image: linear-gradient(to bottom, 
+                    rgba(0, 0, 0, 1) 0%, 
+                    rgba(0, 0, 0, 1) 40%, 
+                    rgba(0, 0, 0, 0.05) 85%, 
+                    rgba(0, 0, 0, 0) 100%);
+        }
+
+        /* Expanded bleed area to prevent any backdrop-filter edge artifacts */
+        .portfolio-more-shell::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: linear-gradient(to bottom, 
+                    transparent 0%, 
+                    transparent 40%, 
+                    rgba(14, 14, 14, 0.8) 75%, 
+                    rgba(14, 14, 14, 1) 95%,
+                    rgba(14, 14, 14, 1) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            mask-image: linear-gradient(to bottom, transparent 0%, transparent 40%, black 75%, black 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 40%, black 75%, black 100%);
+            opacity: 1;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            z-index: 10;
+        }
+
+        .portfolio-more-shell.is-expanded::after {
+            opacity: 0;
+        }
+
+        .portfolio-more-cta {
+            position: absolute;
+            left: 50%;
+            bottom: 26px;
+            transform: translateX(-50%);
+            z-index: 20; 
+            pointer-events: auto;
+            width: max-content;
+        }
+
+        .portfolio-more-shell.is-expanded .portfolio-more-cta {
+            position: relative;
+            left: auto;
+            bottom: auto;
+            transform: none;
+            margin: 1.5rem auto 0 auto;
+        }
+
+        .portfolio-more-reveal {
+            display: flex;
+            justify-content: center;
         }
 
         .hero-intro-ready [data-hero-seq] {
@@ -866,7 +987,7 @@
 
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
                             <div>
-                                <div class="text-4xl text-white font-display mb-2">6+</div>
+                                <div class="text-4xl text-white font-display mb-2">7+</div>
                                 <div class="text-xs text-zinc-500 uppercase tracking-wider font-mono">Projects Delivered
                                 </div>
                             </div>
@@ -1210,128 +1331,212 @@
                             <p class="text-xs font-mono text-zinc-600">2024</p>
                         </div>
                     </article>
-                    <article class="group">
-                        <div
-                            class="w-full aspect-[19/9] rounded-[16px] overflow-hidden mb-6 bg-zinc-900 border border-white/[0.05] relative">
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent z-10 opacity-0 group-hover:opacity-100 transition duration-500 flex items-end justify-between p-6 pointer-events-none">
-                                <span class="text-[11px] uppercase tracking-[0.16em] text-white/80">Click image to visit
-                                    website</span>
-                                <span
-                                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#00ff73] text-black text-base"><i
-                                        class="bi bi-box-arrow-up-right"></i></span>
-                            </div>
-                            <a href="https://glombang.com" target="_blank" rel="noopener noreferrer"
-                                aria-label="Visit Glombang website" class="block w-full h-full">
-                                <img src="images/glombang-og.webp" alt="GLOMBANG - Content and Social Media Studio"
-                                    loading="lazy" decoding="async" fetchpriority="low"
-                                    class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
-                            </a>
-                        </div>
-                        <div class="flex justify-between items-start gap-4">
-                            <div>
-                                <h3 class="text-2xl text-white font-medium mb-2">GLOMBANG - Content and Social Media
-                                    Studio</h3>
-                                <p class="text-sm text-zinc-500">Brand Website / Positioning</p>
-                                <p class="text-sm text-zinc-400 mt-2">Brand-forward studio website with strong
-                                    positioning, service clarity, and human tone.</p>
-                                <p class="text-xs text-zinc-500 mt-2">Details: messaging tuned for local businesses with
-                                    stronger brand recall and service focus.</p>
-                                <div class="mt-3 flex flex-wrap gap-2">
-                                    <span
-                                        class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
-                                            class="bi bi-filetype-html"></i>HTML</span>
-                                    <span
-                                        class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
-                                            class="bi bi-filetype-css"></i>CSS</span>
-                                    <span
-                                        class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
-                                            class="bi bi-lightning-charge"></i>Tailwind</span>
-                                    <span
-                                        class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
-                                            class="bi bi-filetype-js"></i>JavaScript</span>
-                                    <span
-                                        class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
-                                            class="bi bi-stars"></i>AOS</span>
+                    </div>
+
+                    <div id="portfolioMoreShell" class="portfolio-more-shell is-collapsed mt-12" data-portfolio-more
+                        aria-expanded="false">
+                    <div class="portfolio-more-panel">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16">
+                            <article class="group">
+                                <div
+                                    class="w-full aspect-[19/9] rounded-[16px] overflow-hidden mb-6 bg-zinc-900 border border-white/[0.05] relative">
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent z-10 opacity-0 group-hover:opacity-100 transition duration-500 flex items-end justify-between p-6 pointer-events-none">
+                                        <span class="text-[11px] uppercase tracking-[0.16em] text-white/80">Click image to visit
+                                            website</span>
+                                        <span
+                                            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#00ff73] text-black text-base"><i
+                                                class="bi bi-box-arrow-up-right"></i></span>
+                                    </div>
+                                    <a href="https://glombang.com" target="_blank" rel="noopener noreferrer"
+                                        aria-label="Visit Glombang website" class="block w-full h-full">
+                                        <img src="images/glombang-og.webp"
+                                            alt="GLOMBANG - Content and Social Media Studio" loading="lazy"
+                                            decoding="async" fetchpriority="low"
+                                            class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
+                                    </a>
                                 </div>
-                                <button type="button" data-modal-open="proj5"
-                                    class="mt-4 inline-flex items-center gap-2.5 text-xs font-semibold text-black transition rounded-full px-4 py-2 bg-[#00ff73] hover:bg-[#33ff8f] shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_10px_30px_rgba(0,255,115,0.28)]">
-                                    <i class="bi bi-info-circle-fill text-sm"></i> Quick Details
-                                    <span
-                                        class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-black/15 text-black"><i
-                                            class="bi bi-arrow-up-right text-[11px]"></i></span>
-                                </button>
-                            </div>
-                            <p class="text-xs font-mono text-zinc-600">2024</p>
-                        </div>
-                    </article>
-                    <article class="group md:mt-24">
-                        <div
-                            class="w-full aspect-[19/9] rounded-[16px] overflow-hidden mb-6 bg-zinc-900 border border-white/[0.05] relative">
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent z-10 opacity-0 group-hover:opacity-100 transition duration-500 flex items-end justify-between p-6 pointer-events-none">
-                                <span class="text-[11px] uppercase tracking-[0.16em] text-white/80">Click image to visit
-                                    website</span>
-                                <span
-                                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#00ff73] text-black text-base"><i
-                                        class="bi bi-box-arrow-up-right"></i></span>
-                            </div>
-                            <a href="https://ridzuanrosli.com" target="_blank" rel="noopener noreferrer"
-                                aria-label="Visit Ridzuan Rosli website" class="block w-full h-full">
-                                <img src="images/ridzuan-rosli.webp" alt="Ridzuan Rosli Personal Portfolio"
-                                    loading="lazy" decoding="async" fetchpriority="low"
-                                    class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
-                            </a>
-                        </div>
-                        <div class="flex justify-between items-start gap-4">
-                            <div>
-                                <h3 class="text-2xl text-white font-medium mb-2">Ridzuan Rosli - Personal Portfolio</h3>
-                                <p class="text-sm text-zinc-500">Personal Branding / Lead Generation Website</p>
-                                <p class="text-sm text-zinc-400 mt-2">Property consultant portfolio with strong
-                                    WhatsApp-first CTA flow, trust sections, listings, and short educational articles.</p>
-                                <p class="text-xs text-zinc-500 mt-2">Audit: clear service segmentation, structured
-                                    authority proof, conversion-focused copy, and consistent local-market positioning.</p>
-                                <div class="mt-3 flex flex-wrap gap-2">
-                                    <span
-                                        class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
-                                            class="bi bi-filetype-html"></i>HTML</span>
-                                    <span
-                                        class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
-                                            class="bi bi-filetype-css"></i>CSS</span>
-                                    <span
-                                        class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
-                                            class="bi bi-filetype-js"></i>JavaScript</span>
-                                    <span
-                                        class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
-                                            class="bi bi-lightning-charge"></i>Tailwind</span>
+                                <div class="flex justify-between items-start gap-4">
+                                    <div>
+                                        <h3 class="text-2xl text-white font-medium mb-2">GLOMBANG - Content and Social
+                                            Media Studio</h3>
+                                        <p class="text-sm text-zinc-500">Brand Website / Positioning</p>
+                                        <p class="text-sm text-zinc-400 mt-2">Brand-forward studio website with strong
+                                            positioning, service clarity, and human tone.</p>
+                                        <p class="text-xs text-zinc-500 mt-2">Details: messaging tuned for local
+                                            businesses with stronger brand recall and service focus.</p>
+                                        <div class="mt-3 flex flex-wrap gap-2">
+                                            <span
+                                                class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
+                                                    class="bi bi-filetype-html"></i>HTML</span>
+                                            <span
+                                                class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
+                                                    class="bi bi-filetype-css"></i>CSS</span>
+                                            <span
+                                                class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
+                                                    class="bi bi-lightning-charge"></i>Tailwind</span>
+                                            <span
+                                                class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
+                                                    class="bi bi-filetype-js"></i>JavaScript</span>
+                                            <span
+                                                class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
+                                                    class="bi bi-stars"></i>AOS</span>
+                                        </div>
+                                        <button type="button" data-modal-open="proj5"
+                                            class="mt-4 inline-flex items-center gap-2.5 text-xs font-semibold text-black transition rounded-full px-4 py-2 bg-[#00ff73] hover:bg-[#33ff8f] shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_10px_30px_rgba(0,255,115,0.28)]">
+                                            <i class="bi bi-info-circle-fill text-sm"></i> Quick Details
+                                            <span
+                                                class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-black/15 text-black"><i
+                                                    class="bi bi-arrow-up-right text-[11px]"></i></span>
+                                        </button>
+                                    </div>
+                                    <p class="text-xs font-mono text-zinc-600">2024</p>
                                 </div>
-                                <button type="button" data-modal-open="proj6"
-                                    class="mt-4 inline-flex items-center gap-2.5 text-xs font-semibold text-black transition rounded-full px-4 py-2 bg-[#00ff73] hover:bg-[#33ff8f] shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_10px_30px_rgba(0,255,115,0.28)]">
-                                    <i class="bi bi-info-circle-fill text-sm"></i> Quick Details
-                                    <span
-                                        class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-black/15 text-black"><i
-                                            class="bi bi-arrow-up-right text-[11px]"></i></span>
-                                </button>
-                            </div>
-                            <p class="text-xs font-mono text-zinc-600">2026</p>
+                            </article>
+                            <article class="group md:mt-24">
+                                <div
+                                    class="w-full aspect-[19/9] rounded-[16px] overflow-hidden mb-6 bg-zinc-900 border border-white/[0.05] relative">
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent z-10 opacity-0 group-hover:opacity-100 transition duration-500 flex items-end justify-between p-6 pointer-events-none">
+                                        <span class="text-[11px] uppercase tracking-[0.16em] text-white/80">Click image to visit
+                                            website</span>
+                                        <span
+                                            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#00ff73] text-black text-base"><i
+                                                class="bi bi-box-arrow-up-right"></i></span>
+                                    </div>
+                                    <a href="https://ridzuanrosli.com" target="_blank" rel="noopener noreferrer"
+                                        aria-label="Visit Ridzuan Rosli website" class="block w-full h-full">
+                                        <img src="images/ridzuan-rosli.webp" alt="Ridzuan Rosli Personal Portfolio"
+                                            loading="lazy" decoding="async" fetchpriority="low"
+                                            class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
+                                    </a>
+                                </div>
+                                <div class="flex justify-between items-start gap-4">
+                                    <div>
+                                        <h3 class="text-2xl text-white font-medium mb-2">Ridzuan Rosli - Personal
+                                            Portfolio</h3>
+                                        <p class="text-sm text-zinc-500">Personal Branding / Lead Generation Website
+                                        </p>
+                                        <p class="text-sm text-zinc-400 mt-2">Property consultant portfolio with strong
+                                            WhatsApp-first CTA flow, trust sections, listings, and short educational
+                                            articles.</p>
+                                        <p class="text-xs text-zinc-500 mt-2">Audit: clear service segmentation,
+                                            structured authority proof, conversion-focused copy, and consistent
+                                            local-market positioning.</p>
+                                        <div class="mt-3 flex flex-wrap gap-2">
+                                            <span
+                                                class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
+                                                    class="bi bi-filetype-html"></i>HTML</span>
+                                            <span
+                                                class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
+                                                    class="bi bi-filetype-css"></i>CSS</span>
+                                            <span
+                                                class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
+                                                    class="bi bi-filetype-js"></i>JavaScript</span>
+                                            <span
+                                                class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
+                                                    class="bi bi-lightning-charge"></i>Tailwind</span>
+                                        </div>
+                                        <button type="button" data-modal-open="proj6"
+                                            class="mt-4 inline-flex items-center gap-2.5 text-xs font-semibold text-black transition rounded-full px-4 py-2 bg-[#00ff73] hover:bg-[#33ff8f] shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_10px_30px_rgba(0,255,115,0.28)]">
+                                            <i class="bi bi-info-circle-fill text-sm"></i> Quick Details
+                                            <span
+                                                class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-black/15 text-black"><i
+                                                    class="bi bi-arrow-up-right text-[11px]"></i></span>
+                                        </button>
+                                    </div>
+                                    <p class="text-xs font-mono text-zinc-600">2026</p>
+                                </div>
+                            </article>
+                            <article class="group">
+                                <div
+                                    class="w-full aspect-[19/9] rounded-[16px] overflow-hidden mb-6 bg-zinc-900 border border-white/[0.05] relative">
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent z-10 opacity-0 group-hover:opacity-100 transition duration-500 flex items-end justify-between p-6 pointer-events-none">
+                                        <span class="text-[11px] uppercase tracking-[0.16em] text-white/80">Click image to visit
+                                            website</span>
+                                        <span
+                                            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#00ff73] text-black text-base"><i
+                                                class="bi bi-box-arrow-up-right"></i></span>
+                                    </div>
+                                    <a href="https://sinuxhq.com" target="_blank" rel="noopener noreferrer"
+                                        aria-label="Visit SinuX website" class="block w-full h-full">
+                                        <img src="images/sinuxhq-og-cover.webp"
+                                            alt="SinuX Spray Water-Based official preview" loading="lazy"
+                                            decoding="async" fetchpriority="low"
+                                            class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
+                                    </a>
+                                </div>
+                                <div class="flex justify-between items-start gap-4">
+                                    <div>
+                                        <h3 class="text-2xl text-white font-medium mb-2">SinuX - Spray Water-Based
+                                            (Official)</h3>
+                                        <p class="text-sm text-zinc-500">Product Landing Page / Checkout Flow</p>
+                                        <p class="text-sm text-zinc-400 mt-2">Direct-response product site with strong
+                                            trust signals, package selection, and checkout-ready order capture.</p>
+                                        <p class="text-xs text-zinc-500 mt-2">Details: built around SinuX spray, using
+                                            a conversion flow with WhatsApp lead capture, email notifications, and
+                                            EasyParcel shipping integration.</p>
+                                        <div class="mt-3 flex flex-wrap gap-2">
+                                            <span
+                                                class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
+                                                    class="bi bi-filetype-php"></i>PHP</span>
+                                            <span
+                                                class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
+                                                    class="bi bi-filetype-html"></i>HTML</span>
+                                            <span
+                                                class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
+                                                    class="bi bi-bootstrap"></i>Bootstrap</span>
+                                            <span
+                                                class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
+                                                    class="bi bi-whatsapp"></i>WasapBot</span>
+                                            <span
+                                                class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
+                                                    class="bi bi-envelope"></i>Email</span>
+                                            <span
+                                                class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full border border-white/[0.14] bg-white/[0.03] text-zinc-300"><i
+                                                    class="bi bi-truck"></i>EasyParcel</span>
+                                        </div>
+                                        <button type="button" data-modal-open="proj7"
+                                            class="mt-4 inline-flex items-center gap-2.5 text-xs font-semibold text-black transition rounded-full px-4 py-2 bg-[#00ff73] hover:bg-[#33ff8f] shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_10px_30px_rgba(0,255,115,0.28)]">
+                                            <i class="bi bi-info-circle-fill text-sm"></i> Quick Details
+                                            <span
+                                                class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-black/15 text-black"><i
+                                                    class="bi bi-arrow-up-right text-[11px]"></i></span>
+                                        </button>
+                                    </div>
+                                    <p class="text-xs font-mono text-zinc-600">Live</p>
+                                </div>
+                            </article>
+                            <article
+                                class="group rounded-[16px] border border-dashed border-white/[0.16] bg-white/[0.015] p-8 flex flex-col justify-center items-center text-center">
+                                <div
+                                    class="w-14 h-14 rounded-2xl border border-white/[0.18] bg-white/[0.03] grid place-items-center text-zinc-300 mb-4">
+                                    <i class="bi bi-rocket-takeoff text-xl"></i>
+                                </div>
+                                <h3 class="text-white font-medium text-xl">Upcoming Project</h3>
+                                <p class="text-sm text-zinc-400 mt-2 max-w-sm">A new build is in progress and will be
+                                    published with a full case study soon.</p>
+                                <span
+                                    class="mt-4 text-[11px] tracking-[0.14em] uppercase text-zinc-500 border border-white/[0.14] rounded-full px-3 py-1">Coming
+                                    Soon</span>
+                            </article>
                         </div>
-                    </article>
-                    <article
-                        class="group rounded-[16px] border border-dashed border-white/[0.16] bg-white/[0.015] p-8 flex flex-col justify-center items-center text-center">
-                        <div
-                            class="w-14 h-14 rounded-2xl border border-white/[0.18] bg-white/[0.03] grid place-items-center text-zinc-300 mb-4">
-                            <i class="bi bi-rocket-takeoff text-xl"></i>
-                        </div>
-                        <h3 class="text-white font-medium text-xl">Upcoming Project</h3>
-                        <p class="text-sm text-zinc-400 mt-2 max-w-sm">A new build is in progress and will be published
-                            with a full case study soon.</p>
-                        <span
-                            class="mt-4 text-[11px] tracking-[0.14em] uppercase text-zinc-500 border border-white/[0.14] rounded-full px-3 py-1">Coming
-                            Soon</span>
-                    </article>
+                    </div>
+                    <div class="portfolio-more-reveal portfolio-more-cta">
+                        <button type="button" data-portfolio-toggle aria-controls="portfolioMoreShell"
+                            aria-expanded="false"
+                            class="inline-flex items-center gap-3 rounded-full border border-white/[0.14] bg-white/[0.05] px-5 py-3 text-sm font-semibold text-white backdrop-blur-xl transition hover:bg-white/[0.08]">
+                            <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#00ff73] text-black">
+                                <i class="bi bi-chevron-down"></i>
+                            </span>
+                            <span data-portfolio-toggle-label>Show more projects</span>
+                        </button>
+                    </div>
+                    </div>
+                    <p class="text-sm text-zinc-500 mt-8 max-w-3xl">If you want a similar system tailored to your business
+                        model, I can propose a clear implementation plan and deliver a clean, scalable build.</p>
                 </div>
-                <p class="text-sm text-zinc-500 mt-8 max-w-3xl">If you want a similar system tailored to your business
-                    model, I can propose a clear implementation plan and deliver a clean, scalable build.</p>
             </div>
         </section>
 
@@ -1744,53 +1949,57 @@
     <section id="modalHire" class="modal-shell fixed inset-0 hidden z-[60]" aria-hidden="true">
         <div class="min-h-full grid place-items-center p-4">
             <div
-                class="modal-panel w-full max-w-lg rounded-3xl bg-[#121212] border border-white/[0.12] p-5 sm:p-6 shadow-2xl">
-                <div class="flex items-start justify-between gap-3">
-                    <div>
-                        <h3 class="text-xl font-bold text-white">Start a Project</h3>
-                        <p class="mt-1 text-zinc-400 text-sm">Share a brief overview. I will respond with suggested
-                            scope and next steps.</p>
+                class="modal-panel w-full max-w-lg rounded-3xl bg-[#121212] border border-white/[0.12] shadow-2xl">
+                <div class="p-5 sm:p-6 border-b border-white/[0.1] shrink-0">
+                    <div class="flex items-start justify-between gap-3">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Start a Project</h3>
+                            <p class="mt-1 text-zinc-400 text-sm">Share a brief overview. I will respond with suggested
+                                scope and next steps.</p>
+                        </div>
+                        <button type="button" data-modal-close
+                            class="w-10 h-10 grid place-items-center rounded-xl border border-white/[0.16] bg-white/[0.04] hover:bg-white/[0.1] text-white transition"
+                            aria-label="Close">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
                     </div>
-                    <button type="button" data-modal-close
-                        class="w-10 h-10 grid place-items-center rounded-xl border border-white/[0.16] bg-white/[0.04] hover:bg-white/[0.1] text-white transition"
-                        aria-label="Close">
-                        <i class="bi bi-x-lg"></i>
-                    </button>
                 </div>
 
-                <form id="hireForm" class="mt-4 grid gap-3">
-                    <div>
-                        <label class="text-sm font-semibold text-white">Name</label>
-                        <input id="hName" type="text"
-                            class="mt-2 w-full rounded-xl bg-white/5 border border-white/[0.15] px-4 py-3 placeholder:text-white/50 text-white"
-                            placeholder="Your name" required>
-                    </div>
-                    <div>
-                        <label class="text-sm font-semibold text-white">Email</label>
-                        <input id="hEmail" type="email"
-                            class="mt-2 w-full rounded-xl bg-white/5 border border-white/[0.15] px-4 py-3 placeholder:text-white/50 text-white"
-                            placeholder="you@mail.com" required>
-                    </div>
-                    <div>
-                        <label class="text-sm font-semibold text-white">Project Brief</label>
-                        <textarea id="hMsg" rows="5"
-                            class="mt-2 w-full rounded-xl bg-white/5 border border-white/[0.15] px-4 py-3 placeholder:text-white/50 text-white"
-                            placeholder="Goals, timeline, and key requirements" required></textarea>
-                    </div>
+                <div class="modal-body p-5 sm:p-6" data-lenis-prevent>
+                    <form id="hireForm" class="grid gap-3">
+                        <div>
+                            <label class="text-sm font-semibold text-white">Name</label>
+                            <input id="hName" type="text"
+                                class="mt-2 w-full rounded-xl bg-white/5 border border-white/[0.15] px-4 py-3 placeholder:text-white/50 text-white"
+                                placeholder="Your name" required>
+                        </div>
+                        <div>
+                            <label class="text-sm font-semibold text-white">Email</label>
+                            <input id="hEmail" type="email"
+                                class="mt-2 w-full rounded-xl bg-white/5 border border-white/[0.15] px-4 py-3 placeholder:text-white/50 text-white"
+                                placeholder="you@mail.com" required>
+                        </div>
+                        <div>
+                            <label class="text-sm font-semibold text-white">Project Brief</label>
+                            <textarea id="hMsg" rows="5"
+                                class="mt-2 w-full rounded-xl bg-white/5 border border-white/[0.15] px-4 py-3 placeholder:text-white/50 text-white"
+                                placeholder="Goals, timeline, and key requirements" required></textarea>
+                        </div>
 
-                    <div class="mt-1 flex flex-col sm:flex-row gap-3">
-                        <button type="submit"
-                            class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition text-white">
-                            <i class="bi bi-whatsapp"></i>
-                            <span>Send via WhatsApp</span>
-                        </button>
-                        <button type="button" data-modal-close
-                            class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 border border-white/[0.16] transition text-white">
-                            <i class="bi bi-x-circle"></i>
-                            <span>Close</span>
-                        </button>
-                    </div>
-                </form>
+                        <div class="mt-1 flex flex-col sm:flex-row gap-3">
+                            <button type="submit"
+                                class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition text-white">
+                                <i class="bi bi-whatsapp"></i>
+                                <span>Send via WhatsApp</span>
+                            </button>
+                            <button type="button" data-modal-close
+                                class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 border border-white/[0.16] transition text-white">
+                                <i class="bi bi-x-circle"></i>
+                                <span>Close</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -1805,7 +2014,7 @@
                         class="w-10 h-10 grid place-items-center rounded-xl border border-white/[0.16] bg-white/[0.04] hover:bg-white/[0.1] text-white transition"
                         aria-label="Close"><i class="bi bi-x-lg"></i></button>
                 </div>
-                <div class="p-5 sm:p-6 grid gap-4">
+                <div class="modal-body p-5 sm:p-6 grid gap-4" data-lenis-prevent>
                     <img src="images/bannerkangaq-ecommerce.webp" alt="Banner Kangaq project preview" loading="lazy"
                         decoding="async" fetchpriority="low"
                         class="w-full rounded-2xl border border-white/[0.12] object-cover">
@@ -1836,7 +2045,7 @@
                         class="w-10 h-10 grid place-items-center rounded-xl border border-white/[0.16] bg-white/[0.04] hover:bg-white/[0.1] text-white transition"
                         aria-label="Close"><i class="bi bi-x-lg"></i></button>
                 </div>
-                <div class="p-5 sm:p-6 grid gap-4">
+                <div class="modal-body p-5 sm:p-6 grid gap-4" data-lenis-prevent>
                     <img src="images/medigreen-ecommerce.webp" alt="MEDIgreen project preview" loading="lazy"
                         decoding="async" fetchpriority="low"
                         class="w-full rounded-2xl border border-white/[0.12] object-cover">
@@ -1867,7 +2076,7 @@
                         class="w-10 h-10 grid place-items-center rounded-xl border border-white/[0.16] bg-white/[0.04] hover:bg-white/[0.1] text-white transition"
                         aria-label="Close"><i class="bi bi-x-lg"></i></button>
                 </div>
-                <div class="p-5 sm:p-6 grid gap-4">
+                <div class="modal-body p-5 sm:p-6 grid gap-4" data-lenis-prevent>
                     <img src="images/dheducation.webp" alt="DH Education project preview" loading="lazy"
                         decoding="async" fetchpriority="low"
                         class="w-full rounded-2xl border border-white/[0.12] object-cover">
@@ -1898,7 +2107,7 @@
                         class="w-10 h-10 grid place-items-center rounded-xl border border-white/[0.16] bg-white/[0.04] hover:bg-white/[0.1] text-white transition"
                         aria-label="Close"><i class="bi bi-x-lg"></i></button>
                 </div>
-                <div class="p-5 sm:p-6 grid gap-4">
+                <div class="modal-body p-5 sm:p-6 grid gap-4" data-lenis-prevent>
                     <img src="images/tahfiz-mahir-jaya.webp" alt="Tahfiz Mahir Jaya website preview" loading="lazy"
                         decoding="async" fetchpriority="low"
                         class="w-full rounded-2xl border border-white/[0.12] object-cover">
@@ -1929,7 +2138,7 @@
                         class="w-10 h-10 grid place-items-center rounded-xl border border-white/[0.16] bg-white/[0.04] hover:bg-white/[0.1] text-white transition"
                         aria-label="Close"><i class="bi bi-x-lg"></i></button>
                 </div>
-                <div class="p-5 sm:p-6 grid gap-4">
+                <div class="modal-body p-5 sm:p-6 grid gap-4" data-lenis-prevent>
                     <img src="images/glombang-og.webp" alt="GLOMBANG website preview" loading="lazy" decoding="async"
                         fetchpriority="low" class="w-full rounded-2xl border border-white/[0.12] object-cover">
                     <p class="text-sm text-zinc-400">A studio website built to make the brand feel immediate and
@@ -1963,7 +2172,7 @@
                         class="w-10 h-10 grid place-items-center rounded-xl border border-white/[0.16] bg-white/[0.04] hover:bg-white/[0.1] text-white transition"
                         aria-label="Close"><i class="bi bi-x-lg"></i></button>
                 </div>
-                <div class="p-5 sm:p-6 grid gap-4">
+                <div class="modal-body p-5 sm:p-6 grid gap-4" data-lenis-prevent>
                     <img src="images/ridzuan-rosli.webp" alt="Ridzuan Rosli personal portfolio preview" loading="lazy"
                         decoding="async" fetchpriority="low"
                         class="w-full rounded-2xl border border-white/[0.12] object-cover">
@@ -1976,6 +2185,43 @@
                         JavaScript, Tailwind.</p>
                     <div class="flex flex-col sm:flex-row gap-3">
                         <a href="https://ridzuanrosli.com" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 border border-white/[0.16] transition text-white"><i
+                                class="bi bi-box-arrow-up-right"></i><span>Visit Website</span></a>
+                        <button type="button" data-modal-open="modalHire"
+                            class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-emerald-500/90 hover:bg-emerald-500 transition text-white"><i
+                                class="bi bi-send"></i><span>Start a Similar Project</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="proj7" class="modal-shell fixed inset-0 hidden z-[60]" aria-hidden="true">
+        <div class="min-h-full grid place-items-center p-4">
+            <div
+                class="modal-panel w-full max-w-3xl rounded-3xl overflow-hidden bg-[#121212] border border-white/[0.12] shadow-2xl">
+                <div class="flex items-center justify-between p-5 border-b border-white/[0.1]">
+                    <h3 class="font-bold text-lg text-white">SinuX - Spray Water-Based (Official)</h3>
+                    <button type="button" data-modal-close
+                        class="w-10 h-10 grid place-items-center rounded-xl border border-white/[0.16] bg-white/[0.04] hover:bg-white/[0.1] text-white transition"
+                        aria-label="Close"><i class="bi bi-x-lg"></i></button>
+                </div>
+                <div class="modal-body p-5 sm:p-6 grid gap-4" data-lenis-prevent>
+                    <img src="images/sinuxhq-og-cover.png" alt="SinuX official landing page preview" loading="lazy"
+                        decoding="async" fetchpriority="low"
+                        class="w-full rounded-2xl border border-white/[0.12] object-cover">
+                    <p class="text-sm text-zinc-400">A direct-response product site for SinuX spray, focused on quick
+                        trust building, package selection, and a smooth order flow for buyers who want to act fast.</p>
+                    <p class="text-sm text-zinc-400">The public flow highlights SSM registration, product reassurance,
+                        60K bottles sold, package tiers, shipping notes, and a checkout form that captures email,
+                        WhatsApp number, address, state, and postcode.</p>
+                    <p class="text-sm text-zinc-400"><span class="font-semibold text-white">Integration layer:</span>
+                        WasapBot for WhatsApp lead capture, email for order notification, and EasyParcel for shipping
+                        handling.</p>
+                    <p class="text-sm text-zinc-400"><span class="font-semibold text-white">Stack:</span> PHP,
+                        Bootstrap, HTML.</p>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <a href="https://sinuxhq.com" target="_blank" rel="noopener noreferrer"
                             class="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold bg-white/10 hover:bg-white/15 border border-white/[0.16] transition text-white"><i
                                 class="bi bi-box-arrow-up-right"></i><span>Visit Website</span></a>
                         <button type="button" data-modal-open="modalHire"
@@ -2266,6 +2512,99 @@
             root.classList.remove('overflow-hidden');
             document.body.classList.remove('overflow-hidden');
             document.dispatchEvent(new CustomEvent('modal:close'));
+        }
+
+        const portfolioMoreShell = document.getElementById('portfolioMoreShell');
+        const portfolioToggleBtn = document.querySelector('[data-portfolio-toggle]');
+        const portfolioToggleLabel = document.querySelector('[data-portfolio-toggle-label]');
+
+        function setPortfolioExpanded(isExpanded) {
+            if (!portfolioMoreShell || !portfolioToggleBtn) return;
+
+            if (isExpanded) {
+                // Expanding logic
+                portfolioMoreShell.classList.remove('is-collapsed');
+                portfolioMoreShell.classList.add('is-expanded');
+                
+                // Calculate actual dynamic height
+                const fullHeight = portfolioMoreShell.scrollHeight + 'px';
+                portfolioMoreShell.style.height = fullHeight;
+                
+                // Notify Lenis of the height change to prevent scroll desync
+                // Use a small delay to ensure the browser has started the reflow
+                requestAnimationFrame(() => {
+                    window.lenis?.resize();
+                });
+
+                // Reset height to auto after transition ends for responsiveness
+                portfolioMoreShell.addEventListener('transitionend', function handler(e) {
+                    if (e.propertyName === 'height' && portfolioMoreShell.classList.contains('is-expanded')) {
+                        portfolioMoreShell.style.height = 'auto';
+                        window.lenis?.resize();
+                        portfolioMoreShell.removeEventListener('transitionend', handler);
+                    }
+                }, { once: true });
+            } else {
+                // Collapsing logic
+                // Explicitly set height to current expanded size before collapsing to trigger transition
+                portfolioMoreShell.style.height = portfolioMoreShell.scrollHeight + 'px';
+                
+                // Force browser reflow to acknowledge the explicit height
+                portfolioMoreShell.offsetHeight;
+                
+                portfolioMoreShell.classList.remove('is-expanded');
+                portfolioMoreShell.classList.add('is-collapsed');
+                
+                // Remove explicit height so it shrinks to the CSS variable height
+                portfolioMoreShell.style.height = '';
+                
+                // Notify Lenis after a short delay
+                setTimeout(() => window.lenis?.resize(), 50);
+            }
+
+            // Accessibility & UI updates
+            portfolioMoreShell.setAttribute('aria-expanded', String(isExpanded));
+            portfolioToggleBtn.setAttribute('aria-expanded', String(isExpanded));
+
+            if (portfolioToggleLabel) {
+                portfolioToggleLabel.textContent = isExpanded ? 'Show less' : 'Show more projects';
+            }
+
+            const icon = portfolioToggleBtn.querySelector('i');
+            if (icon) {
+                icon.className = isExpanded ? 'bi bi-chevron-up' : 'bi bi-chevron-down';
+            }
+        }
+
+        if (portfolioToggleBtn && portfolioMoreShell) {
+            // Recalculate height safely on resize if expanded
+            window.addEventListener('resize', () => {
+                if (portfolioMoreShell.classList.contains('is-expanded')) {
+                    portfolioMoreShell.style.height = 'auto';
+                    window.lenis?.resize();
+                }
+            });
+
+            portfolioToggleBtn.addEventListener('click', () => {
+                const isExpanded = portfolioMoreShell.classList.contains('is-expanded');
+                setPortfolioExpanded(!isExpanded);
+
+                // Scroll to the top of the shell when collapsing so users don't lose their place
+                if (isExpanded) {
+                    if (window.lenis) {
+                        // For collapsing, we use a slower duration to match the height transition
+                        window.lenis.scrollTo(portfolioMoreShell, { offset: -120, duration: 1.4, easing: (t) => Math.min(1, 1.001 * t) });
+                    } else {
+                        portfolioMoreShell.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                } else {
+                    // When expanding, just a quick resize notify to be safe
+                    window.lenis?.resize();
+                }
+            });
         }
 
         document.addEventListener('click', (event) => {
