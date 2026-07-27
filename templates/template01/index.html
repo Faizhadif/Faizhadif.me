@@ -8,9 +8,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/style-custom.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Dynamic Stylesheet Loader (Hides CSS Links from Downloader Extensions) -->
+    <script>
+        (function() {
+            const styles = [
+                'assets/css/style.css',
+                'assets/css/style-custom.css',
+                'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css'
+            ];
+            styles.forEach(url => {
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = url;
+                document.head.appendChild(link);
+            });
+        })();
+    </script>
 
     <!-- Meta Tags / SEO -->
     <meta name="description" content="Dapatkan bimbingan pakar hartanah. Beli, jual atau semak nilai hartanah anda dengan faizhadif.me - Premium Real Estate Specialist.">
@@ -114,6 +127,20 @@
                     console.clear();
                 }
             }, 1000);
+
+            // 6. Anti-Extension Downloader Trap & DOM Poisoning
+            const observer = new MutationObserver(() => {
+                const targetHTML = document.documentElement.outerHTML.toLowerCase();
+                if (
+                    targetHTML.includes('singlefile') ||
+                    targetHTML.includes('web-page-downloader') ||
+                    targetHTML.includes('resource-saver') ||
+                    targetHTML.includes('data-singlefile')
+                ) {
+                    document.body.innerHTML = '<div style="padding:100px 20px;text-align:center;font-family:sans-serif;"><h2>Protected Content</h2><p>This webpage is protected against unauthorized downloader extensions.</p></div>';
+                }
+            });
+            observer.observe(document.documentElement, { attributes: true, childList: true, subtree: true });
         })();
     </script>
 </head>
