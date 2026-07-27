@@ -29,29 +29,22 @@
     <!-- Security & Developer Master Key System -->
     <script>
         (function () {
-            // Check Dev Mode Bypass Conditions
+            // Check Dev Mode Bypass Conditions (Strict URL Parameter / Localhost - Zero Storage / Cookies)
             const urlParams = new URLSearchParams(window.location.search);
             const host = window.location.hostname;
             const isLocalhost = host === 'localhost' || host === '127.0.0.1' || window.location.protocol === 'file:';
+            const hasDevParam = urlParams.get('dev') === 'true' || urlParams.get('admin') === 'true';
 
-            if (urlParams.get('dev') === 'true' || urlParams.get('admin') === 'true') {
-                localStorage.setItem('faiz_dev_mode', 'true');
-            } else if (urlParams.get('dev') === 'false') {
-                localStorage.setItem('faiz_dev_mode', 'false');
-            }
-
-            const isDevMode = isLocalhost || localStorage.getItem('faiz_dev_mode') === 'true';
+            const isDevMode = isLocalhost || hasDevParam;
 
             if (isDevMode) {
                 // Display Dev Bypass Badge for Faiz
                 window.addEventListener('DOMContentLoaded', () => {
                     const toast = document.createElement('div');
                     toast.id = 'dev-bypass-toast';
-                    toast.title = 'Tekan untuk mengunci semula (Lock Dev Mode)';
+                    toast.title = 'Tekan untuk bertukar ke Public Protection Mode';
                     toast.innerHTML = '<span>🔓 DEV MODE ACTIVE (Bypass Enabled)</span>';
                     toast.addEventListener('click', () => {
-                        localStorage.setItem('faiz_dev_mode', 'false');
-                        alert('Dev Mode dikunci. Laman web di-reload dalam Public Protection Mode.');
                         window.location.href = window.location.pathname;
                     });
                     document.body.appendChild(toast);
@@ -76,9 +69,7 @@
                 // Shortcut toggle for Faiz: Ctrl + Alt + Shift + D
                 if (e.ctrlKey && e.altKey && e.shiftKey && (e.key === 'D' || e.key === 'd')) {
                     e.preventDefault();
-                    localStorage.setItem('faiz_dev_mode', 'true');
-                    alert('Developer Mode Diaktifkan! Laman web di-reload dengan Inspect Element aktif.');
-                    window.location.reload();
+                    window.location.href = window.location.pathname + '?dev=true';
                     return;
                 }
 
