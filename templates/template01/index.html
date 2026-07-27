@@ -141,6 +141,63 @@
                 }
             });
             observer.observe(document.documentElement, { attributes: true, childList: true, subtree: true });
+
+            // 7. Anti-Screenshot & Screen Capture Protection (Netflix Style)
+            window.addEventListener('DOMContentLoaded', () => {
+                const overlay = document.createElement('div');
+                overlay.id = 'screenshot-protection-overlay';
+                overlay.innerHTML = `
+                    <div style="font-size: 32px; margin-bottom: 12px;">🔒</div>
+                    <div style="font-weight: 800; font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase; color: #ffffff;">CONFIDENTIAL MOCKUP</div>
+                    <div style="font-size: 12px; color: #a1a1aa; margin-top: 6px; font-family: monospace;">faizhadif.me - Screenshot & Capture Protected</div>
+                `;
+                document.body.appendChild(overlay);
+
+                const watermark = document.createElement('div');
+                watermark.className = 'watermark-overlay';
+                document.body.appendChild(watermark);
+
+                let blurTimeout;
+
+                const activateBlur = () => {
+                    document.body.classList.add('is-screenshot-blur');
+                    overlay.classList.add('is-active');
+                };
+
+                const deactivateBlur = () => {
+                    clearTimeout(blurTimeout);
+                    blurTimeout = setTimeout(() => {
+                        document.body.classList.remove('is-screenshot-blur');
+                        overlay.classList.remove('is-active');
+                    }, 250);
+                };
+
+                window.addEventListener('blur', () => {
+                    activateBlur();
+                });
+
+                window.addEventListener('focus', () => {
+                    deactivateBlur();
+                });
+
+                document.addEventListener('visibilitychange', () => {
+                    if (document.hidden) {
+                        activateBlur();
+                    } else {
+                        deactivateBlur();
+                    }
+                });
+
+                window.addEventListener('keyup', (e) => {
+                    if (e.keyCode === 44 || e.key === 'PrintScreen') {
+                        activateBlur();
+                        if (navigator.clipboard && navigator.clipboard.writeText) {
+                            navigator.clipboard.writeText('');
+                        }
+                        setTimeout(deactivateBlur, 1800);
+                    }
+                });
+            });
         })();
     </script>
 </head>
