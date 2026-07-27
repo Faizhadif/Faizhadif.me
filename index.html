@@ -1095,18 +1095,29 @@
 
         <section id="portfolio" class="py-24 sm:py-32 px-6 md:px-12 xl:px-24 max-w-[1400px] mx-auto">
             <div id="works">
-                <div class="flex flex-col sm:flex-row justify-between items-end mb-16 gap-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
                     <div>
-                        <p class="text-[#00ff73] text-xs font-mono tracking-widest uppercase mb-4">03. Selected Works
-                        </p>
+                        <p class="text-[#00ff73] text-xs font-mono tracking-widest uppercase mb-4">02. Selected Works</p>
                         <h2 class="text-4xl sm:text-5xl font-display text-white tracking-tight">Case Studies.</h2>
-                        <p class="text-sm text-zinc-400 mt-3 max-w-2xl">Selected projects that demonstrate strong UX,
-                            clean UI, and production-ready delivery.</p>
+                        <p class="text-sm text-zinc-400 mt-3 max-w-2xl">Selected projects that demonstrate strong UX, clean UI, and production-ready delivery.</p>
+                    </div>
+
+                    <!-- PORTFOLIO FILTER TABS -->
+                    <div class="flex flex-wrap items-center gap-1.5 p-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] shrink-0" role="tablist">
+                        <button type="button" data-portfolio-filter="all" class="portfolio-tab-btn px-4 py-2 rounded-full text-xs font-mono font-semibold bg-[#00ff73] text-black transition-all duration-200">
+                            All Work <span class="ml-1 opacity-70">(9)</span>
+                        </button>
+                        <button type="button" data-portfolio-filter="live" class="portfolio-tab-btn px-4 py-2 rounded-full text-xs font-mono font-medium text-zinc-400 hover:text-white transition-all duration-200">
+                            Live Websites <span class="ml-1 opacity-70">(7)</span>
+                        </button>
+                        <button type="button" data-portfolio-filter="mockup" class="portfolio-tab-btn px-4 py-2 rounded-full text-xs font-mono font-medium text-zinc-400 hover:text-white transition-all duration-200">
+                            UI/UX Mockups <span class="ml-1 opacity-70">(2)</span>
+                        </button>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16">
-                    <article class="group">
+                    <article class="group portfolio-item-card" data-category="live">
                         <div
                             class="w-full aspect-[19/9] rounded-[16px] overflow-hidden mb-6 bg-zinc-900 border border-white/[0.05] relative">
                             <div
@@ -1165,7 +1176,7 @@
                             <p class="text-xs font-mono text-zinc-600">2025</p>
                         </div>
                     </article>
-                    <article class="group md:mt-24">
+                    <article class="group md:mt-24 portfolio-item-card" data-category="live">
                         <div
                             class="w-full aspect-[19/9] rounded-[16px] overflow-hidden mb-6 bg-zinc-900 border border-white/[0.05] relative">
                             <div
@@ -1220,7 +1231,7 @@
                             <p class="text-xs font-mono text-zinc-600">2024</p>
                         </div>
                     </article>
-                    <article class="group">
+                    <article class="group portfolio-item-card" data-category="live">
                         <div
                             class="w-full aspect-[19/9] rounded-[16px] overflow-hidden mb-6 bg-zinc-900 border border-white/[0.05] relative">
                             <div
@@ -1268,7 +1279,7 @@
                             <p class="text-xs font-mono text-zinc-600">2024</p>
                         </div>
                     </article>
-                    <article class="group md:mt-24">
+                    <article class="group md:mt-24 portfolio-item-card" data-category="live">
                         <div
                             class="w-full aspect-[19/9] rounded-[16px] overflow-hidden mb-6 bg-zinc-900 border border-white/[0.05] relative">
                             <div
@@ -1329,7 +1340,7 @@
                     aria-expanded="false">
                     <div class="portfolio-more-panel">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16">
-                            <article class="group">
+                            <article class="group portfolio-item-card" data-category="live">
                                 <div
                                     class="w-full aspect-[19/9] rounded-[16px] overflow-hidden mb-6 bg-zinc-900 border border-white/[0.05] relative">
                                     <div
@@ -1386,7 +1397,7 @@
                                     <p class="text-xs font-mono text-zinc-600">2024</p>
                                 </div>
                             </article>
-                            <article class="group md:mt-24">
+                            <article class="group md:mt-24 portfolio-item-card" data-category="live">
                                 <div
                                     class="w-full aspect-[19/9] rounded-[16px] overflow-hidden mb-6 bg-zinc-900 border border-white/[0.05] relative">
                                     <div
@@ -1442,7 +1453,7 @@
                                     <p class="text-xs font-mono text-zinc-600">2026</p>
                                 </div>
                             </article>
-                            <article class="group">
+                            <article class="group portfolio-item-card" data-category="live">
                                 <div
                                     class="w-full aspect-[19/9] rounded-[16px] overflow-hidden mb-6 bg-zinc-900 border border-white/[0.05] relative">
                                     <div
@@ -1503,18 +1514,42 @@
                                     <p class="text-xs font-mono text-zinc-600">Live</p>
                                 </div>
                             </article>
-                            <article
-                                class="group rounded-[16px] border border-dashed border-white/[0.16] bg-white/[0.015] p-8 flex flex-col justify-center items-center text-center">
-                                <div
-                                    class="w-14 h-14 rounded-2xl border border-white/[0.18] bg-white/[0.03] grid place-items-center text-zinc-300 mb-4">
-                                    <i class="bi bi-rocket-takeoff text-xl"></i>
+                            <!-- MOCKUP CARD 1 (PLACEHOLDER) -->
+                            <article class="group portfolio-item-card" data-category="mockup">
+                                <div class="w-full aspect-[19/9] rounded-[16px] overflow-hidden mb-6 bg-zinc-900 border border-dashed border-white/[0.15] relative flex flex-col items-center justify-center text-center p-6 group-hover:border-[#00ff73]/40 transition">
+                                    <div class="w-12 h-12 rounded-2xl border border-white/10 bg-white/[0.03] grid place-items-center text-emerald-400 mb-3">
+                                        <i class="bi bi-palette text-2xl"></i>
+                                    </div>
+                                    <span class="text-xs font-mono font-bold tracking-widest text-emerald-400 uppercase">UI/UX Mockup #1</span>
+                                    <p class="text-xs text-zinc-500 mt-1">Design shot placeholder</p>
                                 </div>
-                                <h3 class="text-white font-medium text-xl">Upcoming Project</h3>
-                                <p class="text-sm text-zinc-400 mt-2 max-w-sm">A new build is in progress and will be
-                                    published with a full case study soon.</p>
-                                <span
-                                    class="mt-4 text-[11px] tracking-[0.14em] uppercase text-zinc-500 border border-white/[0.14] rounded-full px-3 py-1">Coming
-                                    Soon</span>
+                                <div class="flex justify-between items-start gap-4">
+                                    <div>
+                                        <h3 class="text-2xl text-white font-medium mb-2">UI/UX Design Mockup #1</h3>
+                                        <p class="text-sm text-emerald-400 font-mono">Figma High-Fidelity UI Concept</p>
+                                        <p class="text-sm text-zinc-400 mt-2">Custom UI design system and high-fidelity prototype.</p>
+                                    </div>
+                                    <p class="text-xs font-mono text-zinc-600">Figma</p>
+                                </div>
+                            </article>
+
+                            <!-- MOCKUP CARD 2 (PLACEHOLDER) -->
+                            <article class="group md:mt-24 portfolio-item-card" data-category="mockup">
+                                <div class="w-full aspect-[19/9] rounded-[16px] overflow-hidden mb-6 bg-zinc-900 border border-dashed border-white/[0.15] relative flex flex-col items-center justify-center text-center p-6 group-hover:border-[#00ff73]/40 transition">
+                                    <div class="w-12 h-12 rounded-2xl border border-white/10 bg-white/[0.03] grid place-items-center text-emerald-400 mb-3">
+                                        <i class="bi bi-phone text-2xl"></i>
+                                    </div>
+                                    <span class="text-xs font-mono font-bold tracking-widest text-emerald-400 uppercase">UI/UX Mockup #2</span>
+                                    <p class="text-xs text-zinc-500 mt-1">Design shot placeholder</p>
+                                </div>
+                                <div class="flex justify-between items-start gap-4">
+                                    <div>
+                                        <h3 class="text-2xl text-white font-medium mb-2">UI/UX Design Mockup #2</h3>
+                                        <p class="text-sm text-emerald-400 font-mono">Figma Mobile & Web Concept</p>
+                                        <p class="text-sm text-zinc-400 mt-2">Custom mobile app and web application interface design.</p>
+                                    </div>
+                                    <p class="text-xs font-mono text-zinc-600">Figma</p>
+                                </div>
                             </article>
                         </div>
                     </div>
@@ -1539,8 +1574,7 @@
         <section id="pricingScene" class="py-24 sm:py-32 bg-zinc-950 border-y border-white/[0.03]">
             <div class="max-w-[1400px] mx-auto px-6 md:px-12 xl:px-24">
                 <div class="text-center mb-16">
-                    <p class="text-[#00ff73] text-xs font-mono tracking-widest uppercase mb-4">Transparent starting
-                        points</p>
+                    <p class="text-[#00ff73] text-xs font-mono tracking-widest uppercase mb-4">03. Transparent Pricing</p>
                     <h2 class="text-4xl sm:text-5xl font-display text-white tracking-tight">Prices?</h2>
                     <p class="text-sm text-zinc-400 mt-3 max-w-2xl mx-auto">Common ranges below. Final quotes depend on
                         scope, pages, and feature complexity.</p>
@@ -1593,7 +1627,7 @@
 
         <section id="skills" class="py-24 sm:py-32 px-6 md:px-12 xl:px-24 max-w-[1400px] mx-auto">
             <div class="mb-10">
-                <p class="text-[#00ff73] text-xs font-mono tracking-widest uppercase mb-4">Skills</p>
+                <p class="text-[#00ff73] text-xs font-mono tracking-widest uppercase mb-4">04. Technical Toolkit</p>
                 <h2 class="text-4xl sm:text-5xl font-display text-white tracking-tight">Skills</h2>
                 <p class="mt-4 max-w-2xl text-sm text-zinc-400">A practical toolkit for building responsive interfaces,
                     backend logic, and production-ready workflows.</p>
@@ -1687,7 +1721,7 @@
 
         <section id="services" class="py-24 sm:py-32 px-6 md:px-12 xl:px-24 max-w-[1400px] mx-auto">
             <div class="mb-16">
-                <p class="text-[#00ff73] text-xs font-mono tracking-widest uppercase mb-4">04. Core Disciplines</p>
+                <p class="text-[#00ff73] text-xs font-mono tracking-widest uppercase mb-4">05. Core Disciplines</p>
                 <h2 class="text-4xl sm:text-5xl font-display text-white tracking-tight">How I create value.</h2>
             </div>
 
@@ -1745,6 +1779,7 @@
 
         <section id="education" class="py-24 sm:py-32 px-6 md:px-12 xl:px-24 max-w-[1400px] mx-auto">
             <div class="text-center mb-12">
+                <p class="text-[#00ff73] text-xs font-mono tracking-widest uppercase mb-4">06. Academic Background</p>
                 <h2 class="text-4xl sm:text-5xl font-display text-white tracking-tight">Education</h2>
                 <p class="mt-4 text-sm text-zinc-400 max-w-2xl mx-auto">Formal training that strengthened system
                     thinking, software fundamentals, and practical delivery.</p>
@@ -1812,6 +1847,7 @@
         <section id="certificates" class="py-24 sm:py-32 bg-zinc-950 border-y border-white/[0.03]">
             <div class="max-w-[1400px] mx-auto px-6 md:px-12 xl:px-24">
                 <div class="mb-12">
+                    <p class="text-[#00ff73] text-xs font-mono tracking-widest uppercase mb-4">07. Verified Certifications</p>
                     <h2 class="text-4xl sm:text-5xl font-display text-white tracking-tight">Certificates</h2>
                     <p class="mt-4 text-sm text-zinc-400 max-w-2xl">Professional training and recognition that support
                         real-world delivery and credibility.</p>
@@ -3022,6 +3058,48 @@
             document.addEventListener('DOMContentLoaded', initHeaderScrollSpy);
         } else {
             initHeaderScrollSpy();
+        }
+
+        function initPortfolioFilter() {
+            const filterBtns = Array.from(document.querySelectorAll('[data-portfolio-filter]'));
+            const cards = Array.from(document.querySelectorAll('[data-category]'));
+            if (!filterBtns.length || !cards.length) return;
+
+            filterBtns.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const filterValue = btn.getAttribute('data-portfolio-filter');
+
+                    filterBtns.forEach((b) => {
+                        b.classList.remove('active', 'bg-[#00ff73]', 'text-black', 'font-semibold');
+                        b.classList.add('text-zinc-400', 'font-medium');
+                    });
+                    btn.classList.add('active', 'bg-[#00ff73]', 'text-black', 'font-semibold');
+                    btn.classList.remove('text-zinc-400', 'font-medium');
+
+                    cards.forEach((card) => {
+                        const category = card.getAttribute('data-category');
+                        if (filterValue === 'all' || category === filterValue) {
+                            card.style.display = '';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+
+                    const portfolioMoreShell = document.getElementById('portfolioMoreShell');
+                    if (portfolioMoreShell && filterValue === 'mockup') {
+                        portfolioMoreShell.classList.remove('is-collapsed');
+                        portfolioMoreShell.classList.add('is-expanded');
+                        portfolioMoreShell.style.height = 'auto';
+                    }
+                    if (window.lenis) window.lenis.resize();
+                });
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initPortfolioFilter);
+        } else {
+            initPortfolioFilter();
         }
     </script>
 
