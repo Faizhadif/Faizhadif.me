@@ -1515,7 +1515,7 @@
                                 </div>
                             </article>
                             <!-- MOCKUP CARD 1 (REAL ESTATE SPECIALIST MOCKUP) -->
-                            <article class="group portfolio-item-card" data-category="mockup">
+                            <article class="group md:mt-24 portfolio-item-card" data-category="mockup">
                                 <div class="w-full aspect-[19/9] rounded-[16px] overflow-hidden mb-6 bg-zinc-900 border border-white/[0.08] relative group-hover:border-[#00ff73]/40 transition">
                                     <div class="absolute top-4 left-4 z-20">
                                         <span class="px-3 py-1 rounded-full text-[10px] font-mono font-bold tracking-widest bg-emerald-400/20 text-emerald-400 border border-emerald-400/30 uppercase">
@@ -3057,6 +3057,19 @@
             initHeaderScrollSpy();
         }
 
+        function updatePortfolioStagger() {
+            const visibleCards = Array.from(document.querySelectorAll('.portfolio-item-card')).filter(
+                (card) => card.style.display !== 'none'
+            );
+            visibleCards.forEach((card, index) => {
+                if (index % 2 === 1) {
+                    card.classList.add('md:mt-24');
+                } else {
+                    card.classList.remove('md:mt-24');
+                }
+            });
+        }
+
         function initPortfolioFilter() {
             const filterBtns = Array.from(document.querySelectorAll('[data-portfolio-filter]'));
             const cards = Array.from(document.querySelectorAll('[data-category]'));
@@ -3082,6 +3095,8 @@
                         }
                     });
 
+                    updatePortfolioStagger();
+
                     const portfolioMoreShell = document.getElementById('portfolioMoreShell');
                     if (portfolioMoreShell && filterValue === 'mockup') {
                         portfolioMoreShell.classList.remove('is-collapsed');
@@ -3091,6 +3106,8 @@
                     if (window.lenis) window.lenis.resize();
                 });
             });
+
+            updatePortfolioStagger();
         }
 
         if (document.readyState === 'loading') {
